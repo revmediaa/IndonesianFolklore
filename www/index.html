@@ -61,6 +61,25 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 <style id="style-media-queries-narrow" type="text/css">@media screen and (max-width:800px){body{margin:0}#ui-bar{position:relative;top:0;left:0;width:auto;height:auto;margin:0;padding:2.5% 3.5% 0;border:none;border-bottom:1px solid #fff}#story-caption,#ui-bar header{text-align:left;width:66%}#menu{position:absolute;top:0;right:0;margin:2.5% 3.5% 0 0}#menu ul{margin:0}#menu li{margin-bottom:.5em}#passages{width:auto;margin:1.5em 3.5% 3.5%}}</style>
 </head>
 <body>
+<script>
+var admobid = {};
+admobid = { // for Android
+        banner: 'ca-app-pub-3940256099942544/6300978111',
+        interstitial: 'ca-app-pub-6869992474017983/1657046752'
+    };
+
+function initApp() {
+    if (AdMob) {
+        AdMob.createBanner({
+            adId : admobid.banner,
+            position : AdMob.AD_POSITION.BOTTOM_CENTER,
+            autoShow : true
+        });
+    }
+}
+
+document.addEventListener('deviceready', initApp, false);
+</script>
 	<div id="init-screen">
 		<p id="init-no-js"><noscript>Apologies! JavaScript is required. Please enable it to continue.</noscript></p>
 		<p id="init-lacking">Apologies! Your web browser lacks required capabilities. Please consider upgrading it or switching to a more modern web browser.</p>
@@ -10696,23 +10715,5 @@ return new AudioWrapper(this.audio.cloneNode(!0))}}});var KeyValueStore=function
 })}}}]}),e}();Object.defineProperties(Macros.prototype,{add:{value:function(e,t,r){if(Array.isArray(e))return void e.forEach(function(e){this.add(e,t,r)},this);if(this.has(e))throw new Error("cannot clobber existing macro <<"+e+">>");if(this.tags.hasOwnProperty(e))throw new Error("cannot clobber child tag <<"+e+">> of parent macro"+(1===this.tags[e].length?"":"s")+" <<"+this.tags[e].join(">>, <<")+">>");try{if("object"==typeof t)this.definitions[e]=r?clone(t):t;else{if(!this.has(t))throw new Error("cannot create alias of nonexistent macro <<"+t+">>");this.definitions[e]=r?clone(this.definitions[t]):this.definitions[t]}Object.defineProperty(this.definitions,e,{writable:!1}),this.definitions[e]._USE_MACROS_API=!0}catch(t){throw"TypeError"===t.name?new Error("cannot clobber protected macro <<"+e+">>"):new Error("unknown error when attempting to add macro <<"+e+">>: ["+t.name+"] "+t.message)}if(this.definitions[e].hasOwnProperty("tags"))if(null==this.definitions[e].tags)this.registerTags(e);else{if(!Array.isArray(this.definitions[e].tags))throw new Error('bad value for "tags" property of macro <<'+e+">>");this.registerTags(e,this.definitions[e].tags)}}},remove:{value:function(e){if(Array.isArray(e))return void e.forEach(function(e){this.remove(e)},this);if(this.definitions.hasOwnProperty(e)){this.definitions[e].hasOwnProperty("tags")&&this.unregisterTags(e);try{Object.defineProperty(this.definitions,e,{writable:!0}),delete this.definitions[e]}catch(t){throw new Error("unknown error removing macro <<"+e+">>: "+t.message)}}else if(this.tags.hasOwnProperty(e))throw new Error("cannot remove child tag <<"+e+">> of parent macro <<"+this.tags[e]+">>")}},has:{value:function(e,t){return this.definitions.hasOwnProperty(e)||(t?this.tags.hasOwnProperty(e):!1)}},get:{value:function(e){var t=null;return this.definitions.hasOwnProperty(e)&&"function"==typeof this.definitions[e].handler?t=this.definitions[e]:this.hasOwnProperty(e)&&"function"==typeof this[e].handler&&(t=this[e]),t}},getHandler:{value:function(e,t){var r=this.get(e);return t||(t="handler"),r&&r.hasOwnProperty(t)&&"function"==typeof r[t]?r[t]:null}},evalStatements:{value:function(statements,thisp){try{return eval(null==thisp?'var output = document.createElement("div");(function(){'+statements+"\n}());":"var output = thisp.output;(function(){"+statements+"\n}.call(thisp));"),!0}catch(e){if(null==thisp)throw e;return thisp.error("bad evaluation: "+e.message)}}},registerTags:{value:function(e,t){if(!e)throw new Error("no parent specified");Array.isArray(t)||(t=[]);for(var r=["/"+e,"end"+e],i=[].concat(r,t),a=0;a<i.length;a++){var n=i[a];if(this.definitions.hasOwnProperty(n))throw new Error("cannot register tag for an existing macro");this.tags.hasOwnProperty(n)?this.tags[n].contains(e)||(this.tags[n].push(e),this.tags[n].sort()):this.tags[n]=[e]}}},unregisterTags:{value:function(e){if(!e)throw new Error("no parent specified");Object.keys(this.tags).forEach(function(t){var r=this.tags[t].indexOf(e);-1!==r&&(1===this.tags[t].length?delete this.tags[t]:this.tags[t].splice(r,1))},this)}},init:{value:function(){Object.keys(this.definitions).forEach(function(e){var t=this.getHandler(e,"init");t&&t.call(this.definitions[e],e)},this),Object.keys(this).forEach(function(e){var t=this.getHandler(e,"init");t&&t.call(this[e],e)},this)}},lateInit:{value:function(){Object.keys(this.definitions).forEach(function(e){var t=this.getHandler(e,"lateInit");t&&t.call(this.definitions[e],e)},this),Object.keys(this).forEach(function(e){var t=this.getHandler(e,"lateInit");t&&t.call(this[e],e)},this)}}}),Object.defineProperties(MacrosContext.prototype,{contextHas:{value:function(e){for(var t=this;null!==(t=t.parent);)if(e(t))return!0;return!1}},contextSelect:{value:function(e){for(var t=this,r=[];null!==(t=t.parent);)e(t)&&r.push(t);return r}},error:{value:function(e){return throwError(this.output,"<<"+this.name+">>: "+e,this.source)}}}),window.onerror=function(e,t,r,i,a){technicalAlert(null,e,a)},window.SugarCube={};var version=Object.freeze({title:"SugarCube",major:1,minor:0,patch:34,prerelease:null,build:6371,date:new Date("2015-12-11T09:51:54.636Z"),extensions:{},toString:function(){return this.major+"."+this.minor+"."+this.patch+(this.prerelease?"-"+this.prerelease:"")+"+"+this.build},short:function(){return this.title+" (v"+this.major+"."+this.minor+"."+this.patch+(this.prerelease?"-"+this.prerelease:"")+")"},long:function(){return this.title+" v"+this.toString()+" ("+this.date.toUTCString()+")"}}),HistoryMode=Object.freeze({Hash:History.Modes.Hash,Window:History.Modes.Window,Session:History.Modes.Session}),modes=Object.freeze({hashTag:History.Modes.Hash,windowHistory:History.Modes.Window,sessionHistory:History.Modes.Session}),runtime=Object.defineProperties({},{flags:{value:{HistoryPRNG:{isEnabled:!1,isMathPRNG:!1}}},temp:{writable:!0,value:{}}}),config={hasPushState:has.pushState,hasLocalStorage:has.localStorage,hasSessionStorage:has.sessionStorage,hasFileAPI:has.fileAPI,userAgent:browser.userAgent,browser:browser,addVisitedLinkClass:!1,altPassageDescription:undefined,displayPassageTitles:!1,loadDelay:0,startPassage:undefined,updatePageElements:!0,disableHistoryControls:!1,disableHistoryTracking:!1,historyMode:has.pushState?has.sessionStorage?History.Modes.Session:History.Modes.Window:History.Modes.Hash,passageTransitionOut:undefined,transitionEndEventName:function(){for(var e={transition:"transitionend",MSTransition:"msTransitionEnd",WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend"},t=Object.keys(e),r=document.createElement("div"),i=0;i<t.length;i++)if(r.style[t[i]]!==undefined)return e[t[i]];return""}(),macros:{disableIfAssignmentError:!1,maxLoopIterations:1e3},saves:{autoload:undefined,autosave:undefined,id:"untitled-story",isAllowed:undefined,onLoad:undefined,onSave:undefined,slots:8},errorName:undefined,errors:{}},macros={},tale={},state={},storage={},session={},options={},setup={},prehistory={},predisplay={},postdisplay={},prerender={},postrender={};jQuery(document).ready(function(){try{document.normalize&&document.normalize(),macros=new Macros,defineStandardMacros(),tale=new Tale,tale.init(),state=new History,storage=new KeyValueStore("webStorage",!0,tale.domId),session=new KeyValueStore("webStorage",!1,tale.domId),config.saves.id=tale.domId,UISystem.init(),session.hasItem("rcWarn")||has.pushState&&"cookie"!==storage.name||(session.setItem("rcWarn",1),window.alert(("Apologies! Your browser either lacks some of the capabilities required by this %identity% or has disabled them, so this %identity% is running in a degraded mode. You may be able to continue, but some parts may not work properly.\n\nThe former may, probably, be solved by upgrading your browser. The latter may be solved by loosening its security restrictions"+("file:"===window.location.protocol?" or, perhaps, by playing this %identity% via the HTTP protocol.":".")).replace(/%identity%/g,strings.identity)));for(var i=0;i<tale.styles.length;i++)addStyle(tale.styles[i].text);for(var i=0;i<tale.scripts.length;i++)try{eval(tale.scripts[i].text)}catch(e){technicalAlert(tale.scripts[i].title,e.message)}for(var i=0;i<tale.widgets.length;i++)try{Wikifier.wikifyEval(tale.widgets[i].processText())}catch(e){technicalAlert(tale.widgets[i].title,e.message)}SaveSystem.init(),macros.init(),state.init(),macros.lateInit(),UISystem.start()}catch(e){return fatalAlert(null,e.message)}window.SugarCube={version:version,runtime:runtime,has:has,browser:browser,config:config,setup:setup,storage:storage,session:session,macros:macros,tale:tale,state:state,Wikifier:Wikifier,Util:Util,History:History,Passage:Passage,Tale:Tale,SaveSystem:SaveSystem,UISystem:UISystem}})}(window,window.document);}
 	</script>
 </body>
-<script>
-var admobid = {};
-admobid = { // for Android
-        banner: 'ca-app-pub-3940256099942544/6300978111',
-        interstitial: 'ca-app-pub-6869992474017983/1657046752'
-    };
 
-function initApp() {
-    if (AdMob) {
-        AdMob.createBanner({
-            adId : admobid.banner,
-            position : AdMob.AD_POSITION.BOTTOM_CENTER,
-            autoShow : true
-        });
-    }
-}
-
-document.addEventListener('deviceready', initApp, false);
-</script>
 </html>
