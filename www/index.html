@@ -63,23 +63,49 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 <body>
 <script>
 var admobid = {};
+if( /(android)/i.test(navigator.userAgent) ) {
 admobid = { // for Android
-        banner: 'ca-app-pub-3940256099942544/6300978111',
-        interstitial: 'ca-app-pub-6869992474017983/1657046752'
-    };
-
-function initApp() {
-    if (AdMob) {
-        AdMob.createBanner({
-            adId : admobid.banner,
-            position : AdMob.AD_POSITION.BOTTOM_CENTER,
-			overlap : true,
-            autoShow : true
-        });
-    }
+banner: 'ca-app-pub-3940256099942544/6300978111',
+interstitial: 'ca-app-pub-5584769932279177/1005850846'
+};
+} else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+admobid = { // for iOS
+banner: '',
+interstitial: ''
+};
+} else {
+admobid = { // for Windows Phone
+banner: '',
+interstitial: ''
+};
 }
 
+function initApp() {
+if (AdMob) {
+
+AdMob.setOptions({  bgColor: 'black', // color name, or '#RRGGBB' 
+});
+
+AdMob.createBanner({ 
+adId : admobid.banner,
+position : AdMob.AD_POSITION.BOTTOM_CENTER,
+autoShow : true
+});
+}
+if(AdMob){
+AdMob.prepareInterstitial({
+adId:admobid.interstitial,
+autoShow:false
+}
+);
+}
+}
+
+if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
 document.addEventListener('deviceready', initApp, false);
+} else {
+initApp();
+}
 </script>
 	<div id="init-screen">
 		<p id="init-no-js"><noscript>Apologies! JavaScript is required. Please enable it to continue.</noscript></p>
