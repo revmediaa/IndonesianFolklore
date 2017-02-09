@@ -51,6 +51,24 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 /*! seedrandom.js v2.3.3 | (c) 2013 David Bau | Licensed under a BSD-style license */
 !function(a,b,c,d,e,f,g,h,i){function j(a){var b,c=a.length,e=this,f=0,g=e.i=e.j=0,h=e.S=[];for(c||(a=[c++]);d>f;)h[f]=f++;for(f=0;d>f;f++)h[f]=h[g=r&g+a[f%c]+(b=h[f])],h[g]=b;(e.g=function(a){for(var b,c=0,f=e.i,g=e.j,h=e.S;a--;)b=h[f=r&f+1],c=c*d+h[r&(h[f]=h[g=r&g+b])+(h[g]=b)];return e.i=f,e.j=g,c})(d)}function k(a,b){var c,d=[],e=typeof a;if(b&&"object"==e)for(c in a)try{d.push(k(a[c],b-1))}catch(f){}return d.length?d:"string"==e?a:a+"\0"}function l(a,b){for(var c,d=a+"",e=0;e<d.length;)b[r&e]=r&(c^=19*b[r&e])+d.charCodeAt(e++);return n(b)}function m(c){try{return a.crypto.getRandomValues(c=new Uint8Array(d)),n(c)}catch(e){return[+new Date,a,(c=a.navigator)&&c.plugins,a.screen,n(b)]}}function n(a){return String.fromCharCode.apply(0,a)}var o=c.pow(d,e),p=c.pow(2,f),q=2*p,r=d-1,s=c["seed"+i]=function(a,f,g){var h=[],r=l(k(f?[a,n(b)]:null==a?m():a,3),h),s=new j(h);return l(n(s.S),b),(g||function(a,b,d){return d?(c[i]=a,b):a})(function(){for(var a=s.g(e),b=o,c=0;p>a;)a=(a+c)*d,b*=d,c=s.g(1);for(;a>=q;)a/=2,b/=2,c>>>=1;return(a+c)/b},r,this==c)};l(c[i](),b),g&&g.exports?g.exports=s:h&&h.amd&&h(function(){return s})}(this,[],Math,256,6,52,"object"==typeof module&&module,"function"==typeof define&&define,"random");
 }
+
+var admobid = {};
+admobid = { // for Android
+        banner: 'ca-app-pub-3940256099942544/6300978111',
+        interstitial: 'ca-app-pub-6869992474017983/1657046752'
+    };
+
+function initApp() {
+    if (AdMob) {
+        AdMob.createBanner({
+            adId : admobid.banner,
+            position : AdMob.AD_POSITION.BOTTOM_CENTER,
+            autoShow : true
+        });
+    }
+}
+
+document.addEventListener('deviceready', initApp, false);
 </script>
 <style id="style-init-screen" type="text/css">#init-screen{display:none;z-index:100000;position:fixed;top:0;left:0;height:100%;width:100%;font-size:28px;text-align:center}#init-screen p{display:none;width:75%;margin:2em auto;font-weight:700;font-style:italic}#init-loading progress{height:20px}html.init-lacking #init-screen,html.init-loading #init-screen,html.init-no-js #init-screen{display:block}html.init-no-js #init-no-js{display:block}html.init-lacking #init-lacking{display:block}html.init-loading #init-loading{display:block}html.init-loading #passages,html.init-loading #ui-bar{display:none}html.init-no-js #init-no-js,noscript{color:red;font-weight:700}</style>
 <style id="style-fonts" type="text/css">@font-face{font-family:icomoon-sugarcube;src:url(data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AABEkAAsAAAAAHHgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAADeQAABb40HwEm0ZGVE0AAA7sAAAAGgAAABxmn3O0R0RFRgAADwgAAAAdAAAAIABOAARPUy8yAAAPKAAAAEsAAABgL9zcQGNtYXAAAA90AAAAPQAAAVLgMPLNaGVhZAAAD7QAAAAuAAAANv41RT9oaGVhAAAP5AAAAB4AAAAkBBD/5GhtdHgAABAEAAAAHgAAAEgEkACpbWF4cAAAECQAAAAGAAAABgAhUABuYW1lAAAQLAAAAOsAAAIHCW+4AnBvc3QAABEYAAAADAAAACAAAwAAeJyNWAl0lEUS7j9OZoYkThLIIGcCCASYABkIQkQQMHIFEWEERBQEvBgE1ImrnAIRlB+E1QmycoiRS8IqizHgystjMRwyHgkEQcK94ALBAJrNPzBDar/qngxR43v7Jq+6u7q76qvq6ur6owmTSWiaVv/5idNemDZtaseXs5596qWJWROeFlqE0ERvf88I/313+BuZ9Jg79BhTYpRoPKI+6Xq4E2NZPNmf48+KbKblxTYTIq6ZdiW+mYhpZo+oL1qxDKuIFQ1Fc9FaOEQXkS76iAFiqHhUjBUTxWTxonhVzBULxVLhFatErvhYbBM7RKHYK74Rh8VxcVb8ot2RNfX5/qmpqWgeDDdO1XRRTVfVpKmmm2ruUU131fRQTbpq+qqmn2oeUE2Gah5UTX/ZOJU+p9LnVPqcSp9T6XMqfU6lz6n0OZU+p9LnVPqcSp9T6XMqfc4H/+D9Px6HENoi7U3tLW2xpmtLtKXa29oybbn2V+0d7V3Nq+VoK7T3tJXa37T3tVXaam2Ntlb7QFunfajlah9p67UN2kbRkk8jQsSIUi3N1NDU0bTBtNd0wnQxcnDkqMjtZpu5o3moOcucYzYsvSyBesOix9xpjm0VOyz2qzgtLil+RPwz8Xr9Ypvu95iCXr/XYvNnG/l2EtYfTCQs7YNEfvTIaB9MclhkG+LUsBMDGYEMc50zjtpsKYzFJhnYYKlzptxSS3GYnWhkGNBQ10y5uU6kkG8z1pvq3OL31L3nT6wLeuo2wkZawLWLREbeG/CWttVKVD1iJ3rd5qMXvY+E2LeZ6Fb5QhIRSXOIbj58GhNfQ9CN0UeIAi/YJMG+gnXZTPpFMuOd0NSN0aVYfrA3b1zLImaFhEmx1TFWVjWPlXpYfT3IoepXMK0B76S/20isGtFV9WjS1m8hm2gWk9lM5jApDJPZLKcAxJXO4Bey5rmsD8AofbTCQLfOYHjjsdGseQ9gTvmWhOmdX6QF/UgMGjdbWhArucpWYd7kYPCFJCK3tWTwlzFMmKnAC60yHSRvH1swGLOiH5MFYdI3TLKtbFAaEw8b9A16w6+xzTvZ5oGRDP7emoMAeMguVOChbwaDX8AYWrDmr4Br42WGeT1kAcAXMtkdqcCDbONFm7H8HhNvXM8i+rEw9mL6+wo8VM1hpYOkequEEgK1avgvtYBK3PJwFFrsWVJjeuUsFTYSKFz0DOuboM5cYpBxoJwaeGGYRDuHnb5Qor2mIkYCVWEjD+rmw2cUUBxjhgIq4xIn7ZfHHYoYiRZx8k4Y7VTZi7T5M/xp9rKegVL8XIarrMwwBUyR0LRvx1IS9raX7aSlz91NWtqysURrOEyfarWcqH3qR0Qp8C2t+tdAEhO2zFWztPbkdCC+J2VwQxIp2WNIOErakZjUG/rXPNqHxA/fjyVxmG1JyV5NVNq5CVUH+UDFnocAx2NqEeX35NlbRhmVfpPdlxnw4JdmpPl85Y7fzJcblfaA18DPUpttM7x+j71VVNBlujvKYbhwcdNuVQJGREyIyGGYR6XokY97vvCwDl54b+JvNCBFzKoY6YaWJWPgm/fyq4nOdelE4tcGfqquzD6F47JMseokZnVeG3CxjwMujOZceg1uOj1eIA56fUZU5cb5TTjxM9H+u+sTrQxctMJFC+KvQBXRy+tPEj2XGUGi+XcjiWKuWEmLnnEGkeP3QjYtKJ5gSMkGZNO8hotwVVqsEwiQPctI1PMih61pVUKix8lUEs+aGllthsfErtPhWq8uc0TAhTMQ/XSw4Gev4YF3A17dSAOR19ZwESQW6mAhQDRwGBuzsDAN+7wQwQt1xUzTI+EqtzokzIO6pCZdKjJ4vtzvsvsTgviZjco8u8FhWGrJzERPz3MHE3Tdn5DnhqdWrFuAoBs3G844VHiTRMe+uGXjIE2MF5pKr7gxs2C/zoaExrNhiQsofZl60BX0Qpo30vBm2gMJPiPBYkCtXSft6dnbiS7MhmuazB9KdHx+MTshkM+WunU9mMB2+DmSlk5YTuKlNdOJuEfoJcGYz976J9Gp13ALv3zyC6KDPyKZlty1FDF9ZMvuLwE++UQFibs7rSTRuM14El1ffQQuSn/sLtDJ9bB3izWfxKNV/YlyjCEQePDmWdBi5Ee6PO8g0ck+uOsn+5qRFQYUNSLa2SsVQaTzgQwOXCT6PKIYWjqNMEA4Qd5fDQ8121xFov8/knUcdilpK/J3wYCxC58hOp+1h8QDjHfLQ6VQ9P6iT4A1exCQrCroHyJymD0oyEMkx0kYipkF/ROB+elXh/P+MmDensIy25Bourg3ZOyKzMUL+/OFXLykjRsSXR3zJFHl9m1E11dXhMjZ/Z+EyNXHJxEdLbkCCEcecClKIm79asklkdhjuFqJ3iOhXruOh9VG0WFXhV5D23U8pDbKPb8ncqJdpwS5fKtVNSxlo2Sz5CkhbYxQ2CYUK+gi+qFhyhxh+emyFa/c0gfPI559nHNIO3QhkcQnZwRXUqduEl3LxWWL8ewi+hWnImwTj6GqKHoMfvn2U+TpzcfP4VqWdBqJOOOXt2gqVF9LvorYQ2hQyZJ6WJ7cATx+zwOHOgFEH34ioyPQe2UR5KwaNwsvP+08QqLbOU5MC/F4OVa+i5B55hIcWNHvTtCrT/yK/T3Avb71O8jceFlCOE1iVJvxHCirO+DA2l6CZ+LwVvact5ghAFYnD147I6GaROyLV2BFFh7RGNtxyFlwFDbeNxkB2OXh23KO4wJesEBYzx1DsOcQntMmJ7ZiYhHCwno9GbxZmDU53oCqq3gc6CQSaVz+DMiZ9KEsV6pBvz5TBCtW4GUrbYFr261oNfwaf2QPDiqu4E3sLwUiG6dKq3wZuwxrwd5cx97sPgTxfBHlwtVjOL4iAAIERFnJa3fB6I5NzkF81jycUDonDLzLQPd8Dyav8bAPTwywMkXglqx4k2cQ+PuQY0B2Mq9/iIR5WBJk3iIpNRFvqJEADSmdjuOWl7QlOsHnebjkOZDiCzyEC090bsq8tiFyQi7GrEjp3BRJRJj4aRVjmqF3L4jYhHrC1ELAiHZzZ5Nw7+bS8brnXoRH5Uyi8rXINFUfvkV0yf2GbmWpySz1x9tSGdFKRpTM5Dke/phEoqF3JtQlPDWA9+Pptun7WSafydHXF7CmbD6Z0XFSP3obzktMCqO1lp2KyGFt24//3s4wL5HRLtQZPbxY78lXlEUiNnqhtBNVl/f+QkSW2OxEBJ/BiYvHytDbex6bAtsmKApMG9tILnqjvkfvdKFEP79mv00/wFL3s50DWdNf2O4ZSIV42JDI6YNh63GRqhsjB15y4HrdbIOUdZlr8qqrqHOuLLoGgb2qb8Louy1IVS+fhafPVKLG9N+H6Po3eELy9h/apsNd51Bq0jHOxYc3wur/tEaW/u7JNJ1pN9DD7MRGZZg/twm5JhlPsNqrZNGSxL+wfNTMlq/qK52CeRJDpEIlGrwap5AKu6y9G6PubVhabZXm5OEl3JCIGI+owE1uPeo7XN0quKKlA98TDfguNlk9BUs/tTig9IR/OCvAKSRF43Ja9hTjwQCPJG/UqCidT+GlaSCjfwB5uQBk5AHudQUZ9TZREDWJqLe7D4Ck4CMhKqsIzoo6VwyadnYxcuzNcyCn8LnSLZJfDUWZS0daLg59lvgSC4Dmv81TWcoS9BbjYyi4AYFSdX8ha8PNps35CgF6lYwKiZE2pVgVToUbhzGQbcFXjb9XqrKPmAd7U9iWBtdxLBcmutgruMunSmcoT1HZ5i5W5Tqbz5Tp9/osQReus8NXbslDG/D4DI8lzxEqGfIQPYFSn1FqCVeBk/A6vsSh+kSLGiKHTCi3ZoKWhkluzcRtnlqSG9qW5DbO2zN9PktewGvPcxsJDneew+2GSg8Q8YSPqzNXJsoTsyNTd/v0cvzBynh8YSHp4zPLxp96FSMKEh1l9tZRX5rayMI4I9R3ByqlnEzDCzk+w8XmkLb8Iy5ytk7eTdXLxm6l6k0dXmffgcHVD1UacDdTOHlZE7wU6/ZCW/NKRFWbVxZR9ZAXtyBUr/b1Icp78gPYuxuuwgZUPK3aXkaO0rZvmmLmwWadJ1FQNBqzjjf0R11b1EiKOUDaZ2+PjGTh+Gyy8SPHCoVl+k8KgBVVIUDGf4wPT9tIU4jIYZhH19GjCu5VhId18MJ7E/NkVqhgp12v8SEPk3IcO/ScP3EtqlcPCtWg18wfKKgYURcbCfieAs91mwe/e+3uQH4wweJ2636XrK7z7Vy+oXKLkYSfMv6e5/KNdkcMRVR/jGfoi6ErObffrjhryk5FbpeiXJkitw/hYkpkXMSFaXnsXYi7ArzdcvpAxvdH4cUOrRtB062uMCD4/Wn0uEgLch4L+n8AuYFh2a7JTNzYcqAKqdDiIPpmB5+8oswVDfxHeFF7ZBrUbOht5d5RtVykdud72XVglaJqOXPVcpBjarkayokG/lK1xVqzk9mQl6LWsw6YsfO+dpKwExN0+5KYqGYipoEw83/I6ol4MVF8rr2pHfd7g/iZo/0u1P0uS3Rdpfuf+5XCi0WNc0PDGl5SNJfuQa7aTSEih0xoS80E5YTJlpqJ2zy1ZEtoG0vsvqwJZ8+eG/EWPYHPkeRBPfCqFByo3bPnojj1FY3BSRyY/pOkF9RycB9Xi35DvpbLeUnnWlt0xYW4ErUIKrqHez3UckDZoDOsplbZNFHrJUK5Xi6t1ZMTjJD36Nbo/zd063KxIrePQn5tRf8PlqV0RnicY2BgYGQAgpOd+YYg+lw3kyOMBgA8PwUsAAB4nGNgZGBg4ANiCQYQYGJgBEIFIGYB8xgABaoAUwAAAHicY2BmYmCcwMDKwMHow5jGwMDgDqW/MkgytDAwMDGwMjPAgQCCyRCQ5prC4PCA4QMD44P/Dxj0GB8wKDQwMDDCFSgAISMAEEIMHwB4nGNgYGBmgGAZBkYGEPAB8hjBfBYGAyDNAYRMIIkHch8Y/v8HsxggLAUmAUaoLjBgZGNA5o5IAADrtAjMAAAAeJxjYGRgYADild0rzsfz23xl4GZiAIFz3UyOCPr/AyYGxgdALgcDWBoAMdIKXgAAeJxjYGRgYHzw/wGDHhMDA8M/BiAJFEEBzABt5wP2AAB4nGNigAAmBqxAgcEAiQ0hOdHUJDA4MDAAABelAT4AAAAAUAAAIQAAeJydj81Kw0AUhb9pk0LRTV3oNhS3iTMRXNR9F66lq4K0IYQsmoFJ8yo+iG/km3gSZyEoCB243I9zz/0Z4Jp3DOMzrLiPPGPJS+Q5BR+RE1YmjZxyZR4iL6S/yWmSpZT11DXyjBueIs/Z8xo5keczcsqtuYu8YG2eaanwnBSejpyegYYDQfrAkRrayp+87/J+aA6hGo6S/nD9qG6nWecpB/lqMkr9zCpvFP/v/PaVOFWd+nKxFT1quO/OWx+aOisLm22yX9dJK13ubF5aJ/9lH9xJD/K2U1em1eP57OrQt77LXGEvnPwFPSJZ7QB4nGNgZsALAAB9AAQ=)format('woff');font-weight:400;font-style:normal}</style>
@@ -67,6 +85,19 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	</div>
 	<div id="store-area" hidden><tw-storydata name="Indonesian Folklore" startnode="1" creator="Twine" creator-version="2.0.11" ifid="E59BF41C-8EFC-4870-A02B-A3C711E8585C" format="SugarCube" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">#menu-saves, #menu-restart {
 	display: none;
+}
+
+#ui-bar {
+display: none;
+}
+
+a {
+color: cornflowerblue;
+	font-size: 150%;
+}
+a:hover {
+color: lightskyblue;
+text-decoration: underline;
 }
 
 html {
@@ -93,6 +124,7 @@ body {
   /* Vertical centering */
   height:100%;
   vertical-align: middle;
+	margin-left: 3.5em
 }
 
 /* Links */
@@ -113,7 +145,9 @@ a.internalLink:hover, a.externalLink:hover {
 }
 @media screen and (max-width: 720px) {
   .passage { font-size: 75%; width: 90%; }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 </script><tw-passagedata pid="1" name="HomePage" tags="" position="800,1645">** [[Aceh|Aceh]]
 ** [[North Sumatra|North Sumatra]]
@@ -144,7 +178,7 @@ a.internalLink:hover, a.externalLink:hover {
 ** [[Gorontalo|Gorontalo]]
 ** [[Maluku|Maluku]]
 ** [[Papua|Papua]]</tw-passagedata>
-<tw-passagedata pid="2" name="Aceh" tags="" position="581.6666666666667,1016.6666666666667">** [[Mentiko Betuah|Mentiko Betuah]]
+<tw-passagedata pid="2" name="Aceh" tags="" position="581,1016">** [[Mentiko Betuah|Mentiko Betuah]]
 ** [[Banta and the Princess|Banta and the Princess]]
 ** [[The Seven Brothers|The Seven Brothers]]
 ** [[The Parakeet King|The Parakeet King]]
@@ -295,7 +329,7 @@ And then the hunter goes home. He puts the parakeet king in a birdcage.
 In the jungle, all the parakeets are sad because their king is locked in a birdcage. They set a plan to free their king. All the parakeets fly to the hunter&#39;s house. With their beaks, the parakeets peck the birdcage. Slow but sure, the birdcage is destroyed. Then the parakeet king can free himself.
 
 “Thank you. You all are very kind to me. Without your help, I&#39;m still trapped in this birdcage, &quot;says the parakeet king.</tw-passagedata>
-<tw-passagedata pid="7" name="North Sumatra" tags="" position="330,888.3333333333334">** [[Sipiso Somalim|Sipiso Somalim]]
+<tw-passagedata pid="7" name="North Sumatra" tags="" position="330,888">** [[Sipiso Somalim|Sipiso Somalim]]
 ** [[Gundala-Gundala Dance|Gundala-Gundala Dance]]
 ** [[Siranggir the Cow|Siranggir the Cow]]
 ** [[Beru Dayang|Beru Dayang]]
@@ -970,7 +1004,7 @@ When Kelana Sakti was an adult, he completely changed. He was a man with great s
 So, Kelana Sakti fought bravely against the soldiers. He won. Then the last one was fighting against Panglima Badau himself. Again he won the fight and freed everybody in jail.
 
 Then he sent Panglima Badau to the jail. The prince was so thankful to Kelana Sakti. The prince then asked Kelana Sakti to be the palace commander.</tw-passagedata>
-<tw-passagedata pid="28" name="West Sumatra" tags="" position="580,891.6666666666667">** [[Mak Isun Kayo|Mak Isun Kayo]]
+<tw-passagedata pid="28" name="West Sumatra" tags="" position="580,891">** [[Mak Isun Kayo|Mak Isun Kayo]]
 ** [[Legend of the Clear River Village|Legend of the Clear River Village]]
 ** [[Maninjau Lake|Maninjau Lake]]
 ** [[The Legend of Sawah Lunto|The Legend of Sawah Lunto]]
@@ -2424,7 +2458,7 @@ When they arrived, the man immediately took the tests. He passed the first test.
 And then the final test. When he was lying on the surface, everybody screamed. They were afraid the man’s bones would break just like other contestants bones.
 
 But they were wrong. The man survived. He passed the test. All the villagers were happy. They finally had a strong king that could protect them. And they named their kingdom as Jambi.</tw-passagedata>
-<tw-passagedata pid="70" name="South Sumatra" tags="" position="330,1013.3333333333334">** [[Palembang|Palembang]]
+<tw-passagedata pid="70" name="South Sumatra" tags="" position="330,1013">** [[Palembang|Palembang]]
 ** [[The Wild Crocodile|The Wild Crocodile]]
 ** [[Prince Alit|Prince Alit]]
 ** [[The Legend of Kemaro Island|The Legend of Kemaro Island]]</tw-passagedata>
@@ -2831,7 +2865,7 @@ Bujang Katak and his mother went home. His mother was very sad and confused.
 Then Bujang Katak prayed days and nights. One night, amazing things happened. His frog’s skin removed from his body. His head also changed. He became a very handsome man. His mother burned the removed skin. Amazingly the skin changed into gold. They had a lot of gold. Slowly they built a bridge using the gold.
 
 Finally the bridge was built from they house to the king’s palace. The youngest daughter was very happy. Her husband was very handsome and also very rich. He had a lot of gold. All her sisters were jealous. They were even more jealous when the king asked Bujang Katak to be the new king.</tw-passagedata>
-<tw-passagedata pid="83" name="Bengkulu" tags="" position="706.6666666666667,1015">** [[The legend of n&#39;Daung Snake|The legend of n&#39;Daung Snake]]
+<tw-passagedata pid="83" name="Bengkulu" tags="" position="706,1015">** [[The legend of n&#39;Daung Snake|The legend of n&#39;Daung Snake]]
 ** [[Sinatung Natak|Sinatung Natak]]
 ** [[Princess Serindang Bulan|Princess Serindang Bulan]]
 ** [[The Legend of the Seven-Headed Snake|The Legend of the Seven-Headed Snake]]
@@ -3022,7 +3056,7 @@ Then he said, “Because you said that my son is dead, now I really believe that
 “I will, Sir. I just need to hoe the soil a little more,” said Pahit Lidah.
 
 After that, the head of the village left him. Pahit Lidah just realized his mistake. Pahit Lidah was so sure that his son was not dead, then his son was indeed dead. He was so angry. However it was too late. He kept on hoeing and throwing the soil to the river. And finally the land completely blocked the river and it made a new lake. People named the lake as Tes Lake.</tw-passagedata>
-<tw-passagedata pid="89" name="Lampung" tags="" position="330,1138.3333333333335">** [[Telu Pak|Telu Pak]]
+<tw-passagedata pid="89" name="Lampung" tags="" position="330,1138">** [[Telu Pak|Telu Pak]]
 ** [[Kabelah|Kabelah]]
 ** [[The King and the Witch|The King and the Witch]]
 ** [[The New King|The New King]]
@@ -3628,7 +3662,7 @@ Who is he?&quot; asked the king. He was jealous.
 &quot;He is you son. Where were you? I was waiting for you for long time but you never came back,&quot; said his wife.
 
 The king regretted his mistake. He apologized to his wife and to his son. Later the king asked them to stay in the palace. And when the king died, Panji Kelaras became the king. He led the kingdom wisely.</tw-passagedata>
-<tw-passagedata pid="109" name="The Legend of Tanjung Lesung" tags="" position="417.0002999999999,185">THERE was a handsome traveler, his name was Raden Budog. He was resting under a big tree and soon he fell asleep. He had a dream. In his dream, he met a very beautiful woman. The woman was standing in front him. Raden Budog tried to touch her. Suddenly, a twig of the tree fell down and hit him. And that made him wake up from his sleep. He was upset!
+<tw-passagedata pid="109" name="The Legend of Tanjung Lesung" tags="" position="417,185">THERE was a handsome traveler, his name was Raden Budog. He was resting under a big tree and soon he fell asleep. He had a dream. In his dream, he met a very beautiful woman. The woman was standing in front him. Raden Budog tried to touch her. Suddenly, a twig of the tree fell down and hit him. And that made him wake up from his sleep. He was upset!
 
 Raden Budog could not forget that woman, he wanted to meet her. He traveled days and nights and never stopped to rest. And ﬁnally he arrived in a village. All of the villagers were farmers. Some girls were pounding rice in a mortar. The people called the mortar as lesung. They were busy pounding and the sound they made was like a harmony. The girls pounded the rice everyday, except Friday. Friday was a holy day for them, because it was time to pray to God.
 
@@ -3663,7 +3697,7 @@ Raden Budog did not understand why the villagers called him monkey. And when he 
 Since then people named the village as Lesung Village or Kampung Lesung.
 
 And since the village is located in a cape, people then named the village as Lesung Cape or Tanjung Lesung.</tw-passagedata>
-<tw-passagedata pid="110" name="West Java" tags="" position="583.3333333333334,1141.6666666666667">** [[Kabayan and A Merchant|Kabayan and A Merchant]]
+<tw-passagedata pid="110" name="West Java" tags="" position="583,1141">** [[Kabayan and A Merchant|Kabayan and A Merchant]]
 ** [[Indramayu|Indramayu]]
 ** [[The Blind and the Hunchback|The Blind and the Hunchback]]
 ** [[A Monkey and a Bird|A Monkey and a Bird]]
@@ -3680,7 +3714,7 @@ And since the village is located in a cape, people then named the village as Les
 ** [[Cianjur|Cianjur]]
 ** [[Princess Nilarani|Princess Nilarani]]
 ** [[The Origin of Pantai Karang Nini|The Origin of Pantai Karang Nini]]</tw-passagedata>
-<tw-passagedata pid="111" name="Kabayan and A Merchant" tags="" position="511.00019999999995,53">ONCE upon a time in West Java, there was a village. All the villagers were farmers. The land was fertile and the people lived happily and prosperously. Well, actually not every one was rich. There was one young man who was poor. His name was Kabayan. He lived with his mother. Kabayan was not a farmer. He did not have his own rice field. To make a living, he worked for other farmers. He helped farming the rice, herding, and feeding the cattle.
+<tw-passagedata pid="111" name="Kabayan and A Merchant" tags="" position="511,53">ONCE upon a time in West Java, there was a village. All the villagers were farmers. The land was fertile and the people lived happily and prosperously. Well, actually not every one was rich. There was one young man who was poor. His name was Kabayan. He lived with his mother. Kabayan was not a farmer. He did not have his own rice field. To make a living, he worked for other farmers. He helped farming the rice, herding, and feeding the cattle.
 
 Kabayan always played his flute while he was herding. He played very well and many people enjoyed listening to his playing. All the villagers loved Kabayan. He was smart, diligent, and helpful. Kabayan always helped anyone who needed his help.
 
@@ -3739,7 +3773,7 @@ The merchant was angry.
 &quot;I don&#39;t know either. Here take my hat,&quot; said Kabayan happily.
 
 He had lots of money. He bought his own rice field and proposed Nyi Iteung. They got married and lived happily.</tw-passagedata>
-<tw-passagedata pid="112" name="Indramayu" tags="" position="511.00019999999995,0">WIRA Lodra was a young and handsome man. He had supernatural power. Lots of girls liked him. And one of them was Putri Kedasih. She really loved him and had tried to persuade him to marry her.
+<tw-passagedata pid="112" name="Indramayu" tags="" position="511,0">WIRA Lodra was a young and handsome man. He had supernatural power. Lots of girls liked him. And one of them was Putri Kedasih. She really loved him and had tried to persuade him to marry her.
 
 However, Wira Lodra rejected her love. He already loved a girl, her name was Darma Ayu. She was not just an ordinary girl. She was a goddess from heaven. She was so beautiful.
 
@@ -3987,7 +4021,7 @@ The princess did not want to go back to the palace. She wanted to stay in the se
 People heard about Princess Kandita who lived in the sea. Some princes came to the sea. They fell in love with Princess Kandita and wanted to marry her. The princess gave them one condition. She said she would marry any man who could beat her in a fight. If he lost the fight, he must join her in her kingdom as her soldiers. Unfortunately, no men&#39;conld beat her. Slowly, Princess Kandita had lots of soldiers.
 
 Until now people believe that the princess still &#39;lives&#39; in the sea. She is known as the Ruler of Southern Java Sea.</tw-passagedata>
-<tw-passagedata pid="118" name="Girilawungan" tags="" position="292.0008999999998,185">A long time ago, there was a kingdom in West Java. The king was King Giri Layang. He had a sister, her name was Princess Giri Larang. She was so beautiful and she also had supernatural power.
+<tw-passagedata pid="118" name="Girilawungan" tags="" position="292,185">A long time ago, there was a kingdom in West Java. The king was King Giri Layang. He had a sister, her name was Princess Giri Larang. She was so beautiful and she also had supernatural power.
 
 One day the princess told i.l her brother that she wanted to find a teacher to study. &quot;Where do you want to study?&quot; asked the king.
 
@@ -4134,7 +4168,7 @@ The argument was leading to a fight. The prince had a great supernatural power. 
 &quot;Don&#39;t worry, you can live in that island over there. No one lives in that island.&quot;
 
 Later the genie lived in the island. People often saw golden light from the island. Since then people named the island as Pulau Mas, which means Golden Island.</tw-passagedata>
-<tw-passagedata pid="122" name="Diyah Pitaloka Citraresmi" tags="" position="167.0015999999996,185">A Long time ago in West Java there was Sunda Kingdom. The king was King Maharaja Lingga Buana. He was a good king. He led  the kingdom peacefully, his people really love him.
+<tw-passagedata pid="122" name="Diyah Pitaloka Citraresmi" tags="" position="167,185">A Long time ago in West Java there was Sunda Kingdom. The king was King Maharaja Lingga Buana. He was a good king. He led  the kingdom peacefully, his people really love him.
 
 Diyah Pitaloka Citraresmi was the daughter of King Maharaja Lingga Buana. The princess was very beautiful. In fact, people said that she was the most beautiful girl in ]ava.
 
@@ -4227,7 +4261,7 @@ Not long after the man was in the jail, rain fell down heavily. There was also b
 Other people were also screaming, &quot;Maja langka! Maja Langka!&quot;
 
 It means maja fruit are rare. People were very confused. They did not know why the palace, the queen and the maja fruits suddenly disappeared. They kept on talking about that and later they named the place as Majalangka. Slowly it became Majalengka.</tw-passagedata>
-<tw-passagedata pid="125" name="Cianjur" tags="" position="125.002,185">PAK Pelit is the head of the village. He also the richest man. He owns alot of paddy fields. All the farmers work for him, they don&#39;t have their own paddy fields.
+<tw-passagedata pid="125" name="Cianjur" tags="" position="125,185">PAK Pelit is the head of the village. He also the richest man. He owns alot of paddy fields. All the farmers work for him, they don&#39;t have their own paddy fields.
 
 The villagers call him Pak Pelit because he is very stingy. Pak Pelit has a son. His name is Budiman. Unlike Pak Pelit, Budiman is very generous to the villager. That&#39;s why people call him Budiman.
 
@@ -4259,7 +4293,7 @@ The witch was surprised. She was so angry that someone entered her house without
 They were fighting. Luckily, Prince Sumirat did not only have skills in martial arts. His father had taught him about magical skills. So, he used the skills to fight the witch.
 
 Finally, Prince Sumirat won and he immediately asked Princess Nilarani to drink water from the kendi. Slowly, Princess Nilarani turned back as she was before, a very beautiful girl. Prince Sumirat then brought Princess Nilarani back to the palace. Princess Nilarani fell in love with Prince Sumirat and Prince Sumirat also had the same feeling. Afterwards, they got married and lived happily ever after.</tw-passagedata>
-<tw-passagedata pid="127" name="The Origin of Pantai Karang Nini" tags="" position="0.0030000000000285354,185">ONCE upon a time in a village in Ciamis, West Java lived a couple of elderly husband and wife. The elderly husband was called Aki and the elderly wife was called Nini. They had two sons and one daughter. Their sons lived across the ocean and their daughter lived in another place far away from Aki and Nini.
+<tw-passagedata pid="127" name="The Origin of Pantai Karang Nini" tags="" position="0,185">ONCE upon a time in a village in Ciamis, West Java lived a couple of elderly husband and wife. The elderly husband was called Aki and the elderly wife was called Nini. They had two sons and one daughter. Their sons lived across the ocean and their daughter lived in another place far away from Aki and Nini.
 
 Every Lebaran, their two sons visited Aki and Nini. But their daughter never did. Aki and Nini missed their daughter. Two days before Lebaran day, Aki toldNini that he wanted to visit their daughter. Nini wanted to come along, but Aki refused.
 
@@ -4270,7 +4304,7 @@ On the day Aki promised to return, Nini dressed up and went to the beach, to wai
 They kept searching for Nini, calling her name. Finally they found a rock that looked like an old woman sitting down on the beach. They believed it was Nini, who was sitting down on the beach, waiting for her husband, Aki, to return.
 
 The rock symbolizes a wife’s faithfulness to her husband. The beach is then called Pantai Karang Nini. Which means the beach’s of Nini’s rock.</tw-passagedata>
-<tw-passagedata pid="128" name="Central Java" tags="" position="710,1141.6666666666667">** [[The Legend of Gunung Bagus|The Legend of Gunung Bagus]]
+<tw-passagedata pid="128" name="Central Java" tags="" position="710,1141">** [[The Legend of Gunung Bagus|The Legend of Gunung Bagus]]
 ** [[Ki Semar and Slamet Mountain|Ki Semar and Slamet Mountain]]
 ** [[The Baruklinting Dragon|The Baruklinting Dragon]]
 ** [[Joko Tingkir|Joko Tingkir]]
@@ -4328,7 +4362,7 @@ After the monkeys left the top of the mountain, Ki Semar immediately cut the top
 After the monkeys left the mountain and followed Gareng, Petruk was ready with some hot water. He planned to pour the hot water over the monkeys. He waited and waited but the monkeys never came to him. He did not know that while the monkeys chased Gareng, they met a giant dragon. The monkeys had a fight with the dragon. It was so terrible that both the monkeys and the dragon finally died.
 
 Because of tired waiting for the monkeys, Petruk then left the place. He did not bring his hot water and left it there. People then named the place where Petruk left his hot water as Guci. It is about 50 kilometers from Tegal, Central Java. It is famous for its hot water. </tw-passagedata>
-<tw-passagedata pid="131" name="The Baruklinting Dragon" tags="" position="667.0002999999999,185">A long time ago, there was a giant dragon. His name was Baruklinting. One day, one of the gods asked him to take nine shepherds as an offering for the gods.
+<tw-passagedata pid="131" name="The Baruklinting Dragon" tags="" position="667,185">A long time ago, there was a giant dragon. His name was Baruklinting. One day, one of the gods asked him to take nine shepherds as an offering for the gods.
 
 Then Baruklinting went to a mountain. He opened his big mouth every day. He hoped that shepherds would enter his big mouth. In the village, ten shepherds took their cows to the grass field on the mountain. They didn’t know there was a dragon. One of the shepherds was very skinny and dirty. His friends always made fun of him. The skinny shepherd never got angry. He just kept quiet and left his friends every time they laughed at him.
 
@@ -4369,7 +4403,7 @@ Joko Tingkir away from Demak and learning from his father&#39;s old Sodara, name
 Joko Tingkir trying to find sympathy for the Sultan Trenggono which at that time was traveled in Mount Prawoto. He took off a mad bull named Kebo Danu. The Water Buffalo rampage after being given a mantra by Joko Tingkir, by giving the burial ground at the buffalo&#39;s ear. No one was able to stop the water Buffalo.
 
 Joko Tingkir emerge and face the mad buffalo, and defeated easily. The incident, was appointed by the Sultan Trenggono back into ravine wiratama.</tw-passagedata>
-<tw-passagedata pid="133" name="The Sacred Cave" tags="" position="542.0006999999998,185">ONCE upon a time there was long drought in Rembang, Central Java. Rain had not fallen in the place for a very long time. The air was very hot. All the leaves in the trees dried. The rice fields did not grow any plants. There was no source of water. Their only lake also dried.
+<tw-passagedata pid="133" name="The Sacred Cave" tags="" position="542,185">ONCE upon a time there was long drought in Rembang, Central Java. Rain had not fallen in the place for a very long time. The air was very hot. All the leaves in the trees dried. The rice fields did not grow any plants. There was no source of water. Their only lake also dried.
 
 The people were very thirsty. Children were dying. They did not get enough food and drink. Most of them were ill. Cattle also suffered from the drought season. One by one the cattle died. The villagers were very sad. For them, cattle were their precious things. They could not do anything when their cattle died.
 
@@ -4398,7 +4432,7 @@ Finally they arrived. Ki Mojo Agung went to a cave. He put the fish and the turt
 It was true that the fish and the turtle were floundering. But they were not dying. An amazing thing started to happen. On the ground where the fish and the turtle were moving their bodies, water came out. The villagers were happy. They immediately drank the water. They were very thankful
 
 Because the water came out in front of the cave, the people named the cave as the sacred cave or Gua Keramat.</tw-passagedata>
-<tw-passagedata pid="134" name="Dwijeswara and The Crab" tags="" position="417.0012999999997,185">There was a brahmin named Dwijeswara. He was known to be very wise.  Dwijeswara was praying on the mountain and met a crab named Astapada.
+<tw-passagedata pid="134" name="Dwijeswara and The Crab" tags="" position="417,185">There was a brahmin named Dwijeswara. He was known to be very wise.  Dwijeswara was praying on the mountain and met a crab named Astapada.
 
 The crab, perhaps had been lost and reached the top of the mountain in a state of exhaustion and thirst. It touched Dwijeswara&#39;s heart while seeing a creature in distress and confusion.
 
@@ -4438,7 +4472,7 @@ At the palace garden, the princess surprised. They wanted to know how the Turtle
 The Turtle tried to explain it. Unfortunately, it lost the bite and fell to the ground. His body split in two.
 
 The king came with his advisor. The advisor explained why the Turtle fell at the palace. The habit of talking too much caused careless and disaster. The King realized that the advisor had long been advised him to talk less. There is a time to speak and a time to be silent. During that time, the King had always dominated the conversation with the ministers. The Turtle&#39;s fate made him understand his mistake.</tw-passagedata>
-<tw-passagedata pid="136" name="Double Headed Bird" tags="" position="292.0018999999995,185">At the Borobudur temple complex in Central Java, there are a number of temples. One of the temple named Mendut. In this temple there is a relief depicting a two-headed bird. The head of the upper head eats a ripe fruit, while the lower head looks limp.
+<tw-passagedata pid="136" name="Double Headed Bird" tags="" position="292,185">At the Borobudur temple complex in Central Java, there are a number of temples. One of the temple named Mendut. In this temple there is a relief depicting a two-headed bird. The head of the upper head eats a ripe fruit, while the lower head looks limp.
 
 This relief taken from a fable (story of animals) that describes the message about the gap and disregard of the &quot;top&quot; group towards the &quot;bottom.&quot; Although the story told by animals characters, it represents the message for humanity.
 
@@ -4568,7 +4602,7 @@ The Crab said, &quot;Now you are stupid, Mr. Heron. Take me to the lake so I cou
 The heron obeyed the order to save its life.
 
 When arriving at the edge of the lake neck Stork cut the crab neck and died instantly. The crab was soon into the lake.</tw-passagedata>
-<tw-passagedata pid="140" name="Cat and Mouse" tags="" position="421.0002999999999,436">Long ago. a monk was annoyed by the mice food stealing. He maintained a cat to chasing away and even catch the mice.
+<tw-passagedata pid="140" name="Cat and Mouse" tags="" position="421,436">Long ago. a monk was annoyed by the mice food stealing. He maintained a cat to chasing away and even catch the mice.
 
 The mice felt threatened by the critical food shortages because when the mice go out, they will surely captured and eaten by the cat.
 
@@ -4854,7 +4888,7 @@ The tiger finally went to the river. He swam and he survived. He realized the mi
 ** [[Kiskenda Cave|Kiskenda Cave]]
 ** [[Retna Lestari and Bakuh the Giant|Retna Lestari and Bakuh the Giant]]
 ** [[The Curse of Joko Bandung|The Curse of Joko Bandung]]</tw-passagedata>
-<tw-passagedata pid="148" name="The Queen Mosquito" tags="" position="797.0003999999999,53">THERE was a village in Yogyakarta. The villagers were farmers. They lived happily and peacefully. They had fertile land and healthy livestock.
+<tw-passagedata pid="148" name="The Queen Mosquito" tags="" position="797,53">THERE was a village in Yogyakarta. The villagers were farmers. They lived happily and peacefully. They had fertile land and healthy livestock.
 
 It was harvest. All farmers were happy because soon they would sell their rice and got lots of money.
 
@@ -4895,7 +4929,7 @@ The queen thought it was useless so she asked all the mosquitoes to attack Madam
 The smoke made the mosquitoes very weak and some of them died. However the queen survived and she swore that she would always ask mosquitoes to attack humans.
 
 Well, that is why we hear mosquitoes buzzing. They ask us to return their queen&#39;s earrings!</tw-passagedata>
-<tw-passagedata pid="149" name="Gentong Mountain" tags="" position="792.0006999999998,185">Raden Patah was so happy. The palace was very much different from the jungle. And the king, his father, taught him everything.
+<tw-passagedata pid="149" name="Gentong Mountain" tags="" position="792,185">Raden Patah was so happy. The palace was very much different from the jungle. And the king, his father, taught him everything.
 
 The king hoped that Raden Patah could someday replace him as a king.
 
@@ -4920,7 +4954,7 @@ Raden Patah finally arrived in the hill. He knew they were so thirsty. He wanted
 The gentong landed well on the top of the hill. The king and the rest of the people were grateful. They immediately drank the water. And when Raden Patah arrived, he asked his father why he left the palace.
 
 The father explained and Raden Patah understood that there was misunderstanding. He told his father that he never planned to attack Majapahit. Raden Patah and his father went back to the palace. And the gentong was still on the top of the big hill. Since then people named the hill as Gunung Gentong or Gentong Mountain.</tw-passagedata>
-<tw-passagedata pid="150" name="Raden Patah" tags="" position="667.0010999999997,185">PRABU Brawijaya was the King of Majapahit Kingdom. He had a wife and some concubines. One of the concubines was Ratu Mayangsari. She was the most beautiful concubine. In fact she was more beautiful than the Queen. The King really loved Ratu Mayangsari. He always took care of her very well and that made the Queen jealous. She always told the King bad things about the concubine. The King understood that his wife hated Ratu Mayangsari.
+<tw-passagedata pid="150" name="Raden Patah" tags="" position="667,185">PRABU Brawijaya was the King of Majapahit Kingdom. He had a wife and some concubines. One of the concubines was Ratu Mayangsari. She was the most beautiful concubine. In fact she was more beautiful than the Queen. The King really loved Ratu Mayangsari. He always took care of her very well and that made the Queen jealous. She always told the King bad things about the concubine. The King understood that his wife hated Ratu Mayangsari.
 
 &quot;I have to do something! I don&#39;t want her to be here anymore!&quot; said the Queen angrily.
 
@@ -4968,7 +5002,7 @@ Juru Sawah,&quot; said Raden Patah.
 &quot;Really? My son... please forgive me,&quot; said the King.
 
 He hugged Raden Patah. He felt so guilty and apologized to his son. He wanted to make up for his mistake. Therefore, he asked Raden Patah and his mother to stay in the palace. Since then Raden Patah and his mother lived in the palace. When he grew up, Raden Patah became a great man and very famous.</tw-passagedata>
-<tw-passagedata pid="151" name="The Legend of Limestone Hill" tags="" position="547.0003999999999,60">Once upon a time in Gunung Kidul, Yogyakarta, there was a kingdom named Medang Kingdom. The king was King Dewata Cengkar. He liked to eat. The chef in the palace always worked hard. The king was never satisfied with the food.
+<tw-passagedata pid="151" name="The Legend of Limestone Hill" tags="" position="547,60">Once upon a time in Gunung Kidul, Yogyakarta, there was a kingdom named Medang Kingdom. The king was King Dewata Cengkar. He liked to eat. The chef in the palace always worked hard. The king was never satisfied with the food.
 
 One day, the chef accidentally cut his finger and the blood dropped into the food. The chef was really scared and he told his friends not to tell the king about it. His friends agreed.
 
@@ -4991,7 +5025,7 @@ However when he tried to take off the robe, the king never succeeded. The robe s
 Aji Saka prepared his arrow. He pointed the arrow to the white crocodile. Right after the arrow hit the crocodile’s body, it died instantly.
 
 And on the spot where the crocodile lied down, grew a limestone hill. The hill was infertile. It was very difficult for the villagers to plant a tree there. The villagers then made good use of the hill to decorate their houses.</tw-passagedata>
-<tw-passagedata pid="152" name="Kiskenda Cave" tags="" position="422.0008999999998,60">KISKENDA Cave was a home for Maesasura and Lembusura. They were brothers and they were strange creatures. They had human bodies but they had animal heads. They were the kings of all the wild animals in the jungle. They were also immortal. When one of them was dead, the other just had to step over the dead body then the dead one would come back to life!
+<tw-passagedata pid="152" name="Kiskenda Cave" tags="" position="422,60">KISKENDA Cave was a home for Maesasura and Lembusura. They were brothers and they were strange creatures. They had human bodies but they had animal heads. They were the kings of all the wild animals in the jungle. They were also immortal. When one of them was dead, the other just had to step over the dead body then the dead one would come back to life!
 
 Maesasura fell in love with Dewi Tara, she was a goddess and the daughter of Bathara Indra. The two brothers went to the heaven and talked to Bathara Indra. The god refused their proposal. He had heard how bad they were. It made them become very angry! The two strange creatures attacked all the gods and the goddesses in the heaven. All the gods and the goddesses were helpless. They gave up!
 
@@ -5020,7 +5054,7 @@ The father was angry at Subali. He said &quot;Why do you think you have white bl
 The father asked Subali to continue meditating. He hoped Subali to be wiser. Subali did what his father said. He went back meditating.
 
 Later the gods asked Sugriwa and Dewi Tara to live in Kiskenda Cave and build a kingdom. The cave still exists until now. It is located in Kulon Progo, Yogfakarta.</tw-passagedata>
-<tw-passagedata pid="153" name="Retna Lestari and Bakuh the Giant" tags="" position="297.0014999999996,60">A long time ago, there was a mean giant. And every time he wanted to eat, he always looked for the animals. He ate almost all kinds of animals. And of course, the animals did not live peacefully. They were scared Bakuh would eat them.
+<tw-passagedata pid="153" name="Retna Lestari and Bakuh the Giant" tags="" position="297,60">A long time ago, there was a mean giant. And every time he wanted to eat, he always looked for the animals. He ate almost all kinds of animals. And of course, the animals did not live peacefully. They were scared Bakuh would eat them.
 
 Slowly, the numbers of animals were decreasing. And finally there was no animal left in the jungle. Bakuh started to go to the villages. He wanted to eat humans!
 
@@ -5055,7 +5089,7 @@ Slowly, all Bakuh&#39;s body was covered by stones. Retna Lestari put two very b
 Slowly the two big stones became mountains. The big stone on Bakuh&#39;s head became Merapi Mountain and the big stone on his feet became Merbabu Mountain.
 
 People now say that when they hear a rumbling noise from the mountains, they believe that Baku is yelling and screaming. He is cursing Retna Lestari for tricking him.</tw-passagedata>
-<tw-passagedata pid="154" name="The Curse of Joko Bandung" tags="" position="172.00219999999945,60">A long time ago, there were two kingdoms. They were Pengging Kingdom and Prambanan Kingdom. The king were fighting. They were at war! Pengging&#39;s king was Joko Bandung. He was very strong and powerful. He had great martial art skill. He led the soldiers and fought bravely.
+<tw-passagedata pid="154" name="The Curse of Joko Bandung" tags="" position="172,60">A long time ago, there were two kingdoms. They were Pengging Kingdom and Prambanan Kingdom. The king were fighting. They were at war! Pengging&#39;s king was Joko Bandung. He was very strong and powerful. He had great martial art skill. He led the soldiers and fought bravely.
 Meanwhile, Prabu Boko, the king of Prambanan sent a giant to fight against Joko Bandung. The Giants name was Bandawasa.
 
 Bandawasa was very big. Joko Bandung was not afraid with the giant. They were fighting. And finally Joko Bandung won the fight. Before he died, Bandawasa&#39;s spirit joined Joko Bandung&#39;s spirit. That made Joko Bandung became more powerful. He then added Bandawasa&#39;s name into his name. His name changed into Joko Bandung Bandawasa.
@@ -5083,7 +5117,7 @@ And they also thought the sun would rise soon. The spirits and the genies were a
 He continued, &quot;You are so stubborn like a stone. I curse you to become a statue!&quot;
 
 Joko Bandung&#39;s magic power had changed Roro Jonggrang into a statue! Since then people named the temples that the spirit and the genies build as Sewu Temple. And the people also named the Prambanan Temple as Roro Jonggrang Temple.</tw-passagedata>
-<tw-passagedata pid="155" name="East Java" tags="" position="831.6666666666667,1015">** [[Joko Panjer and Lara Inten|Joko Panjer and Lara Inten]]
+<tw-passagedata pid="155" name="East Java" tags="" position="831,1015">** [[Joko Panjer and Lara Inten|Joko Panjer and Lara Inten]]
 ** [[The Legend of Banyuwangi|The Legend of Banyuwangi]]
 ** [[The Legend of Mount Arjuna|The Legend of Mount Arjuna]]
 ** [[Joko Baru|Joko Baru]]
@@ -5100,7 +5134,7 @@ Joko Bandung&#39;s magic power had changed Roro Jonggrang into a statue! Since t
 ** [[The Legend of Panekan|The Legend of Panekan]]
 ** [[The Twin Masks|The Twin Masks]]
 ** [[Putri Kemuning|Putri Kemuning]]</tw-passagedata>
-<tw-passagedata pid="156" name="Joko Panjer and Lara Inten" tags="" position="542.0015999999996,185">&quot;JOKO Panjer, take the cows home. It’s late and going to rain soon.&quot;
+<tw-passagedata pid="156" name="Joko Panjer and Lara Inten" tags="" position="542,185">&quot;JOKO Panjer, take the cows home. It’s late and going to rain soon.&quot;
 
 “Yes, father. I’m going home now. The cows are also full.”
 
@@ -5127,7 +5161,7 @@ Actually, Joko was also lonely in the field. Every day he did not have a friend 
 Lara Inten then returned back to the palace. She talked to her parents about Joko. The king and the queen then decided to ask Joko and his family to stay in the palace.
 
 Now everyday, Joko and Lara could play together. Joko’s parents were very happy. Now the family were not poor anymore.</tw-passagedata>
-<tw-passagedata pid="157" name="The Legend of Banyuwangi" tags="" position="917.0010999999997,178">ONCE upon a time in Sindureja Kingdom, King Sidareja was talking to his vice regent, his name was Patih Sidapaksa. The King asked Patih Sidapaksa to give him the flesh of a young deer.
+<tw-passagedata pid="157" name="The Legend of Banyuwangi" tags="" position="917,178">ONCE upon a time in Sindureja Kingdom, King Sidareja was talking to his vice regent, his name was Patih Sidapaksa. The King asked Patih Sidapaksa to give him the flesh of a young deer.
 
 Patih Sidapaksa took the mission.
 When he arrived in the jungle, he saw a young deer. He pointed his arrow to the deer. Unfortunately, he missed the target. He ran after the deer. He was running and running until he arrived at a hut. Patih Sidapaksa knocked the door.
@@ -5158,7 +5192,7 @@ Luckily, Patih Sidapaksa could do the mission and came back to the palace. Sadly
 Patih Sidapaksa then threw her into the river. Amazingly, the river smelled good. Patih Sidapaksa was very sorry. Sri Tanjung died. He regretted not to believe her.
 
 When the river smelled good, people instantly said Banyuwangi. Banyu means water and Wangi means good smell. Since then the place has been named Banyuwangi. </tw-passagedata>
-<tw-passagedata pid="158" name="The Legend of Mount Arjuna" tags="" position="792.0012999999997,187">THE Pandawas were five brothers who had supernatural power. They were Yudistira, Bima, Arjuna, and the twins Nakula and Sadewa.
+<tw-passagedata pid="158" name="The Legend of Mount Arjuna" tags="" position="792,187">THE Pandawas were five brothers who had supernatural power. They were Yudistira, Bima, Arjuna, and the twins Nakula and Sadewa.
 
 Compaied to his brothers, Arjuna had the most supernatural power. He got his power by meditating. He could ask the gods to give him supernatural power.
 
@@ -5203,7 +5237,7 @@ When Arjuna opened his eyes, Batara Semar and Batara Togog immediately came to A
 Arjuna then realized how dangerous it was. He also realized that he should be grateful with the power he had and not to ask for more power. Later, Arjuna left the mountain and went home.
 
 Since then, people named the mountain as Mount Arjuna while the other part of the mountain that Batara Semar and Batara Togog threw was named Mount Wukir.</tw-passagedata>
-<tw-passagedata pid="159" name="Joko Baru" tags="" position="417.00219999999945,185">THERE was a village in East Java. The place&#39; WAS SO beautiful and fertile. People lived happily and peacefully. Trees grew well and their rice fields always gave them lots of rice. They were happy to have lots of food.
+<tw-passagedata pid="159" name="Joko Baru" tags="" position="417,185">THERE was a village in East Java. The place&#39; WAS SO beautiful and fertile. People lived happily and peacefully. Trees grew well and their rice fields always gave them lots of rice. They were happy to have lots of food.
 
 More and more people came and stayed in the village. Slowly, the village was so full of people. The head of the village was Adipati Betak. He was so worried that soon the village could not hold enough people. He thought that the village would be so crowded and people could not live comfortably. He was thinking how to flnd a solution. Then he had an idea. In the village there was a big swamp.
 
@@ -5290,7 +5324,7 @@ Kesuma was a very good son. He was obedient to his parents and very kind to othe
 Kesuma went to the crater. He jumped and he was swallowed by fire. Everybody was sad. And they all were very thankful to Kesuma. Because of him, their place was safe from the eruption of Bromo Mountain.
 
 Until now, once a year the people of Tenggel always hold a ceremony to commemorate Kesuma. They bring offerings to the crater of Bromo Mountain.</tw-passagedata>
-<tw-passagedata pid="161" name="Watu Singa" tags="" position="47.002999999999474,60">A BABY boy was born. Unlike any other babies, he cried loudly. He moved his body powerfully. He was also very cute. And when he grew up, he became a very handsome man. His parents were priests.
+<tw-passagedata pid="161" name="Watu Singa" tags="" position="47,60">A BABY boy was born. Unlike any other babies, he cried loudly. He moved his body powerfully. He was also very cute. And when he grew up, he became a very handsome man. His parents were priests.
 
 They were very happy when thebaby wasborn. They named himloko Seger, which means ]oko who was very healthy and strong.
 
@@ -5375,7 +5409,7 @@ The stones were very big. King Lembu Suro was helpless. He was trapped inside th
 &quot;Some day, I will destroy this area! I will make this mountain erupt!&quot;
 
 Everyone who heard the curse was scared. To avoid the curse from happening they regularly gave offering. The habit continues until now. People always give offering with hope that their place will be safe from the eruption.</tw-passagedata>
-<tw-passagedata pid="163" name="A Dragon and a Baby" tags="" position="292.0028999999993,185">ONCE upon a time, there was a small village in East Kalimantan. The head of the village lived alone with his wife. They did not have any children yet.
+<tw-passagedata pid="163" name="A Dragon and a Baby" tags="" position="292,185">ONCE upon a time, there was a small village in East Kalimantan. The head of the village lived alone with his wife. They did not have any children yet.
 
 Rain was falling for days. There was a big storm. The sound of thunder scared all the villagers. They did not have any courage to go outside of the house and that&#39;s including the
 head of villagee
@@ -5442,7 +5476,7 @@ While they were fighting, suddenly King Singabarong felt very itchy in his head.
 Amazingly, King Singabarong changed into a very strange animal. His peacock joined his head. King Singabarong had changed into a two-headed animal! King Kelanaswandana immediately brought the two-headed animal and performed the dance.
 
 Princess Dewi Sanggalangit amazed and as promised she agreed to marry King Kelanaswandana. And she was brought to Wengker in Bandarangin Kingdom. Wengker was the other name of Ponorogo. Since then people named the dance as Ponorogo dance.</tw-passagedata>
-<tw-passagedata pid="165" name="Jantur and Menur" tags="" position="672.0008999999998,60">JANTUR and Menur were twins. Jantur was a boy and Menur was a girl and they had different personalities. Jantur was lazy, he got angry easily. He always said bad words when he was angry. However, Menur was a very kind, diligent, patient and always helped their parents. She always reminded her brother to behave well.
+<tw-passagedata pid="165" name="Jantur and Menur" tags="" position="672,60">JANTUR and Menur were twins. Jantur was a boy and Menur was a girl and they had different personalities. Jantur was lazy, he got angry easily. He always said bad words when he was angry. However, Menur was a very kind, diligent, patient and always helped their parents. She always reminded her brother to behave well.
 
 “Menur! Where are you? I&#39;m hungry! Give me some food!” said Jantur.
 
@@ -5540,7 +5574,7 @@ He was so shocked! he saw his skin changed into scales. Just like scales of rept
 Meanwhile, at home Nyai Pasir also felt the same. She was so panicked. She was screaming. She was running to the field. She wanted to look for her husband. When she arrived at the field, she saw a dragon was moving his body on the ground.
 
 Slowly Nyai Pasir also changed into a dragon. The two dragons were trying to walk but they were too weak to do that. They just could move their bodies on the ground. They moved their bodies so heavily and it made a very big hole. The hole was getting deeper and deeper. Soon water came out of the hole. The water came out very much. And it made a lake. Since then, people named the lake as Telaga Pasir.</tw-passagedata>
-<tw-passagedata pid="168" name="Panji Semirang" tags="" position="167.00369999999907,185">KURIPAN was a big kingdom. The king had a son. His name was Raden Inu Kertapati. The prince was engaged with a princess from Daha kingdom. Her name was Dewi Candra Kirana. One day, Raden Inu Kertapati planned to visit Daha kingdom. He wanted to meet his fiance.
+<tw-passagedata pid="168" name="Panji Semirang" tags="" position="167,185">KURIPAN was a big kingdom. The king had a son. His name was Raden Inu Kertapati. The prince was engaged with a princess from Daha kingdom. Her name was Dewi Candra Kirana. One day, Raden Inu Kertapati planned to visit Daha kingdom. He wanted to meet his fiance.
 
 Raden Inu Kertapati went to Daha kingdom with his guards. While they were riding the horses,suddenly a group of people from Asmarantaka stopped them. The leader was Panji Semirang. Upon hearing their place of origin, Raden Inu Kertapati and his guards were alert. They heard that Asmarantaka was a place of thieves.
 
@@ -5571,7 +5605,7 @@ Raden Inu and his guards won the fight. The thieves ran away.
 The king of Gelanggang kingdom was happy. To honour his great help, he held a party. He asked a poet to perform. His name was Jaka Asmara. His poetry was titled A very Sad Love Story. Raden Inu was touched. He felt that the poetry was about his life.
 
 He was looking at Raden Asmara carefully. He felt so familiar with him. Suddenly he realized that Raden Asmara was Dewi Candra Kirana. She was also under the spell. The spell broke when she met Raden Inu. They were happy. Raden Inu asked her to go to his home in Kuripan kingdom. Later, they got married and lived happily ever after.</tw-passagedata>
-<tw-passagedata pid="169" name="Lembusura" tags="" position="698.0002999999999,0">BRAWIJAYA was the king of Majapahit Kingdom. He had a daughter, her name was Dyah Ayu Pusparani. She was very beautiful. Many young men fell in love with her. However, she always refused their marriage proposals. King Brawijaya was sad. He really wanted to see his daughter to get married.
+<tw-passagedata pid="169" name="Lembusura" tags="" position="698,0">BRAWIJAYA was the king of Majapahit Kingdom. He had a daughter, her name was Dyah Ayu Pusparani. She was very beautiful. Many young men fell in love with her. However, she always refused their marriage proposals. King Brawijaya was sad. He really wanted to see his daughter to get married.
 
 “You have to get married soon, my daughter,” said King Brawijaya.
 
@@ -5651,7 +5685,7 @@ When they showed the diamond to the head of the village, he said, “Our great g
 Then he continued. “Since the diamond was found next to the water spring. So let’s name the water spring as Manikan.”
 
 Everybody agreed. Since then the area was named Manikan. The word Manikan had changed into Panekan. And now Panekan has become a great area in East Java. The people are happy because they have fertile land.</tw-passagedata>
-<tw-passagedata pid="171" name="The Twin Masks" tags="" position="42.0045999999991,185">A long time ago in East Java, there was a kingdom named Bintolo. The king had a very beautiful princess. Many young men fell in love with her and proposed her to be their wife. But the princess always refused the wedding proposal politely. She always said that she did not want to get married yet.
+<tw-passagedata pid="171" name="The Twin Masks" tags="" position="42,185">A long time ago in East Java, there was a kingdom named Bintolo. The king had a very beautiful princess. Many young men fell in love with her and proposed her to be their wife. But the princess always refused the wedding proposal politely. She always said that she did not want to get married yet.
 
 In the small village, there was a young man who lived with his mother. His father died a long time ago. The man’s job was a mask maker. He also fell in love with the princess but he did not have any courage to propose her. The man was ugly.
 
@@ -5716,7 +5750,7 @@ Putri Kemuning then goes to see the king at his palace.
 &quot;You are a very kind girl. Now, take this gift.&quot;
 
 Putri Kemuning goes home. When she arrives, Putri Kemuning tells her mother about the king&#39;s ring. Her mother is very proud of her. When they open the gift, they see a bag full of gold coins. They are very happy because they can buy medicine. </tw-passagedata>
-<tw-passagedata pid="173" name="Bali" tags="" position="835,1141.6666666666667">** [[The Prince of Frog|The Prince of Frog]]
+<tw-passagedata pid="173" name="Bali" tags="" position="835,1141">** [[The Prince of Frog|The Prince of Frog]]
 ** [[Ni Timun Mas and I Lantang Hidung|Ni Timun Mas and I Lantang Hidung]]
 ** [[Kebo Iwa|Kebo Iwa]]
 ** [[Jayaprana and Layonsari|Jayaprana and Layonsari]]
@@ -5797,7 +5831,7 @@ The animals went to the jungle. They saw the giant was sleeping and Ni Timun Mas
 They started to do their plan. The mouse slowly bit the rope. It started to loosen up. Finally she was free. Unfortunately, the giant woke up. The cat immediately told his friends. The mouse asked Ni Timun Mas to follow him. The dog and the snake immediately attacked the giant. The dog bit and the snake squeezed the giant, The giant was loosing so much blood. He finally died.
 
 The animals and Ni Timun Mas arrived home. Her mother was very happy. She did not worry anymore because the giant was dead, Since then, Ni Timun Mas, her mother and the animals lived peacefully.</tw-passagedata>
-<tw-passagedata pid="176" name="Kebo Iwa" tags="" position="823.0009999999997,60">ONCE upon a time in Bali, a man and his wife were praying. They have been married for a long time but did not have any children. They asked God to give them a child. They prayed and prayed.
+<tw-passagedata pid="176" name="Kebo Iwa" tags="" position="823,60">ONCE upon a time in Bali, a man and his wife were praying. They have been married for a long time but did not have any children. They asked God to give them a child. They prayed and prayed.
 
 God finally answered their prayers. The wife, then, got pregnant and they had a baby boy. They were very happy.
 
@@ -5867,7 +5901,7 @@ Layonsari lost too much blood. She died.
 The king was angry. He lost his control. He attacked and killed people around him.
 
 That made people became restless. They worked together to stop the king. And flnally they cornered the king. They caught the king and put him in a prison.</tw-passagedata>
-<tw-passagedata pid="178" name="The Hidden Treasure" tags="" position="667.0014999999996,196">A long time ago, there lived a farmer with his five sons. The farmer&#39;s wife died when the youngest child was a baby. The farmer was rich. He had a spacious rice field. He had a big house and lots of money. The five sons were teenagers. Sadly, they did not like to help their father. They only played and wasted their time having fun with their friends. They always asked money to their parent and wasted it by gambling.
+<tw-passagedata pid="178" name="The Hidden Treasure" tags="" position="667,196">A long time ago, there lived a farmer with his five sons. The farmer&#39;s wife died when the youngest child was a baby. The farmer was rich. He had a spacious rice field. He had a big house and lots of money. The five sons were teenagers. Sadly, they did not like to help their father. They only played and wasted their time having fun with their friends. They always asked money to their parent and wasted it by gambling.
 
 The father had repeatedly advie always told them to work hard and not to wasted the money.
 
@@ -5949,7 +5983,7 @@ I Ceker Cipak was confused. He did not know what to do. He knew that they did no
 They slowly walked inside the house. The dog used his nose to sniff the ring. When they saw the ring, they carefully took it. Later they ran very fast!
 
 At home, the animals gave the rqagic ring to I Ceker Cipak. He was so happy.He put the ring carefully. Since then I Ceker Cipak and his mother lived happily ever after.</tw-passagedata>
-<tw-passagedata pid="180" name="Dewi Ratih and Kala Rau" tags="" position="542.0018999999995,196">WISNULOKA was a kingdom in heaven. Only the Gods or Dewa and the Goddesses or Dewi lived in the Wisnuloka kingdom. Humans did not live there. They lived on earth.
+<tw-passagedata pid="180" name="Dewi Ratih and Kala Rau" tags="" position="542,196">WISNULOKA was a kingdom in heaven. Only the Gods or Dewa and the Goddesses or Dewi lived in the Wisnuloka kingdom. Humans did not live there. They lived on earth.
 
 The Gods and the Goddesses were restless. They were really worried. There was a kingdom on earth named Balidwipa Kingdom. There were no humans in Balidwipa Kingdom. They were giants!
 
@@ -6125,7 +6159,7 @@ The goldsmith was surprised. He had a bad plan. He exchanged the magic ring into
 They went to the goldsmith&#39;s house. The dog used his nose to trace the ring. They found the magic ring was inside a box. The mouse used his teeth to open the box. It made a noise. The goldsmith woke up from his sleep. The cat then made a sound of miaow. The goldsmith thought it was just a cat, he went back to sleep.
 After they got the magic ring, they went back home. They gave the ring to Nang Butuh Mosel.
 He was so happy and thanked them. This time he kept it very carefully.</tw-passagedata>
-<tw-passagedata pid="185" name="The Legend of Singaraja" tags="" position="417.0023999999994,196">SRI Sagening was the king of Klungkung Kingdom, Bali. He had a lot of wives. His last wife was Ni Luh Pasek. She was the most beautiful wife and that made the other wives were jealous. They often told bad things to the king. Sadly, the king was influenced and he finally asked Ni Luh Pasek to leave the palace. Ni Luh Pasek was very sad, but she had no other choice. She became very sad when she knew that she was pregnant! 
+<tw-passagedata pid="185" name="The Legend of Singaraja" tags="" position="417,196">SRI Sagening was the king of Klungkung Kingdom, Bali. He had a lot of wives. His last wife was Ni Luh Pasek. She was the most beautiful wife and that made the other wives were jealous. They often told bad things to the king. Sadly, the king was influenced and he finally asked Ni Luh Pasek to leave the palace. Ni Luh Pasek was very sad, but she had no other choice. She became very sad when she knew that she was pregnant! 
 
 Ni Luh Pasek arrived at a village. An old man felt very sorry with her condition. His name was Jelantik Bogol. He was a holy man and had supernatural power. He married Ni Luh Pasek. And when the baby was born, Jelantik Bogol named him I Gusti Gede. He loved I gusti Gede just like his own son.
 
@@ -6146,7 +6180,7 @@ I Gusti Panji Sakti went back to Den Hill. He started to build a village. People
 sukasada became a big kigdom, I Gusti Panji Sakti planned to make another kingdom. He opened up a new area. It was full of buleleng trees. Therefore he named the kingdom as Buleleng Kingdom.
 
 He also build a great palace. People named it Singaraja. Singa means lion and Raja means king. With his power I Gusti Panji Sakti was like a lion. He always protected his people from bad people. While he became a king, Buleleng Kingdom was safe and prosperous.</tw-passagedata>
-<tw-passagedata pid="186" name="The Legend of Catu Island" tags="" position="679.0004999999999,71">A long time ago there was a village in Bali. The people worked as farmers. One of the was Jurna. He was a diligent farmer. He always had a great harvest. However he was never satisfied. He wanted to have better and better harvest.
+<tw-passagedata pid="186" name="The Legend of Catu Island" tags="" position="679,71">A long time ago there was a village in Bali. The people worked as farmers. One of the was Jurna. He was a diligent farmer. He always had a great harvest. However he was never satisfied. He wanted to have better and better harvest.
 
 &quot;I will promise to gods. If they give me better harvest than I have now, I will give them offerings and I will share the harvest to the neighbors,&quot; said Jurna to his wife.
 
@@ -6267,7 +6301,7 @@ It was chaos on the beach. People were screaming. All the princes tried to swim 
 After several hours trying to search the princess, suddenly they found a lot of sea worms on the beach. The king then realized that his daughter had returned as sea worms. Later he named the worms as nyale.
 
 Until now, people in Lombok always try to catch nyale. Nyale is very delicious and that is why more and more people come to Lombok to catch it. However, they cannot catch it anytime they want. They can only find it once a year, in February or March. The tradition to catch the sea worms is called Bau Nyale. </tw-passagedata>
-<tw-passagedata pid="191" name="The Broken-hearted Peacock" tags="" position="554.0011999999997,71">A long time ago, all animals lived peacefully. They 
+<tw-passagedata pid="191" name="The Broken-hearted Peacock" tags="" position="554,71">A long time ago, all animals lived peacefully. They 
 were friends one to another. The birds lived happily. They all liked to help each other.
 
 The most beautiful bird was the peahen. She lived in Java Island. All birds were amazed by her beauty.
@@ -6359,7 +6393,7 @@ The next competition was head-smashing competition. All the participants had&#39
 &quot;It is time for us to go home. Give this gold to our parents. Tell them that we are sorry and we want to apologize,&quot; said La Golo.
 
 The king helped the boys to find their homes. He asked his soldiers to accompany the boys to go home.</tw-passagedata>
-<tw-passagedata pid="193" name="King Laku Leik and Ono Muti" tags="" position="292.0030999999992,196">ONCE upon a time there was a mean king. His name was King Laku Leik. He behaved very badly. He liked to gamble, got angry easily, and often hit people who did not obey him.
+<tw-passagedata pid="193" name="King Laku Leik and Ono Muti" tags="" position="292,196">ONCE upon a time there was a mean king. His name was King Laku Leik. He behaved very badly. He liked to gamble, got angry easily, and often hit people who did not obey him.
 
 King Laku Leik wanted to be a king forever. He did not want anybody to replace him and not even his own son. Therefore he always told his wife that if they had a baby boy, the king would kill him!
 
@@ -6577,7 +6611,7 @@ In the meantime, the father just lost the cock. It died in a cock fight. Suddenl
 He followed the birds until they stopped in front of the cave. He heard his wife&#39;s voice telling him the whole incident.
 
 The father regretted his bad behavior. He lost all his family. And soon rain fell down heavily. It flooded the area. Until now people believe that when they hear a woman&#39;s voice from the cave, rain will fall down.</tw-passagedata>
-<tw-passagedata pid="198" name="Ratna Ayu Wideradin and the Monkey" tags="" position="167.00389999999902,196">Once upon a time, there was a kingdom in Lombok, nusa Tenggara Barat. The king had nine beautiful daughters. However, the youngest princess was the most beautiful one. Her name was Ratna Ayu Wideradin. Other princesses were jealous. They were thinking how she just stayed in the palace and people would not able to see her anymore.
+<tw-passagedata pid="198" name="Ratna Ayu Wideradin and the Monkey" tags="" position="167,196">Once upon a time, there was a kingdom in Lombok, nusa Tenggara Barat. The king had nine beautiful daughters. However, the youngest princess was the most beautiful one. Her name was Ratna Ayu Wideradin. Other princesses were jealous. They were thinking how she just stayed in the palace and people would not able to see her anymore.
 
 They finally had an idea. They told the king that Princess Ratna Ayu Wideradin stole her sister&#39;s jewelry. They tried hard to influence the king and sadly the king finally believed it. He punished his youngest daughter. She was not allowed to leave the palace until she returned the jewelry. Of course it made Princess Ratna Ayu Wideradin very sad. She did not steal anything, therefore she could not return it.
 
@@ -6681,7 +6715,7 @@ The king then told his people that the princess would leave the kingdom in order
 Then it was time for her to leave the kingdom. Some soldiers accompanied her. They would guard her to go to Tambora Mountain.
 
 Until now some people still believe that Dae La Minga spiritually still lives in Tambora Mountain. She often shows herself in certain occasion. Not everybody can see her, only the lucky people can see her. </tw-passagedata>
-<tw-passagedata pid="201" name="The Legend of Golog Stone" tags="" position="42.00479999999905,200">Once upon a time, there was a family of farmers. The father&#39;s name was Amaq Lebain and the mother&#39;s name was Inaq Lebain. They had two children, a son and a daughter. They lived happily.
+<tw-passagedata pid="201" name="The Legend of Golog Stone" tags="" position="42,200">Once upon a time, there was a family of farmers. The father&#39;s name was Amaq Lebain and the mother&#39;s name was Inaq Lebain. They had two children, a son and a daughter. They lived happily.
 
 The parents really loved their children. Every time they went farming, they always brought they children to the rice fields.
 
@@ -6710,7 +6744,7 @@ Again, she could not hear them well. It was repeated again and again. The golog 
 When the mother finished pounding the rice, she was shocked! She could not find her children. She was crying. She then prayed to God. She wanted to bring her children down but she did not know how to do it. Somehow God answered her pray. She had to use the rice pounder to cut down the Golog stone.
 
 Then she hit the stone with the rice pounder. Amazingly, the stone broke down into three pieces. The first part fell in an area which later called Gembong Village. The second part fell in area which was later named Dasan Batu, and the last part fell in area which later was named Montong Teker. Unfortunately, the two children could not come back to their mother. They had changed into birds.</tw-passagedata>
-<tw-passagedata pid="202" name="East Nusa Tenggara" tags="" position="958.3333333333334,1016.6666666666667">** [[The Legend of Komodo Dragon|The Legend of Komodo Dragon]]
+<tw-passagedata pid="202" name="East Nusa Tenggara" tags="" position="958,1016">** [[The Legend of Komodo Dragon|The Legend of Komodo Dragon]]
 ** [[Lona Kaka and Lona Rara|Lona Kaka and Lona Rara]]
 ** [[Skolong and Cue|Skolong and Cue]]
 ** [[Fafinesu Hill|Fafinesu Hill]]
@@ -6829,7 +6863,7 @@ himself.
 Cue then told him about her dream and the dead skin. She showed him some of the skin. Skolong flnally believed that she was really Cue.
 
 Skolong was also in love with Cue. He asked her to marry him. Cue happily accepted it. Well, her true love to Skolong never died. Later they got married and they lived happily ever after.</tw-passagedata>
-<tw-passagedata pid="206" name="Fafinesu Hill" tags="" position="422.00219999999945,0">ONCE upon a time there were three brothers. Their names were Saku, Abatan, and Seko. They were orphans. Their father died when Seko, the youngest child, was a baby. Their mother then took care of them.
+<tw-passagedata pid="206" name="Fafinesu Hill" tags="" position="422,0">ONCE upon a time there were three brothers. Their names were Saku, Abatan, and Seko. They were orphans. Their father died when Seko, the youngest child, was a baby. Their mother then took care of them.
 
 Sadly, when Seko was a toddler, their mother suffered a terrible illness. The children had tried to find the best healer. Unforhrnately no one could cure her illness. After suffering long enough, their mother passed away.
 
@@ -6870,7 +6904,7 @@ The father then said, &quot;Saku, we have some gifts for you. Now, sacrifice the
 &quot;Take care of the pigs. And remember, we always love you. Someday we wiII meet again,&quot; said the mother.
 
 Then they vanished. The three brothers went home happily. They took care of the pigs just like their parents&#39; message. And they also named the hiII as Fafinesu Hill. It means the hill of fat pigs. The hill is located. in the city of Kefamenanu, Nusa Tenggara Timur.</tw-passagedata>
-<tw-passagedata pid="207" name="Mundus and the Snake" tags="" position="1055,188.33333333333334">MUNDUS was a young man. He lived alone. His parents died a long time ago. Mundus was a farmer. He worked diligently. His neighbors liked him. Mundus always helped people whenever they needed help.
+<tw-passagedata pid="207" name="Mundus and the Snake" tags="" position="1055,188">MUNDUS was a young man. He lived alone. His parents died a long time ago. Mundus was a farmer. He worked diligently. His neighbors liked him. Mundus always helped people whenever they needed help.
 
 Mundus and other villagers often were hunting in the jungle. They hunted the animals and shared the meat to all villagers.
 
@@ -6891,7 +6925,7 @@ Amazingly, the dead snake lived! And then, the two snakes went back to the jungl
 On the following day, Mundus came to the jungle again. He felt that that snake was giving him a lesson on how to cure the wounds. Mundus then looked for the leaves, Mundus went home.
 
 When he arrived, his neighbor asked for his help. The neighbor fell from the tree, and broke his leg. Mundus then chewed the leaves and covered the broken leg. Amazingly, it was cured! Mundus was very grateful. Since then, every time people had problem with broken bones, Mundus always helped them. Mundus became famous. He was known as master of curing broken bones.</tw-passagedata>
-<tw-passagedata pid="208" name="A Story from Roti Island" tags="" position="921.0002,450">ONCE upon a time, a grandmother and her granddaughter lived in Roti Island, Nusa Tenggara Timur. They had a field and grew some vegetables. The grandmother sold them at the market.
+<tw-passagedata pid="208" name="A Story from Roti Island" tags="" position="921,450">ONCE upon a time, a grandmother and her granddaughter lived in Roti Island, Nusa Tenggara Timur. They had a field and grew some vegetables. The grandmother sold them at the market.
 
 In one morning, the grandmother would go to the market. Before she left, she asked her granddaughter to cook.
 
@@ -6931,7 +6965,7 @@ Then the monkey climbed up and disappeared. The grandmother was very sad. She re
 “ Please come back to me. Please forgive me, my granddaughter!’ but it was too late.
 
 The little girl has turned into a monkey and never came home. The people of Roti Island believe this story. And that is why until now; people in the Roti Island never hit their children or other people’s child. They are afraid that the child would turn into a monkey.</tw-passagedata>
-<tw-passagedata pid="209" name="West Kalimantan" tags="" position="965,1141.6666666666667">** [[The Fight of Two Friends|The Fight of Two Friends]]
+<tw-passagedata pid="209" name="West Kalimantan" tags="" position="965,1141">** [[The Fight of Two Friends|The Fight of Two Friends]]
 ** [[Putri Bussu and Putri Anam|Putri Bussu and Putri Anam]]
 ** [[Belumbak Island|Belumbak Island]]
 ** [[The Mouse Deer and the Turtle|The Mouse Deer and the Turtle]]
@@ -6940,7 +6974,7 @@ The little girl has turned into a monkey and never came home. The people of Roti
 ** [[The Crying Stone|The Crying Stone]]
 ** [[The Wise King|The Wise King]]
 ** [[A Farmer and a Hedgehog Statue|A Farmer and a Hedgehog Statue]]</tw-passagedata>
-<tw-passagedata pid="210" name="The Fight of Two Friends" tags="" position="948.0016999999996,53">THERE were two friends, their names were Bujang Alai and Bujang Kuratauan. They had been friends since they were kids. They went to the same martial art school. Both of them were very skillful at martial art.
+<tw-passagedata pid="210" name="The Fight of Two Friends" tags="" position="948,53">THERE were two friends, their names were Bujang Alai and Bujang Kuratauan. They had been friends since they were kids. They went to the same martial art school. Both of them were very skillful at martial art.
 
 Bujang AIai and Bujang Kuratauan were adults. They were always together and got along very well.
 
@@ -6985,7 +7019,7 @@ When Bujang Kuratauan&#39;s family arrived at a waterfall, they put the torches 
 Bujang Alals family thought Bujang Kuratauan and his family were hiding there. They immediately ran toward the waterfall. They did not know that the place was wet and slippery. They all fell down and bled. Their blood covered a big stone. The color of the stone changed. It was like the color of a ripe mangosteen.
 
 Since then people named the stone as Batu Manggis Masak which means stone of ripe mangosteen.</tw-passagedata>
-<tw-passagedata pid="211" name="Putri Bussu and Putri Anam" tags="" position="1073.0019999999995,63.333333333333336">ONCE upon a time, there was a family with two daughters. The first was Putri Bussu and the youngest was Putri Anam. Their parents were poor family. The father was a farmer and he only had a small rice field.
+<tw-passagedata pid="211" name="Putri Bussu and Putri Anam" tags="" position="1073,63">ONCE upon a time, there was a family with two daughters. The first was Putri Bussu and the youngest was Putri Anam. Their parents were poor family. The father was a farmer and he only had a small rice field.
 
 The farmer often asked his daughters to help him. Unfortunately, it was only Putri Bussu who was willing to help. Yes, she was helpful and obedient to her parents. However, Putri Anam was the opposite. She was lazy and only paid attention to her looks. She always wanted to look beautiful. In fact, she always thought that helping her father in the rice field would not make her look beautiful.
 
@@ -7024,7 +7058,7 @@ that it was cold already. She lied. She was impatient and wanted Jo get the pump
 When Mr Russa tasted the porridge, he was angry. It was still hot. He even got angrier when she asked a pumpkin from him. He pointed a room that was full of pumpkins. Putri Anam went inside the room and took the biggest pumpkin. Without saylng thank you, she ran home.
 
 At home, she immediately opened the pumpkin. She was surprised! She did not see any gold and jewelries. Instead there were some snakes inside the pumpkin! The snakes bit her. Putri Anam was screaming in pain. Putri Bussu helped her. When she was cured, Putri Anam promised to behave well. She became a helpfuI, obedient, and kind girl.</tw-passagedata>
-<tw-passagedata pid="212" name="Belumbak Island" tags="" position="1046.0003,453.33333333333337">THERE was an old woman lived near the Kapuas River, West Kalimantan. She had two sons. Her husband had died a long time ago. The woman took care of her sons by herself. She taught them to be independent. The two sons were teenagers. They wanted to have a better life. Every day they saw big ships sailing along the Kapuas River. They saw rich merchants with beautiful ships. They also wanted to become rich merchants. They really wanted to have big and beautiful ships.
+<tw-passagedata pid="212" name="Belumbak Island" tags="" position="1046,453">THERE was an old woman lived near the Kapuas River, West Kalimantan. She had two sons. Her husband had died a long time ago. The woman took care of her sons by herself. She taught them to be independent. The two sons were teenagers. They wanted to have a better life. Every day they saw big ships sailing along the Kapuas River. They saw rich merchants with beautiful ships. They also wanted to become rich merchants. They really wanted to have big and beautiful ships.
 
 The two sons told their plans to their mother. The woman was very sad. She did not want to lose her children. However, they insisted that they would come back soon. And they also promised to be back home with a lot of money.
 
@@ -7059,7 +7093,7 @@ The woman was very sad. She never thought it would happen to her. Her sons ignor
 God heard the prayer. Suddenly a heavy storm attacked the river. The rain fell down heavily. The two brothers wanted to save their lives. Their ships sailed very fast. But they could not save their lives. The storm made their ships sink.
 
 And after the storm was over, people saw two islands in the middle of  Kapuas River. The islands looked like two ships sailing in the, race competition. People then named the islands as Belumbak Island. Belumbak is from the word &#39;berlomba&#39; or &#39;race competition&#39;. </tw-passagedata>
-<tw-passagedata pid="213" name="The Mouse Deer and the Turtle" tags="" position="916.6666666666667,578.3333333333334">A mouse deer and a turtle were best friends. One day, they went to a river. They wanted to go fishing. One the way to the river, they met a deer.
+<tw-passagedata pid="213" name="The Mouse Deer and the Turtle" tags="" position="916,578">A mouse deer and a turtle were best friends. One day, they went to a river. They wanted to go fishing. One the way to the river, they met a deer.
 
 &quot;Hey friends, where are you going?&quot;
 
@@ -7206,7 +7240,7 @@ At last, the mother cannot hold the pain anymore. She prays to God to punish her
 &quot;Mother, please forgive me!&quot; she cries and ask her mother to forgive her.
 
 But it&#39;s too late. Her whole body finally becomes a big stone. Until now people still can see tears falling down the stone. People then call it the crying stone or batu menangis. </tw-passagedata>
-<tw-passagedata pid="217" name="The Wise King" tags="" position="1171.0004,453.33333333333337">&quot;Hello everybody, come and visit my restaurant. I have delicious food for you,&quot; Pak Razak is standing in front of his restaurant. He is inviting people to come and eat at his place.
+<tw-passagedata pid="217" name="The Wise King" tags="" position="1171,453">&quot;Hello everybody, come and visit my restaurant. I have delicious food for you,&quot; Pak Razak is standing in front of his restaurant. He is inviting people to come and eat at his place.
 
 A moment later a farmer comes. He is standing in front of the restaurant. He smells the aroma of the delicious food.
 
@@ -7235,7 +7269,7 @@ Pak Razak and the farmer tell the King about the problem.
 &quot;Then, the farmer has just paid you. He pays your delicious aroma with the sound of his money,&quot; explains the King.
 
 Pak Razak is silent. He knows the King is right. The King just gave him a lesson. He then apologizes to the farmer. </tw-passagedata>
-<tw-passagedata pid="218" name="A Farmer and a Hedgehog Statue" tags="" position="1170.0001,586.6666666666667">IT was a very hot day. A farmer was working on his field. He was there for several hours. He was very tired and wanted to get some rest. Just before he found a nice place to rest, he saw something very shiny.
+<tw-passagedata pid="218" name="A Farmer and a Hedgehog Statue" tags="" position="1170,586">IT was a very hot day. A farmer was working on his field. He was there for several hours. He was very tired and wanted to get some rest. Just before he found a nice place to rest, he saw something very shiny.
 
 He came to the shiny object and took it. It was a hedgehog statue. It was very beautiful. Its eyes were made of diamond. Those were the shiny objects he saw. The farmer then brought the statue home. He wanted to show it to his wife. His wife was so happy. They were so poor and planned to sell the statue.
 
@@ -7267,7 +7301,7 @@ Slowly, it became a small pond. Water flowed on the ground. It became a river. P
 ** [[Siuk Bimbim and Siuk Bambam|Siuk Bimbim and Siuk Bambam]]
 ** [[A Buffalo and a Monkey|A Buffalo and a Monkey]]
 ** [[The Lazy Uder|The Lazy Uder]]</tw-passagedata>
-<tw-passagedata pid="220" name="The Calf and the Crocodile" tags="" position="1653.3333333333335,58.333333333333336">A calf wants to play outside his house.
+<tw-passagedata pid="220" name="The Calf and the Crocodile" tags="" position="1653,58">A calf wants to play outside his house.
 
 &quot;Mom, can I play outside?&quot;
 
@@ -7302,7 +7336,7 @@ And then the monkey whispers to the calf, &quot;Now run! That stupid crocodile c
 &quot;Thank you, Mr. Monkey. You are very clever. I always remember your help!&quot;
 
 The calf then runs as fast as he can. And the crocodile regrets his stupidity. </tw-passagedata>
-<tw-passagedata pid="221" name="Mandangin" tags="" position="1778.3333333333335,56.66666666666667">ONCE upon a time, there were a husband and a wife. The husband&#39;s name was Sangkajang and the wife&#39;s name was Nyai Rangkas. It was not easy for them to get married. Nyai Rangkas was not a human. She was a goddess. She loved Sangkajang very much. She was willing to leave the heaven and lived on earth with her husband. The couple had been married for a long time and they did not have any children yet. Nyai Rangkas really wanted to have her own children. And in one night she had a dream. She was meditating on a big stone near the river. After she finished meditating, she would be pregnant.
+<tw-passagedata pid="221" name="Mandangin" tags="" position="1778,56">ONCE upon a time, there were a husband and a wife. The husband&#39;s name was Sangkajang and the wife&#39;s name was Nyai Rangkas. It was not easy for them to get married. Nyai Rangkas was not a human. She was a goddess. She loved Sangkajang very much. She was willing to leave the heaven and lived on earth with her husband. The couple had been married for a long time and they did not have any children yet. Nyai Rangkas really wanted to have her own children. And in one night she had a dream. She was meditating on a big stone near the river. After she finished meditating, she would be pregnant.
 
 Nyai Rangkas was sure that the dream was the guidance for her to have her own children. She told her husband about her dream and asked his permission to meditate. Her husband did not agree. It was not a safe place. There were lots of wild animals there. However Nyai Rangkas had already made up her mind. So when her husband was sleeping, she secretly left.
 
@@ -7323,7 +7357,7 @@ Mandangin grew as a good son. He loved his mother very much. He always helped he
 Mandangin arrived in a village. Some people tried to rob him. They were thieves! Mandangin fought them bravely! And, remember, Mandangin was not an ordinary man. His mother was a goddess. So he was a half human and a half god. He possessed the half power that gods had. And it was easy for him to beat those thieves.
 
 The people were happy. They had been living in danger because those thieves always ruined their lives. The villagers asked Mandangin to stay. And because the villagers had no a leader they asked him to be their leader. Mandangin agreed. And later he just did not become the head of the village. He became a king!</tw-passagedata>
-<tw-passagedata pid="222" name="The Legend of Malawen Lake" tags="" position="1903.3333333333335,56.66666666666667">ONCE upon a time there was a husband and wife who lived near the jungle. They were very poor. They did not have any children yet. Every day they prayed to god to give them a child. One night the wife had a dream. An old man came to her and told her that she and her husband had to meditate for 100 days in the jungle. The wife told her husband about her dream. They hoped it was a sign from god to give them a child.
+<tw-passagedata pid="222" name="The Legend of Malawen Lake" tags="" position="1903,56">ONCE upon a time there was a husband and wife who lived near the jungle. They were very poor. They did not have any children yet. Every day they prayed to god to give them a child. One night the wife had a dream. An old man came to her and told her that she and her husband had to meditate for 100 days in the jungle. The wife told her husband about her dream. They hoped it was a sign from god to give them a child.
 
 Later they went to the jungle. After spending for 100 days, they went home. And it was true! Not long after that the wife was pregnant. And nine months later the baby boy was born. They named him Kumbang Banaung.
 
@@ -7348,7 +7382,7 @@ When he met Intan, Kumbang asked her to run away. And while they were leaving th
 Amazingly, the plate grew bigger. He asked Intan to get on the plate. They used it as a sampan. While they were crossing the river, suddenly rain fell down heavily. There was a big storm. Heavy wind blew them upside down and finally they were drowning.
 
 Slowly the river changed into a lake. People named the lake as Malawen Lake. People also believed that Kumbang and Intan changed as white crocodiles. They stayed in the lake. Up to now people still believe that the white crocodiles still live in the lake. </tw-passagedata>
-<tw-passagedata pid="223" name="Jangga Hatuen Bulan" tags="" position="2028.3334333333335,56.66666666666667">A long time ago, a man lived on the moon. His name was Jangga. He lived with his mother. Jangga loved hunting. Everyday he went hunting with his dog. His mother often told him not to go hunting too long. But Jangga often ignored her.
+<tw-passagedata pid="223" name="Jangga Hatuen Bulan" tags="" position="2028,56">A long time ago, a man lived on the moon. His name was Jangga. He lived with his mother. Jangga loved hunting. Everyday he went hunting with his dog. His mother often told him not to go hunting too long. But Jangga often ignored her.
 
 One day Jangga and his dog went hunting as usual. He was looking for the animals. However, he could not find any of them. Sadly, he was lost. He could not find a way to his home. While he was walking, suddenly he saw an old woman.
 
@@ -7388,7 +7422,7 @@ Jangga&#39;s wife was so sad. She called out Jangga&#39;s name. But it was to la
 The Gods heard how she cried and they didn&#39;t like it. The were upset with her and changed her into a bird. People named the bird as pungguk bird.
 
 Until now, during full moon we still can hear the sound of pungguk bird. And we can also see the image of a dog in the moon. From the legend, people make a proverb. It says, &quot;Just like a pungguk waiting for the moon&quot;. It means that it&#39;s just waiting in vain.</tw-passagedata>
-<tw-passagedata pid="224" name="Dohong and the Princess" tags="" position="2153.3335333333334,55">THERE was a beautiful princess. Her name was Princess Intan. People were amazed to I see how beautiful she was. Princess Intan was a shy girl. She always felt awkward when people looked at her.
+<tw-passagedata pid="224" name="Dohong and the Princess" tags="" position="2153,55">THERE was a beautiful princess. Her name was Princess Intan. People were amazed to I see how beautiful she was. Princess Intan was a shy girl. She always felt awkward when people looked at her.
 
 In the palace, there were some ladies-in-waiting. There was one lady-in-waiting who was really jealous with the princess. She hated when people talked about the beauty of the princess.
 
@@ -7429,7 +7463,7 @@ The princess was smiling. She just found a man who loved her. Slowly, the prince
 Dohong was speechless. The bird he caught had just turned into a beauti-fi.rl woman. She was indeed the beautiful Princess Intan! Together with Dohong, the princess went to the palace. They met the king and explained everything.
 
 The king regretted his bad decision to ask his daughter leave the palace. He started to ask people about the person who spread the rumor. People said that it was the lady-in-waiting. The king was angry! He punished thb lady-in-waiting. After that Dohong and the.princess got married. They lived happily. </tw-passagedata>
-<tw-passagedata pid="225" name="Ambun and Rimbun" tags="" position="1653.3333333333335,183.33333333333334">AMBUN and Rimbun were brothers. People always thought they were twins, they both looked alike. Actually, Ambun was one year older than Rimbun.
+<tw-passagedata pid="225" name="Ambun and Rimbun" tags="" position="1653,183">AMBUN and Rimbun were brothers. People always thought they were twins, they both looked alike. Actually, Ambun was one year older than Rimbun.
 
 The two brothers lived with their mother in a hut. Their father had died when they were kids. They always helped their mother finding some firewood and then sold them at the market.
 
@@ -7464,7 +7498,7 @@ Fortunately, the king let him try. Ambun concentrated. He was thinking of his fa
 Before the wedding started, Ambun went home. He wanted to ask his mother to stay in the palace. However, she was extremely sad when she knew Rimbun was dead. She asked Ambun to find &#39;the water of life&#39; in the top of the mountain.
 
 After he got the water, the mother asked Ambun to dig Rimbun&#39;s grave. She poured the water into Ambun&#39;s dead body. Amazingly, Rimbun was backto life. The family was reunited. Ambun got married and later he became the king. He also asked the old woman to stay in the palace. Since then they all lived happily ever after. </tw-passagedata>
-<tw-passagedata pid="226" name="The Salty River" tags="" position="1778.3334333333335,183.33333333333334">A long time ago in Sepang Village, Central Kalimantan, lived a widow named Emas. Her husband died when her daughter was a baby. Her daughter’s name was Tumbai. The villagers in Sepang Village were poor.
+<tw-passagedata pid="226" name="The Salty River" tags="" position="1778,183">A long time ago in Sepang Village, Central Kalimantan, lived a widow named Emas. Her husband died when her daughter was a baby. Her daughter’s name was Tumbai. The villagers in Sepang Village were poor.
 
 Though they were poor, the villagers always worked hard. Fortunately there was a well in the village. So they always had enough water to live.
 
@@ -7499,7 +7533,7 @@ It worked! He succeeded in changing the water. Tumbai was happy. She fi nally fo
 And her mother was right. After the water was salty, the villagers were not poor anymore. They changed the salty water into salt. They sold it and they had money.
 
 The salty water was flowing from the well to the Kahayan River. Until now people still taste the salty water in Kahayan River. They also think that the legend really happened.</tw-passagedata>
-<tw-passagedata pid="227" name="The Legend of Nusa Island" tags="" position="1903.3335333333334,183.33333333333334">A long time ago there was a man named Nusa, he was a farmer. He lived with his wife and his brother. Nusa and his brother were very diligent farmers.
+<tw-passagedata pid="227" name="The Legend of Nusa Island" tags="" position="1903,183">A long time ago there was a man named Nusa, he was a farmer. He lived with his wife and his brother. Nusa and his brother were very diligent farmers.
 
 Nusa and other farmers in the village were sad because the rain had not fallen for a very long time. Their rice fields were dried. They needed water.
 
@@ -7542,7 +7576,7 @@ Than all the fish attacked Nusa.
 They all bit Nusa’s body. Nusa tried to save his life. He swam to the river side. But it was too late. He was very weak. Finally he died.
 
 His body slowly changed into an island. People then named the island as Nusa Island. It’s located at Kahayan River, Central Kalimantan. </tw-passagedata>
-<tw-passagedata pid="228" name="The Curse of King Mintin" tags="" position="2028.3337333333334,183.33333333333334">A long time ago in Kahayan Hilir, Central Kalimantan, there was an island named Mintin. The people in the island lived peacefully. The king of the island, King Mintin, was wise. He loved his people very much.
+<tw-passagedata pid="228" name="The Curse of King Mintin" tags="" position="2028,183">A long time ago in Kahayan Hilir, Central Kalimantan, there was an island named Mintin. The people in the island lived peacefully. The king of the island, King Mintin, was wise. He loved his people very much.
 
 However, soon the happiness was ended. The kingdom was mourning. The queen just passed away. The king was sad and decided to leave the palace and went to another island. He asked his twin sons, Naga and Buaya, to lead the kingdom while he was away.
 
@@ -7567,7 +7601,7 @@ The king finally heard the war. He decided to go back to Mintin Island. When he 
 He then talked to Naga. “You have more mistakes. So, the punishment is bigger. I curse you into a dragon. You are not allowed to stay here. Go away and live in other place!” asked the king.
 
 Right after the king finished his last words, heavy storm attacked Mintin Island. Buaya and Naga slowly changed. Buaya became a crocodile and Naga became a dragon. </tw-passagedata>
-<tw-passagedata pid="229" name="Sangi the Hunter" tags="" position="2155,183.33333333333334">A long time ago in Central Kalimantan, a great hunter named Sangi lived. Every time he went to the jungle to go hunting, he brought a lot of animals home. Sangi lived with his family on a riverside.
+<tw-passagedata pid="229" name="Sangi the Hunter" tags="" position="2155,183">A long time ago in Central Kalimantan, a great hunter named Sangi lived. Every time he went to the jungle to go hunting, he brought a lot of animals home. Sangi lived with his family on a riverside.
 
 As always, Sangi went to the jungle. He saw some footprints of a wild hog. He slowly followed the footprints. The footprints ended in a big tree. Sangi thought the hog was behind the tree. Slowly he walked around the tree then he was really amazed. He saw a big dragon was trying to swallow a wild hog. The hog was so big that the dragon could not swallow it easily.
 
@@ -7598,7 +7632,7 @@ On his 150th birthday, people could not stand it anymore. More and more people a
 Right after Sangi finished saying that, his body was shaking. Slowly he changed as a dragon. People were scared. They were running away.
 
 Sangi was really sad. He regretted for telling them his secret. He knew he could not live in the village with his family anymore. He went to the river and lived there. Since then, people named the river Sangi River. </tw-passagedata>
-<tw-passagedata pid="230" name="Siuk Bimbim and Siuk Bambam" tags="" position="2028.3336333333336,58.33333333333334">Siuk Bimbim and Siuk Bambam are brothers. They are orphans. Their parents died when Siuk Bimbim was a baby. Siuk Bambam always takes care of his younger brother, Siuk Bimbim. They help each other and never quarrel.
+<tw-passagedata pid="230" name="Siuk Bimbim and Siuk Bambam" tags="" position="2028,58">Siuk Bimbim and Siuk Bambam are brothers. They are orphans. Their parents died when Siuk Bimbim was a baby. Siuk Bambam always takes care of his younger brother, Siuk Bimbim. They help each other and never quarrel.
 
 It&#39;s the late afternoon. Siuk Bimbim and Siuk Bambam went to the dinner.
 
@@ -7620,7 +7654,7 @@ No one answers. Siuk Bambam gets more shocked when he sees some footprints. They
 
 
 Siuk Bambam gets much panicked. He looks for his brother everywhere. Suddenly he sees his brother under the tree. Siuk Bimbim is unconscious. Siuk Bambam then takes him to a well. It&#39;s a magic well. It can cure any disease. He gives some water to his younger brother. After a while, Siuk Bimbim cured. Siuk Bimbim is very happy. He hugs his younger brother and takes him home.</tw-passagedata>
-<tw-passagedata pid="231" name="A Buffalo and a Monkey" tags="" position="2168.3333333333335,58.33333333333334">IT was a very hot day. A monkey was walking by the riverside. He was very thirsty and hungry. He took some water and drank it. He was very happy.
+<tw-passagedata pid="231" name="A Buffalo and a Monkey" tags="" position="2168,58">IT was a very hot day. A monkey was walking by the riverside. He was very thirsty and hungry. He took some water and drank it. He was very happy.
 
 Then, he saw some banana trees. But they were across the river. The monkey could not swim so he was thinking very hard.
 
@@ -7663,7 +7697,7 @@ When he saw two animals were eating on his field, the farmer threw some stones. 
 &quot;I don&#39;t care. You made me bleed.&quot; The buffalo then rolled over his body.
 
 The monkey had to hold very tight. He was very scared. After the buffalo finished taking a bath, then he crossed back to the riverside. The monkey was very wet. He was very weak and frightened. He apologized to the buffalo. And he promised not to do it again.</tw-passagedata>
-<tw-passagedata pid="232" name="The Lazy Uder" tags="" position="2043.333533333334,58.33333333333334">He always woke up in the afternoon. Then he went fishing on the river until evening. Uder never helped his wife. That’s why she always worked alone in the field. She never gave up giving him advice. But, Uder never listened to his wife. In one afternoon, Uder went fishing. He took some worms as bait. On the way to the river, he met his neighbor.
+<tw-passagedata pid="232" name="The Lazy Uder" tags="" position="2043,58">He always woke up in the afternoon. Then he went fishing on the river until evening. Uder never helped his wife. That’s why she always worked alone in the field. She never gave up giving him advice. But, Uder never listened to his wife. In one afternoon, Uder went fishing. He took some worms as bait. On the way to the river, he met his neighbor.
 
 “Hey Uder, where are you going?”
 
@@ -7713,7 +7747,7 @@ Then the monkeys freed him. Uder then ran as fast as he could. After he arrived 
 ** [[The Legend of Gunung Bangkai|The Legend of Gunung Bangkai]]
 ** [[The Dandaung Snake|The Dandaung Snake]]
 ** [[Dewi Luing Indung Bunga|Dewi Luing Indung Bunga]]</tw-passagedata>
-<tw-passagedata pid="234" name="Ning Rangda" tags="" position="1658.3333333333335,308.33333333333337">A long time ago, there was an old woman named Ning Rangda. She was called Ning because she was old and had a hunchbacked body. Everybody knew her because she always makes a wedding dress.
+<tw-passagedata pid="234" name="Ning Rangda" tags="" position="1658,308">A long time ago, there was an old woman named Ning Rangda. She was called Ning because she was old and had a hunchbacked body. Everybody knew her because she always makes a wedding dress.
 
 Every time people asked why she sewed a new wedding dress, she always said that it was for her prospective husband. Do you want to know the whole story why Ning Rangda always sewed a new wedding dress? Read on!
 
@@ -7736,7 +7770,7 @@ Then the prince, the king, and the soldiers went to Rangda&#39;s house. The trip
 The king was sad. He thought it was useless to continue the trip. Then he went back to the palace. Meanwhile, Rangda did not know that the prince had died. She was sewing a wedding dress for the prince. She wanted to give him the best wedding dress.
 
 Every day, she waited and waited for the prince but he never came. She always waited for the prince. She kept on sewing the wedding dress until she was old and had a hunchbacked body.</tw-passagedata>
-<tw-passagedata pid="235" name="The Angel Pond" tags="" position="1783.3334333333335,308.33333333333337">THERE is a tourism area in South Kalimantan named The Angel Pond. The place is often visited by many people. Some of the visitors have unique reasons. They want to have spouses. Some people believe that taking a bath with the water from the pond will lead them to their spouses. There is a legend behind the belief. Do you want to know the story? Read on!
+<tw-passagedata pid="235" name="The Angel Pond" tags="" position="1783,308">THERE is a tourism area in South Kalimantan named The Angel Pond. The place is often visited by many people. Some of the visitors have unique reasons. They want to have spouses. Some people believe that taking a bath with the water from the pond will lead them to their spouses. There is a legend behind the belief. Do you want to know the story? Read on!
 
 A long time ago in South Kalimantan there was a village. The land was fertile. Trees grew well there. people and animals had enough water to live. They had a great source of water. They got the water from a pond. People used the water not only for their daily activities but also for watering their plants. The villagers were never worried about lacking of water.
 
@@ -7769,7 +7803,7 @@ Then Putri Bungsu flew to the heaven leaving Awang Sukma and Kumalasari. Awang S
 Awang Sukma then told his daughter not to keep black cock as a pet. He believed that black cock brought them bad luck.
 
 It was not only Awang Sukma who was sad losing Putri Bungsu. All the villagers were also sad. And later they named the pond as Telaga Bidadari, it means the Angel pond. Until now people believe that taking a bath using the water from the pond would lead to their spouses. And the local people do not keep black cock. They still keep Awang Sukma&#39;s message to his daughter.</tw-passagedata>
-<tw-passagedata pid="236" name="Datu Kalaka" tags="" position="1913.3333333333335,308.33333333333337">DATU kalaka... Datu Kalaka, the Dutch are coming!&quot;
+<tw-passagedata pid="236" name="Datu Kalaka" tags="" position="1913,308">DATU kalaka... Datu Kalaka, the Dutch are coming!&quot;
 
 &quot;Really? Where did you see them?&quot;
 
@@ -7818,7 +7852,7 @@ When they approached the swing they found a baby inside the swing. But the baby 
 They did not know that Datu Kalaka had changed himself into a giant baby. The soldiers ran away and they did not come back to the village.
 
 When Datu Kalaka was dead, he was buried in the village. The village was then named as Kalaka village. Until now, the tomb is still in Kalaka South Kalimantan. The grave is so big. The local people believe that Datu Kalaka is buried there.</tw-passagedata>
-<tw-passagedata pid="237" name="The Legend of Batu Hapu Cave" tags="" position="2038.3334333333335,308.33333333333337">IN Tapin, South Kalimantan, there is a tourist destination. There is a cave and people name it Batu Hapu Cave. Local people say that there is a legend how the cave was made. Do you want to know the story? Read on!
+<tw-passagedata pid="237" name="The Legend of Batu Hapu Cave" tags="" position="2038,308">IN Tapin, South Kalimantan, there is a tourist destination. There is a cave and people name it Batu Hapu Cave. Local people say that there is a legend how the cave was made. Do you want to know the story? Read on!
 
 There was an old woman who lived with his only son. The woman&#39;s name was Nini Kudampai and her son&#39;s name was Angui. They were really poor while Angui was still a kid. He was kind and very helpful. His father died when he was a baby. Though he was very young, he behaved like an adult. He knew he had to help his mother to earn a living. And that made his mother loved him very much.
 
@@ -7843,7 +7877,7 @@ Nini Kudampai was standing at the harbor. When she saw Angui, she called out his
 Nini Kudampai was so sad, and she was also very angry. She cursed Angui for ignoring her. She had been waiting for her son to come back. And when he arrived, he ignored and did not want to admit her as his mother.
 
 God heard the old woman&#39;s praying. Suddenly the rain fell down heavily. Thunder attacked the ship. It turned upside down! The ship finally stranded. Slowly the ship changed into a big stone. Later, the big stone slowly changed into a cave. People then named the cave as Batu Hapu Cave.</tw-passagedata>
-<tw-passagedata pid="238" name="The Story of Batu Bini and Batu Laki Mountains" tags="" position="2163.3335333333334,308.33333333333337">THERE was a poor old widow. Her name was Diang Ingsung. Her husband had died and she lived with her only son. His name was Angui. He was a diligent and helpful son. 
+<tw-passagedata pid="238" name="The Story of Batu Bini and Batu Laki Mountains" tags="" position="2163,308">THERE was a poor old widow. Her name was Diang Ingsung. Her husband had died and she lived with her only son. His name was Angui. He was a diligent and helpful son. 
 
 To earn a living, Angui helped his mother collected some rattans, later sold them at the market. Though they worked hard everyday, they only received small amount of money.
 
@@ -7892,7 +7926,7 @@ Angui&#39;s mother could no longer control her emotion. She even prayed to God t
 Not long after that, heavy rain fell down. Sound of thunder was deafening and the thunder hit Angui&#39;s ship. It broke into two big parts. Angui and his wife were separated in the two parts of the ship. Everybody in the ships died. 
 
 Slowly the two parts of the ships became big stones and slowly they became mountains. People later named the mountains as Batu Bini or the stone of wife and Batu Laki or the stone of husband.</tw-passagedata>
-<tw-passagedata pid="239" name="The Wise King and the Kid" tags="" position="1670,433.33333333333337">ONCE upon a time there was a wise king, The king and his family lived in a big palace. There was a beautiful garden inside the palace. The King always let people come and have fun in the garden. Children loved the garden very much. They could play any time they wanted.
+<tw-passagedata pid="239" name="The Wise King and the Kid" tags="" position="1670,433">ONCE upon a time there was a wise king, The king and his family lived in a big palace. There was a beautiful garden inside the palace. The King always let people come and have fun in the garden. Children loved the garden very much. They could play any time they wanted.
 
 There was a kid who also loved the garden. The kid&#39;s father had died and he lived only with his mother. The kid did not have any brothers and sisters.
 
@@ -7937,7 +7971,7 @@ The kid was confused. &#39;What do you mean, Your Majesty? I don t understand.&q
 Well, the king had a plan. He would ask the kid and his daughter to get married when they were adults.
 
 The king kept his promise. When they both were adults, the kid and the princess were married. After the king died, the kid became the new king. Ile led his people wisely just like the previous king. </tw-passagedata>
-<tw-passagedata pid="240" name="Datu Mabrur and the Swordfish" tags="" position="1798.3333333333335,440">DATU Mabrur brought a big stone to the sea. He threw the stone to the sea, jumped, and landed on the stone.
+<tw-passagedata pid="240" name="Datu Mabrur and the Swordfish" tags="" position="1798,440">DATU Mabrur brought a big stone to the sea. He threw the stone to the sea, jumped, and landed on the stone.
 
 He sat and started to meditate. Who was Datu Mabrur? Well, he was a holy man. He had an amazing supernatural power. He meditated in the sea because he wanted to ask God to give him an island for his descendants. He meditated days and nights.
 
@@ -7976,7 +8010,7 @@ The swordfish king swam back to the sea. Later a lot of swordfish dug the land i
 Sa-ijaan means one heart, one mind and one idea. Slowly, a new island was made. Datu Mabrur was really grateful.
 
 He then named the island as Halimun Island which is later also named as The Sea Island or Pulau Laut because it appeared from the bottom of the sea. Now the local people use the image of swordfish and the word Sa-ijaan as the symbol and the slogan of Kotabaru Regency, South Kalimantan.</tw-passagedata>
-<tw-passagedata pid="241" name="Gunung Batu Benawa" tags="" position="1923.3333333333335,436.6666666666667">IN South Kalimanta0 there is one mountainthatis oftenvisited by tourists. It is a favourite place for campers. The name of the mountain is Batu Benawa Mountain or Gunung Bafu Benawa. Local people say that the mountain has a story. The legend happened a long time ago. Do you want to know how the mountain was made? Read on!
+<tw-passagedata pid="241" name="Gunung Batu Benawa" tags="" position="1923,436">IN South Kalimanta0 there is one mountainthatis oftenvisited by tourists. It is a favourite place for campers. The name of the mountain is Batu Benawa Mountain or Gunung Bafu Benawa. Local people say that the mountain has a story. The legend happened a long time ago. Do you want to know how the mountain was made? Read on!
 
 A long time ago there was an old woman living with his only son. His name was Raden Penganten. They were poor. The only had a small piece of land to cultivate. Sometimes Raden Penganten hunted in the jungle and sold the animal meat.
 
@@ -8005,7 +8039,7 @@ Raden Penganten was shocked to see her mother. She Iooked dirty. Her clothes wer
 Raden Penganten asked his crews to leave the harbour. They wanted to continue sailing. The mother was very sad. She prayed to God to punish her son. God answered her prayer. Suddenly heavy rain fell down. Storm and thunder attacked the ship. The ship could not maintain its balance. Soon it was broken into pieces.
 
 The big piece stranded. Slowly it changed into a mountain. People then named the mountain as Balu Benawa Mountain.</tw-passagedata>
-<tw-passagedata pid="242" name="The Red Dragons versus the White Dragon" tags="" position="2048.3334333333332,433.33333333333337">ONCE upon a time in South Kalimantan, there was a family. The father was a fisherman. He had a wife and a son. His son was still a little boy. The farmer and his wife really
+<tw-passagedata pid="242" name="The Red Dragons versus the White Dragon" tags="" position="2048,433">ONCE upon a time in South Kalimantan, there was a family. The father was a fisherman. He had a wife and a son. His son was still a little boy. The farmer and his wife really
 loved him very much.
 
 The fisherman caught the fish in the river. He had a small sampan and a net. Everyday he rowed his sampan along the river. He threw the net and caught the fish.
@@ -8045,7 +8079,7 @@ The father said, &quot;My sory we cannot be together again. Your mother and I wi
 disappeared.
 
 Until now, the people in Kalimantan believe that dragons still live in the rivers. The Dayak people also believe that when a dragon shows up in the river, rain will fall down heavily and it will flood the area.</tw-passagedata>
-<tw-passagedata pid="243" name="The Greedy King" tags="" position="2173.3336333333336,433.33333333333337">ONCE upon a time there was a kingdom in South Kalimantan. The king was Sang Hiyang. He liked to eat. His favorite food was fish intestine. He often asked the palace chef to provide him fish intestine in a big proportion. The King Sang Hiyang would be angry when the chef only gave him a small proportion. The chef did not have any problem preparing the fish intestine because there was a big river near the palace. She always asked the soldiers to catch the fish.
+<tw-passagedata pid="243" name="The Greedy King" tags="" position="2173,433">ONCE upon a time there was a kingdom in South Kalimantan. The king was Sang Hiyang. He liked to eat. His favorite food was fish intestine. He often asked the palace chef to provide him fish intestine in a big proportion. The King Sang Hiyang would be angry when the chef only gave him a small proportion. The chef did not have any problem preparing the fish intestine because there was a big river near the palace. She always asked the soldiers to catch the fish.
 
 One day, the chef was restless. The soldiers just gave her a few fish. The soldiers said that it was not a good season to catch the fish. The chef immediately cuts and cleaned the fish from the river. She was thinking about the punishment of the king. She was really worried and she did not concentrate when cutting and cleaning the fish. Accidentally, she dropped the fish intestine to the river. The current was very strong. In just a minute, she lost the entire fish intestine!
 
@@ -8070,7 +8104,7 @@ They said, &quot;Sang Hiyang tergantung! Sang Hiyang tergantung!&quot;
 It means Sang Hiyang is hung.
 
 Soon the area of the incident was named Sang Hiyang Tergantung and now it slowly changes into Siang Gantung. It is an area in Sungai Selatan, South Kalimantan. </tw-passagedata>
-<tw-passagedata pid="244" name="The Legend of Gunung Bangkai" tags="" position="2175,183.33333333333337">THERE was a woman who lived near the jungle. She lived with her son. Her husband died many years ago. Her son&#39;s name was Andung. He always helped her mother.
+<tw-passagedata pid="244" name="The Legend of Gunung Bangkai" tags="" position="2175,183">THERE was a woman who lived near the jungle. She lived with her son. Her husband died many years ago. Her son&#39;s name was Andung. He always helped her mother.
 
 Andung was in the jungle to collect some firewood. And while he was walking to go home, he heard someone asking for help. Andung was looking around and he saw an old man was injured. Andung immediately help him. The old man was really grateful. He gave Andung a gift.
 
@@ -8099,7 +8133,7 @@ Andung knew the jungle very much. It was not far from his house. On the way to t
 Sadly Andung was ashamed with her. He did not want to admit her as his mother. &quot;Who are you? I don&#39;t know you,&quot; said Andung.
 
 Her mother was very sad. She prayed to God to punish him. Andung suddenly could not move his body. He realize he was wrong. He tried to apologize to his mother but it was too late. Andung finally could not move his body at all. Slowly, he changed into a stone. The stone looked like a human dead body. It was slowly getting bigger and bigger. The stone then turned into a mountain. People named it as the mountain of human dead body or Gunung Bangkai.</tw-passagedata>
-<tw-passagedata pid="245" name="The Dandaung Snake" tags="" position="2048.333833333334,433.33333333333337">A long time ago, there was a big kingdom in South Kalimantan. The people lived happily and peacefully. There were no poor people. The land was fertile and they always had great harvest. The kingdom was also peaceful. The king was wise and always protected his people. The king had seven daughters. Those seven princesses were very beautiful. The king and the queen really loved them. Their daughters were all still single.
+<tw-passagedata pid="245" name="The Dandaung Snake" tags="" position="2048,433">A long time ago, there was a big kingdom in South Kalimantan. The people lived happily and peacefully. There were no poor people. The land was fertile and they always had great harvest. The kingdom was also peaceful. The king was wise and always protected his people. The king had seven daughters. Those seven princesses were very beautiful. The king and the queen really loved them. Their daughters were all still single.
 
 It was a beautiful afternoon. The king and his family spent their time in the garden. Suddenly the chief soldier came. He told the king a very bad news.
 
@@ -8137,7 +8171,7 @@ Dandaung Snake slowly changed into a very handsome man. He looked into the young
 “Don’t be afraid. You have already helped me from the curse. A bad witch cursed me into a snake. Actually I’m a prince and I have great supernatural power.”
 
 The prince went away. He knew the people were still afraid with the giant bird. The prince wanted to kill the bird. And finally he succeeded! The giant bird was dead. Everybody was happy. The king was also happy. He asked the prince to be the new king. Since then the kingdom was always peaceful.</tw-passagedata>
-<tw-passagedata pid="246" name="Dewi Luing Indung Bunga" tags="" position="1923.3342333333349,433.33333333333337">PEOPLE in Kampung Datar, South Kalimantan, suffered. There has been disaster. Long drought has made them lack of water. Many people were ill. Children were crying because they were very hungry. Their parents could not work because they were too weak. They had not eaten much.
+<tw-passagedata pid="246" name="Dewi Luing Indung Bunga" tags="" position="1923,433">PEOPLE in Kampung Datar, South Kalimantan, suffered. There has been disaster. Long drought has made them lack of water. Many people were ill. Children were crying because they were very hungry. Their parents could not work because they were too weak. They had not eaten much.
 
 The head of the village was Datu Beritu Taun. He asked all the villagers to have a meeting. He wanted to discuss how to find the solutions of the problem. He knew God was angry with them. They had wasted all the blessing from God. Yes, previously their village was fertile. Water was easy to find. Their life was prosperous.
 
@@ -8164,12 +8198,12 @@ Dewi Luing Indung Bunga was a very kind girl. She knew she had to be sacrificed.
 Though they were very sad, but the family let Dewi to sacrifice herself. All the villagers gathered in a big field. Dewi Luing Indung Bunga was standing in the middle. Suddenly, she fell down.
 
 She died. Not long after that rain fell down heavily. All the villagers were thankful to God. They would never forget Dewi’s sacrifice to them. Since then the villagers were very careful to the forests. They did not want to cut down the trees recklessly. </tw-passagedata>
-<tw-passagedata pid="247" name="East Kalimantan" tags="" position="1091.6666666666667,1145">** [[Queen Aji Bidara Putih|Queen Aji Bidara Putih]]
+<tw-passagedata pid="247" name="East Kalimantan" tags="" position="1091,1145">** [[Queen Aji Bidara Putih|Queen Aji Bidara Putih]]
 ** [[The Sacred Cow River|The Sacred Cow River]]
 ** [[Nyapu and Moret|Nyapu and Moret]]
 ** [[The Legend of Pesut Mahakam|The Legend of Pesut Mahakam]]
 ** [[Princess Bungsu and Maniki|Princess Bungsu and Maniki]]</tw-passagedata>
-<tw-passagedata pid="248" name="Queen Aji Bidara Putih" tags="" position="1673.3333333333335,558.3333333333334">ONCE upon a time in East Kalimantan, there was a kingdom in Muara Kaman.
+<tw-passagedata pid="248" name="Queen Aji Bidara Putih" tags="" position="1673,558">ONCE upon a time in East Kalimantan, there was a kingdom in Muara Kaman.
 
 The kingdom was led by Queen Aji Bidara Putih. She was a very beautiful queen. She was also wise, kind, and loving to her people.
 
@@ -8241,7 +8275,7 @@ What did the sculptor mean? Well, apparently he cursed that the kingdom would be
 And it was happened. The tenth king of Kutai Kertanagera Kingdom was not able to make his kingdom exist after they lost the war with other kingdom and Kutai Kertanagera was completely gone and became a jungle during the eleventh king.
 
 In the mean time after the sculptor died, King Aji Maharaja ordered the soldiers to throw the dead body to the Cow River. Amazingly, the dead body did not decay. People were amazed and because they respected him, they buried him near the river. People sacred the tomb and because of that they considered the Cow River as a sacred river.</tw-passagedata>
-<tw-passagedata pid="250" name="Nyapu and Moret" tags="" position="1925.0001,565">&quot;HELP! Please help me!&quot; screamed an old man.
+<tw-passagedata pid="250" name="Nyapu and Moret" tags="" position="1925,565">&quot;HELP! Please help me!&quot; screamed an old man.
 
 &quot;Ha ha ha, who can help you!&quot; mocked a beggar. Yes,. some beggars came to a village and stole the villagers&#39; belongings.
 
@@ -8272,7 +8306,7 @@ Nyapu was old and as he planned, he asked Moret to be the leader. Moret agreed, 
 Moret had a wish. She only wanted to marry a man who could bring safety and prosperity to her people. She then told Karang that she would marry him if he could make rain fall down.
 
 Well, Moret did not know that Karang mastered supernatuial power: He also mastered great skills in martial arts. Karang easily did what Moret asked him to do. Rain fell down heavily. All the villagers were happy. And of course, Moret agreed to marry Karang. The couple live.d happily ever after. </tw-passagedata>
-<tw-passagedata pid="251" name="The Legend of Pesut Mahakam" tags="" position="2055,568.3333333333334">A long time ago, there was a village in East Kalimantan. The village was near the Mahakam River. The villagers always worked hard. Although they were poor, they were very happy. They also helped each other.
+<tw-passagedata pid="251" name="The Legend of Pesut Mahakam" tags="" position="2055,568">A long time ago, there was a village in East Kalimantan. The village was near the Mahakam River. The villagers always worked hard. Although they were poor, they were very happy. They also helped each other.
 
 In the village, there was a rich family. The head of the family was Pak Pesut. Everybody knew Pak Pesut. He was known not because of his wealth, but because his stinginess. He did not like to help others. His family always ignored people. That’s why Pak Pesut’s family always lived alone and never mingled with others.
 
@@ -8342,7 +8376,7 @@ It was true. The king was dying. He was terribly ill because he felt guilty by s
 ** [[Wuwung Sewe and The Crocodile|Wuwung Sewe and The Crocodile]]
 ** [[Napombalu|Napombalu]]
 ** [[The Legend of Moopoo Bird|The Legend of Moopoo Bird]]</tw-passagedata>
-<tw-passagedata pid="254" name="Abo and The Giant" tags="" position="1918.3341333333337,58.33333333333334">ABO Mamongkuroit and his wife, Monondeaga, lived in a jungle. Even though they were poor, they lived very happily. They loved each other. One day Abo had to go the village. He asked his wife&#39;s permission.
+<tw-passagedata pid="254" name="Abo and The Giant" tags="" position="1918,58">ABO Mamongkuroit and his wife, Monondeaga, lived in a jungle. Even though they were poor, they lived very happily. They loved each other. One day Abo had to go the village. He asked his wife&#39;s permission.
 
 &quot;Don&#39;t go too long. Please come back soon,&quot; said Monondeaga.
 
@@ -8375,7 +8409,7 @@ Abo was ready with his weapons and he immediately attacked him. Tulap was not re
 Abo did very hard to kill Tulap. Finally, he succeeded. Tulap was dead! Abo hurried entering Tulap&#39;s cave. He saw many people were inside the big cage. One of them was his beloved wife, Monondeaga.
 
 Abo immediately opened the cage. Everybody inside the cage was so happy. They thanked Abo for his great courage. Abo and Monondeaga then went home. Now people could live peacefully. The giant was dead.</tw-passagedata>
-<tw-passagedata pid="255" name="Sigarlaki and Limbat" tags="" position="1798.3347333333347,433.33333333333337">A long time ago in Tondonao, there lived a great hunter. His name was Sigarlaki. He was very skillful with his spear. He used his spear to hunt animals in the jungle. He was a very famous hunter. Every time he hunts in the jungle, he always went home with some animals.
+<tw-passagedata pid="255" name="Sigarlaki and Limbat" tags="" position="1798,433">A long time ago in Tondonao, there lived a great hunter. His name was Sigarlaki. He was very skillful with his spear. He used his spear to hunt animals in the jungle. He was a very famous hunter. Every time he hunts in the jungle, he always went home with some animals.
 
 Sigarlaki had a servant. His name was Limbat. Sigarlaki was very lucky; Limbat had been always loyal to him. Everywhere Sigarlaki went hunting, Limbat was always next to him. As always, in one beautiful morning, Sigarlaki and Limbat went to the jungle to hunt some animals.
 
@@ -8390,7 +8424,7 @@ He immediately jumped to the pond and took his spear. Just before Sigarlaki was 
 &quot;Ouch! That&#39;s hurts!&quot; Sigarlaki was screaming in pain.
 
 Seeing this, Limbat came to his master and helped him. Sigarlaki was ashamed. He already accused Limbat, instead Limbat helped him. He knew he got the punishment. A big crab bit him! </tw-passagedata>
-<tw-passagedata pid="256" name="Two Sisters and A Kekekow Bird" tags="" position="2186.6668666666674,308.33333333333337">THERE was a poor old woman living in the jungle. She lived with her two daughters. Her husband had died.
+<tw-passagedata pid="256" name="Two Sisters and A Kekekow Bird" tags="" position="2186,308">THERE was a poor old woman living in the jungle. She lived with her two daughters. Her husband had died.
 
 The family was so poor. They could not eat regularly. They often spent the nights with empty stomach. Though their lives were miserable, they never complained.
 
@@ -8439,7 +8473,7 @@ People came to the mango tree. They all asked for lots of money. Though they wer
 The Kekekow Bird did not drop them money. Instead, the bird dropped them grass! People were so angry! They thought the bird was making fun of them. They caught the bird and killed it.
 
 The two sisters were so sad. They buried the bird properly. To show gratitude, the two sisters always help poor people.</tw-passagedata>
-<tw-passagedata pid="257" name="The Old Man and the Giant" tags="" position="1673.3353333333346,433.33333333333337">ONCE upon a time, an old man was looking for some firewood in the jungle. He collected enougn wood and he was ready to go home.
+<tw-passagedata pid="257" name="The Old Man and the Giant" tags="" position="1673,433">ONCE upon a time, an old man was looking for some firewood in the jungle. He collected enougn wood and he was ready to go home.
 
 Suddenly he heard sounds of footsteps.
 
@@ -8489,7 +8523,7 @@ The giant washed his ear. The centipede immediately stung him. The giant again s
 The old man grabbed a chair and hit him repeatedly! The giant was too weak to fight back Then he died.
 
 The old man. the mouse, and the centipede were happy. They immediately left the giant&#39;s house and went home. </tw-passagedata>
-<tw-passagedata pid="258" name="Warereh" tags="" position="2061.6668666666674,308.33333333333337">LOKON Klabat Soputan, and Manado Tua are mountains in North Sulawesi. Do you know the legend behind those four mountains? Read on!
+<tw-passagedata pid="258" name="Warereh" tags="" position="2061,308">LOKON Klabat Soputan, and Manado Tua are mountains in North Sulawesi. Do you know the legend behind those four mountains? Read on!
 
 A long time ago, gods and humans could interact one to another. They could meet, see, and talk among them. Gods lived in the sky and humans lived on earth. Gods often went to earth and humans also could visit the gods in the sky.
 
@@ -8555,7 +8589,7 @@ Wuwung Sewe suddenly remembered his children. He did not allow his children to p
 &quot;Don&#39;t worry, I will ask my family and my friends not to hurt your family,&quot; said the crocodile.
 
 Wuwung Sewe was very,happy. He was glad that he did not have to worry when his children played near the river. He had a friend who would guard his children. And his friend was the crocodile!</tw-passagedata>
-<tw-passagedata pid="260" name="Napombalu" tags="" position="2055.000400000001,440">ONCE upon a time there were a handsome hunter, his name was Lawongo. In the jungle he only hunted wild hogs. The animals often always destroyed the villagers&#39; fields. The villagers were very grateful. With Lawongo&#39;s help, their field were safe from the wild hogs.
+<tw-passagedata pid="260" name="Napombalu" tags="" position="2055,440">ONCE upon a time there were a handsome hunter, his name was Lawongo. In the jungle he only hunted wild hogs. The animals often always destroyed the villagers&#39; fields. The villagers were very grateful. With Lawongo&#39;s help, their field were safe from the wild hogs.
 
 Lawongo was also very great in playing a flute, it was so melodious. Everybody always enjoyed listening his playing the flute. One of the people was a beautiful girl. She always listened attentively. Lawongo knew there was a beautiful girl who always paid attention to him. Lawongo fell in love with her. The girl also loved him, later they got married.
 
@@ -8581,7 +8615,7 @@ Later, the villagers buried the two coffins. At the first night, they could stil
 They did Lawongo&#39;s request. They went to the beach. They all set down on the beach. Suddenly, a strange thing appeared from the sea. It was very big. They all were surprised. However they did not say anything. The thing finally stooped growing.
 
 The villagers used their sampan and came to the thing. It was a coral island. They named the island as Napombalu, which is from the words Napo and Nawalu. Napo means a coral island and Nawalu means a strange thing which turn into an island. </tw-passagedata>
-<tw-passagedata pid="261" name="The Legend of Moopoo Bird" tags="" position="2030,183.33333333333337">A long time a go in Minahasa lived an old man with his grandson. The grandson’s name was Nondo. The old man loved Nondo very much.
+<tw-passagedata pid="261" name="The Legend of Moopoo Bird" tags="" position="2030,183">A long time a go in Minahasa lived an old man with his grandson. The grandson’s name was Nondo. The old man loved Nondo very much.
 
 He was a nice and diligent boy. When his grandfather went to the jungle to collect some ﬁre woods, Nondo stayed at home. He always did the household chores.
 
@@ -8632,7 +8666,7 @@ Minahasa, North Sulawesi. </tw-passagedata>
 ** [[Samba’ Paria|Samba’ Paria]]
 ** [[Hawadiyah|Hawadiyah]]
 ** [[The Legend of Pattuddu Dance|The Legend of Pattuddu Dance]]</tw-passagedata>
-<tw-passagedata pid="263" name="I Karake&#39;lette" tags="" position="1673.3333333333335,683.3333333333334">BALANIPA was a small kingdom in Mandar, West Sulawesi. The people lived happily and prosperously. The land was fertile and people enjoyed good harvest. And sadly that made other kingdoms become jealous. And they wanted to occupy Balanipa!
+<tw-passagedata pid="263" name="I Karake&#39;lette" tags="" position="1673,683">BALANIPA was a small kingdom in Mandar, West Sulawesi. The people lived happily and prosperously. The land was fertile and people enjoyed good harvest. And sadly that made other kingdoms become jealous. And they wanted to occupy Balanipa!
 
 One of the kingdoms that wanted to occupy Balanipa was Gowa Kingdom. It was a big kingdom! Gowa had lots of soldiers with great weapons and they were ready to attack Balanipa.
 
@@ -8676,7 +8710,7 @@ King Gowa was laughing to see an old and lame man was threatening him. He said, 
 The two men were fighting terribly. Though he was old and lame, I Karake&#39;lette had mastered martial art very well. He was also skillful in using a knife. Soon, King Gowa was killed! And after they knew their king was dead, soldiers of Gowa Kingdom immediately went back home.
 
 Balanipa soldiers were so happy! They all praised I Karake&#39;lette! And the king was also happy. He gave I Karake&#39;lette lots of gold. And he also asked I Karake&#39;lette to stay in the palace and become a soldier. People admired and honored I Karake&#39;lette. They never underestimated him anymore.</tw-passagedata>
-<tw-passagedata pid="264" name="The Story of Cengnge&#39; Bird" tags="" position="1801.6666666666667,690">ONCE upon a time in Mandar, South Sulawesi, there lived a farmer and his wife. They were poor. They lived alone and did not have any children. They prayed to cod days and nights to give them a baby.
+<tw-passagedata pid="264" name="The Story of Cengnge&#39; Bird" tags="" position="1801,690">ONCE upon a time in Mandar, South Sulawesi, there lived a farmer and his wife. They were poor. They lived alone and did not have any children. They prayed to cod days and nights to give them a baby.
 
 The farmer even prayed, &quot;Dear God, if you give us a son, I will put him in a golden cradle.&quot;
 
@@ -8709,7 +8743,7 @@ The girl kept on praying. She really wanted to be a bird. And her wish came true
 The bird was so beautiful and she also had a great voice. The bird then went to her real parents&#39;house. The bird sang a song, &quot;I&#39;m very sad. My parents do not love me.&quot;
 
 The bird was flying above her parents&#39;house. She kept on singing the song. It attracted her parents&#39; attention. When they knew that their lovely daughter had changed into a bird, they regretted it. However it was too late, their daughter had changed into a bird. The people name it as Cengnge&#39; Bird. </tw-passagedata>
-<tw-passagedata pid="265" name="I Tui Tuing" tags="" position="1928.3333333333335,691.6666666666667">THERE were a husband and a wife lived in Mandar, West Sulawesi. The husband was a ﬁsherman. They had been married for many years but they had no any children yet. Everyday they prayed to God. They never gave up asking God to give them a child.
+<tw-passagedata pid="265" name="I Tui Tuing" tags="" position="1928,691">THERE were a husband and a wife lived in Mandar, West Sulawesi. The husband was a ﬁsherman. They had been married for many years but they had no any children yet. Everyday they prayed to God. They never gave up asking God to give them a child.
 
 “Dear God, please give us a child even though he looks like a tui-tuing ﬁsh,” prayed the couple.
 Tui-tuing is a ﬂying ﬁ sh found in that area.
@@ -8747,7 +8781,7 @@ My skin has changed into normal. By the way, who are you?” asked I Tuing-Tuing
 But I have completely washed and cleaned my skin,” said Rukiah.
 
 And they were very happy. They were not ugly anymore. All the villagers really admired their great looks. And Rukiah’s sisters were even more jealous to her.</tw-passagedata>
-<tw-passagedata pid="266" name="The Legend of Pamboang" tags="" position="2055,693.3333333333334">A long time ago, three men came to Majene, West Sulawesi. They wanted to open a new place. Those three men were brothers. They were I Lauase, I Lauwella, and I Labuqang.
+<tw-passagedata pid="266" name="The Legend of Pamboang" tags="" position="2055,693">A long time ago, three men came to Majene, West Sulawesi. They wanted to open a new place. Those three men were brothers. They were I Lauase, I Lauwella, and I Labuqang.
 
 They arrived in the beach. It was empty. No humans lived there. So the three brothers divided jobs among them.
 
@@ -8792,7 +8826,7 @@ The three brothers then discussed. They needed more money. And the tambo could b
 Then the people of Pallayarang Tallu helped them. They won! However Puatta Di Karena did not show up yet. He disappeared. Nobody knew where he was. The people of Pallayarang Tallu always talked about the tambo.
 
 Slowly the word tambo changed into tamboang, then changed into pamboang. Since then the people changed the name Pallayarang Tallu into Pamboang. Pamboang is an area in Majene, West Sulawesi.</tw-passagedata>
-<tw-passagedata pid="267" name="Samba’ Paria" tags="" position="2188.3333333333335,696.6666666666667">A long time ago in Mandar, West Sulawesi, lived a beautiful girl named Samba’ Paria. She lived with her younger sister in a hut. Their hut was in the jungle. They both lived alone. Their parents had died. Samba’ Paria loved her younger sister very much. They always helped each other.
+<tw-passagedata pid="267" name="Samba’ Paria" tags="" position="2188,696">A long time ago in Mandar, West Sulawesi, lived a beautiful girl named Samba’ Paria. She lived with her younger sister in a hut. Their hut was in the jungle. They both lived alone. Their parents had died. Samba’ Paria loved her younger sister very much. They always helped each other.
 
 One night they had a dinner. Suddenly someone knocked the door.
 
@@ -8829,7 +8863,7 @@ She knew her sister needed her very much. Samba’ Paria prayed to God. She aske
 The two girls hugged each other. They were crying. This time they cried because they were very happy. Samba’ Paria knew the king would follow her. So the two girls set a trap. She prepared some chilies and later she was grinding them. Finally, she mixed it with water. She wanted to throw the water to king’s face.
 
 And it worked! And when the king arrived at their home, Samba’ Paria threw the water to the king’s face. The king’s screamed in pain. He fell and his head hit a big stone. He died instantly. Since then Samba’ Paria lived peacefully with her younger sister.</tw-passagedata>
-<tw-passagedata pid="268" name="Hawadiyah" tags="" position="1930.0009000000018,440">The people of Mandar were farmers. Most of them worked for a rich man. He hired the villagers to work in his coconut plantation. The rich man had a beautiful daughter. Her name was Bekkandari. She had a best friend. Her name was Hawadiyah. Unlike Bekkandari, Hawadiyah was a poor girl. She lived with her mother in a hut. Hawadiyah was also beautiful.
+<tw-passagedata pid="268" name="Hawadiyah" tags="" position="1930,440">The people of Mandar were farmers. Most of them worked for a rich man. He hired the villagers to work in his coconut plantation. The rich man had a beautiful daughter. Her name was Bekkandari. She had a best friend. Her name was Hawadiyah. Unlike Bekkandari, Hawadiyah was a poor girl. She lived with her mother in a hut. Hawadiyah was also beautiful.
 
 Many people said she was more beautiful than Bekkandari. It was harvest time. The villagers worked very hard in the plantation. Hawadiyah helped her mother collect the coconuts. Bekkandari’s father gave coconuts as the fee for the villagers. The more they collected the coconuts, the more Bekkandari’s father gave them the fee.
 
@@ -8850,7 +8884,7 @@ The merchant was confused. Hawadiyah was missing. He asked all his men to find h
 Again, the merchant ignored her. In the jungle, Hawadiyah made friend with the animals. They were sorry to see her life. They suggested Hawadiyah to take a bath in magic pond in the jungle. Amazingly after she took a bath, she got her beauty back.
 
 And when the merchant’s men found her, they immediately brought her to the merchant’s house. Hawadiyah told him about everything. The merchant was really angry. He asked his men to get rid of Bekkandari from his house. Later the merchant and Hawadiyah got married. Her mother was happy to see Hawadiyah to get married and have a happy life.</tw-passagedata>
-<tw-passagedata pid="269" name="The Legend of Pattuddu Dance" tags="" position="2055.0001,566.6666666666667">ONCE upon a time in Mandar, West Sulawesi, there was a kingdom. The king and the queen had a handsome prince. He was still single. The prince was a diligent man. The palace had a beautiful garden and a pond. There was also waterfall in the pond. The prince always spent his time in the garden. He loved gardening and always took care of the plants.
+<tw-passagedata pid="269" name="The Legend of Pattuddu Dance" tags="" position="2055,566">ONCE upon a time in Mandar, West Sulawesi, there was a kingdom. The king and the queen had a handsome prince. He was still single. The prince was a diligent man. The palace had a beautiful garden and a pond. There was also waterfall in the pond. The prince always spent his time in the garden. He loved gardening and always took care of the plants.
 
 In one afternoon, rain fell heavily. After it stopped, the prince went to the garden. On the way to the garden, he saw a beautiful rainbow. The rainbow ended in the pond. There were seven doves flying through the rainbow and they stopped flying above the pond. Amazingly, those seven doves turned into beautiful angels. They put their shawls on the ground then they all swam in the pond.
 
@@ -8873,14 +8907,14 @@ The angel immediately wore her shawl. She then came to her husband.
 The angel then waggled her shawl. Slowly, she flew to the sky. The prince was very sad. He just lost his beautiful wife. And every time he missed her, he always looked at the rainbow.
 
 The people of Mandar, West Sulawesi, then imitated the way the angel waggling her shawl into movements of a dance. The dance is known as Pattuddu Dance.</tw-passagedata>
-<tw-passagedata pid="270" name="Central Sulawesi" tags="" position="1216.6666666666667,1145">** [[Tadulako Bulili|Tadulako Bulili]]
+<tw-passagedata pid="270" name="Central Sulawesi" tags="" position="1216,1145">** [[Tadulako Bulili|Tadulako Bulili]]
 ** [[The Story of Payol Village|The Story of Payol Village]]
 ** [[The Origin of Sago Tree and Sugar Palm Tree|The Origin of Sago Tree and Sugar Palm Tree]]
 ** [[The Magic Mirror|The Magic Mirror]]
 ** [[The Story of a Mermaid|The Story of a Mermaid]]
 ** [[The Legend of Bagga Stone|The Legend of Bagga Stone]]
 ** [[The stupid Dog|The stupid Dog]]</tw-passagedata>
-<tw-passagedata pid="271" name="Tadulako Bulili" tags="" position="1905.0003,183.33333333333337">BULILI was a village in Central Sulawesi. The people lived happily and peacefully. The village had three guardians and they were called Tadulako. They were Tadulako Bantaili, Makeku, and Molove.
+<tw-passagedata pid="271" name="Tadulako Bulili" tags="" position="1905,183">BULILI was a village in Central Sulawesi. The people lived happily and peacefully. The village had three guardians and they were called Tadulako. They were Tadulako Bantaili, Makeku, and Molove.
 
 They were very strong and had great skill in martial arts. They were also skillful with weapons. They were brave and loyal. The people loved them very much. Thanks to them, their village was always safe.
 
@@ -8919,7 +8953,7 @@ The king was angry! He asked his soldiers to chase them and bring the rice barn 
 The Tadulako ran very fast and when they arrived at the river, they jumped and landed at the other side of the river easily.
 
 The soldiers could not do anything. They did not have any power to jump across the river. And they went back to Sigi disappointingly. </tw-passagedata>
-<tw-passagedata pid="272" name="The Story of Payol Village" tags="" position="1401.6666666666667,351.6666666666667">DAESALA was a fisherman. He lived with his wife and his son. His wife&#39;s name was Daesurnandi
+<tw-passagedata pid="272" name="The Story of Payol Village" tags="" position="1401,351">DAESALA was a fisherman. He lived with his wife and his son. His wife&#39;s name was Daesurnandi
 while his son&#39;s name was Daemaji.
 
 One day, the family went to an isolated island. The island had lots of trees and they wanted to get some firewood.
@@ -8977,7 +9011,7 @@ The family slowly built their house. Not long after that, a ship came. Some peop
 &quot;It&#39;s Payol!&quot; said Daesala proudly.
 
 The people asked Daesala&#39; permission if they could stay in the island. Daesala let them stay. Slowly, more and more people came. Finally it became a village. They named the village as Payol Village.</tw-passagedata>
-<tw-passagedata pid="273" name="The Origin of Sago Tree and Sugar Palm Tree" tags="" position="2063.3333333333335,691.6666666666667">THERE was a poor family in Donggala, Central Sulawesi. The parents had only one child, he was a son. The family was poor because the father was lazy. He did not want to work hard. The person who earned the living was the mother. Everyday she went to the jungle to collect some firewood and sold it at the market. The son always helped his mother.
+<tw-passagedata pid="273" name="The Origin of Sago Tree and Sugar Palm Tree" tags="" position="2063,691">THERE was a poor family in Donggala, Central Sulawesi. The parents had only one child, he was a son. The family was poor because the father was lazy. He did not want to work hard. The person who earned the living was the mother. Everyday she went to the jungle to collect some firewood and sold it at the market. The son always helped his mother.
 
 The mother had repeatedly asked and advised the father to work hard. Sadly, the father always ignored her. Well, something amazing happened. Suddenly the father told the mother that he was bored with their poor lives.
 
@@ -9008,7 +9042,7 @@ She asked, &quot;Where is the field?&quot;
 The husband was so mad when his wife followed and asked him about the field. He said bad things to her! The man left his wife in the jungle and went home. The woman was crying. She could not control her emotion. She was extremely sad. She walked and when she found a small pond she slowly put her feet in the water.
 
 At home, the man felt guilty. Together with his son, they went to the jungle. They found the woman standing at the pond. Strangely, the woman had turned into a sago tree. The man was screaming. He apologized, but it was too late! The son also felt very sad. He ran and hugged his mother. The son also slowly changed into a sago tree. The man then ran and jumped to the pond. When the water touched his feet, he slowly became a sugar palm tree.</tw-passagedata>
-<tw-passagedata pid="274" name="The Magic Mirror" tags="" position="1805.0014000000017,440">THERE was an old king. He had three sons from his concubine. The queen had long been gone. No one knew where she went. The king was not physically healthy. His old age had made him unable to work well. He got sick easily.
+<tw-passagedata pid="274" name="The Magic Mirror" tags="" position="1805,440">THERE was an old king. He had three sons from his concubine. The queen had long been gone. No one knew where she went. The king was not physically healthy. His old age had made him unable to work well. He got sick easily.
 
 The king felt it was time for him to step down and chose the new king. The kingdom had a unique tradition. Unlike other kingdoms, the oldest child of the king would not automatically become a new king. So, how did they get the new king? The king had a magic mirror. When someone saw his face in the mirror, the mirror could show his true and real personality.
 
@@ -9042,7 +9076,7 @@ The man did not answer. He let his mother answer the king&#39;s question.
 Amazingly, the old woman and her son slowly changed. She was still old but looked beautiful and her son became very handsome.
 
 The king was so surprised when he saw his long lost wife. He thought his wife had died. He immediately asked his soldiers to put the concubine in the jail. He was angry at her! However he was grateful that he finally found his wife and his son became the new king.</tw-passagedata>
-<tw-passagedata pid="275" name="The Story of a Mermaid" tags="" position="1788.3333333333335,58.33333333333334">ONCE upon a time, there lived a poor farmer. He lived with his wife and three children. The farmer only had small paddy field. It sometimes was not enough to feed his family. Therefore the farmer went fishing to make extra money.
+<tw-passagedata pid="275" name="The Story of a Mermaid" tags="" position="1788,58">ONCE upon a time, there lived a poor farmer. He lived with his wife and three children. The farmer only had small paddy field. It sometimes was not enough to feed his family. Therefore the farmer went fishing to make extra money.
 
 His three children were lazy. They never helped their parents. They were ignorant and disobedient. The parents often advised them, but those children ignored them, While the parents were working, the children just played with their friends.
 
@@ -9101,7 +9135,7 @@ She brought some flsh in her hands. She said,
 &quot;Here is the fish for you. But I cannot live with you anymore. I live here in the sea. I have changed into a mermaid.&quot;
 
 Then she dove and disappeared. The father and the children were so sad. They regretted their bad behavior. The children regretted that they ate all the flsh and did not listen to her while the father regretted that he was so rude to his wife. However, it was too late._They just lost her forever.</tw-passagedata>
-<tw-passagedata pid="276" name="The Legend of Bagga Stone" tags="" position="1930.0003000000006,568.3333333333334">ONCE upon a time in Tolitoli, Central Sulawesi, lived a man with his son in a hut.
+<tw-passagedata pid="276" name="The Legend of Bagga Stone" tags="" position="1930,568">ONCE upon a time in Tolitoli, Central Sulawesi, lived a man with his son in a hut.
 The man’s name was Intobu and his son’s name was Impalak. Intobu’s wife passed away when Impalak was a baby.
 
 Impalak was a diligent and obedient son. Intobu and Impalak were fishermen and they were poor. They did not have a big ship to go fishing. They only used a small sampan. They really wanted to have a big ship so they could have a lot of fish. The local people there named the big ship as bagga.
@@ -9143,7 +9177,7 @@ However, Impalak asked his crew to leave. They left Intobu.
 Intobu was very sad. He knew Impalak had already forgotten him. He prayed to God to punish him.
 
 Again storm attacked Impalak’s bagga. This time it was very hard. Finally the bagga was stranded. Slowly the bagga turned into a big stone. Until now the stone is still in Tolitoli, Central Sulawesi. People named the stone as Bagga Stone.</tw-passagedata>
-<tw-passagedata pid="277" name="The stupid Dog" tags="" position="2186.666666666667,566.6666666666667">DEER have horns, right? But a long time ago, the deer did not have horns. Instead, dogs had horns. How did the deer get the horns? Here is the story.
+<tw-passagedata pid="277" name="The stupid Dog" tags="" position="2186,566">DEER have horns, right? But a long time ago, the deer did not have horns. Instead, dogs had horns. How did the deer get the horns? Here is the story.
 
 It was a very hot day. A couple of deer went to a river to drink. They were husband and wife. After arriving at the lake, they immediately drank some water. Suddenly, the wife saw an animal coming.
 
@@ -9180,13 +9214,13 @@ Then, they started the running match again. The male deer ran as fast as he coul
 “Hey come back! Bring back my horns!” the dog was very angry.
 
 Until now, dogs always try to catch deer. The dogs want to get their horns back.</tw-passagedata>
-<tw-passagedata pid="278" name="Southeast Sulawesi" tags="" position="1218.3333333333335,1270">** [[La Moelu and the Fish|La Moelu and the Fish]]
+<tw-passagedata pid="278" name="Southeast Sulawesi" tags="" position="1218,1270">** [[La Moelu and the Fish|La Moelu and the Fish]]
 ** [[Niining Kubaea&#39;s Daughter|Niining Kubaea&#39;s Daughter]]
 ** [[The Legend of Saba Mpolulu Mountain|The Legend of Saba Mpolulu Mountain]]
 ** [[The Story of Mekongga Mountain|The Story of Mekongga Mountain]]
 ** [[Oheo|Oheo]]
 ** [[The Naughty Monkey|The Naughty Monkey]]</tw-passagedata>
-<tw-passagedata pid="279" name="La Moelu and the Fish" tags="" position="1680.0020000000015,443.33333333333337">ONCE upon a time, there was a young boy named La Moelu. He lived with his mother. His father died when he was a baby. La Moelu was a good son. He was obedient and helpful to his mother. He always helped his mother in the field. La Moelu loved fishing. Whenever he caught some fish, he always gave them to his mother.
+<tw-passagedata pid="279" name="La Moelu and the Fish" tags="" position="1680,443">ONCE upon a time, there was a young boy named La Moelu. He lived with his mother. His father died when he was a baby. La Moelu was a good son. He was obedient and helpful to his mother. He always helped his mother in the field. La Moelu loved fishing. Whenever he caught some fish, he always gave them to his mother.
 
 It was a beautiful day. La Moelu went fishing in the river. He had been in the riverside for hours, but he was not able to catch one fish. Suddenly, he caught one small fish. The fish was attractive. He wanted to keep it as a pet. At home, La Moelu told his mother about the attractive fish. She also liked the fish.
 
@@ -9221,7 +9255,7 @@ He passed his neighbor&#39;s house. He saw they were having a party. Yes, they w
 When La Moelu saw the fish, he was shocked. He recognized his fish. He was so sad that he could not say anything. Before he left the house, he grabbed one fish bone. He wanted to bury the fish properly.
 
 La Moelu buried the fish bone. On the following day, a small tree grew. The tree was beautiful. The leaves and the branches were gold! La Moelu picked the leaves and branches. He wanted to sell them. Amazingly, there grew another leaves and branches. La Moelu and his mother had lots of money! Since then La Moelu and his mother became very rich. They were very happy.</tw-passagedata>
-<tw-passagedata pid="280" name="Niining Kubaea&#39;s Daughter" tags="" position="2206.666666666667,441.66666666666674">ONCE upon a time, there lived an old woman. Her name was Niining Kubaea. She lived alone. Her husband had died and she did not have any children. She was poor, she lived in a hut.
+<tw-passagedata pid="280" name="Niining Kubaea&#39;s Daughter" tags="" position="2206,441">ONCE upon a time, there lived an old woman. Her name was Niining Kubaea. She lived alone. Her husband had died and she did not have any children. She was poor, she lived in a hut.
 
 Niining Kubaea was very lonely. She did not have anyone she could talk to. To keep her busy, she often knitted dress.
 
@@ -9287,7 +9321,7 @@ The king then talked to Niining Kubaea&#39;s daughter.
 &quot;My daughter, please forgive me. I did not know who you were. Niining Kubaea, please also forgive me....&quot;
 
 They all were very happy, the family finally reunited. Since then, Niining Kubaea and her daughter lived in the palace. They lived happily ever after. </tw-passagedata>
-<tw-passagedata pid="281" name="The Legend of Saba Mpolulu Mountain" tags="" position="1938.3337333333343,696.6666666666667">THERE were two big mountains in Southeast Sulawesi. The two mountains&#39; names were Mata Air Mountain, which means wellspring, and Kamonsope Mountain.
+<tw-passagedata pid="281" name="The Legend of Saba Mpolulu Mountain" tags="" position="1938,696">THERE were two big mountains in Southeast Sulawesi. The two mountains&#39; names were Mata Air Mountain, which means wellspring, and Kamonsope Mountain.
 
 The two mountains were separated in a long distance. Each mountain had a guard. a fat man guarded the Mata Air Mountain whil&#39;e the&#39;one who guarded the Kamonsope Mountain was a beautiful woman.
 
@@ -9324,7 +9358,7 @@ She kept on shooting the Mata Air Mountain. Slowly, the top part of Mata Air Mou
 Finally the top part of Mata Air Mountaln became flat. It looked Ike an axe that lost some of its part.
 
 Since then people named Mata Air Mountain as Saba Mplolulu Mountain. Saba means incomplete and Mpolulu means an axe. </tw-passagedata>
-<tw-passagedata pid="282" name="The Story of Mekongga Mountain" tags="" position="1813.3339333333342,703.3333333333334">THERE was a beautiful village. The villagers were farmers, They lived happily and peacefully. Their cattle grew well. The land was fertile and the villagers harvested regularly.
+<tw-passagedata pid="282" name="The Story of Mekongga Mountain" tags="" position="1813,703">THERE was a beautiful village. The villagers were farmers, They lived happily and peacefully. Their cattle grew well. The land was fertile and the villagers harvested regularly.
 
 Recently, the villagers had a terrible rumor. They heard that there was a giant eagle coming to their village. The eagle was so big that it could grab a cow with its giant claws.
 
@@ -9361,7 +9395,7 @@ But before the claws grabbed Tasahea&#39;s body, the bamboos stabbed the eagle&#
 The spear hit the eagle! The eagle was still able to fly away. However it was bleeding badly and it finally landed on the top of a big mountain, The eagle lost too much blood. The eagle finally died.
 
 Everybody was happy and as promised, the head of the village gave Tasahea lots of money. He and his parents were rich! Meanwhile, people later named the mountain where the eagle died as Mekongga Mountain. It means the mountain where the giant eagle died.</tw-passagedata>
-<tw-passagedata pid="283" name="Oheo" tags="" position="1938.3337333333343,571.6666666666667">THERE was a handsome man in Kendari, Southeast Sulawesi. His name is Oheo. He is a kind and diligent farmer. He plants sugarcane trees on his ﬁeld. Everyday he always takes care of the trees. And he also takes care of the animals.
+<tw-passagedata pid="283" name="Oheo" tags="" position="1938,571">THERE was a handsome man in Kendari, Southeast Sulawesi. His name is Oheo. He is a kind and diligent farmer. He plants sugarcane trees on his ﬁeld. Everyday he always takes care of the trees. And he also takes care of the animals.
 
 It was time to harvest the sugarcane. He was so happy. Early in the morning, he left his house and went to the ﬁeld. However, he was so surprised when he arrived at the ﬁeld. The ﬁeld was in a mess. It seemed that some people had already taken his sugarcane. He was so upset.
 He wanted to ﬁnd the thief! He heard some people were laughing.
@@ -9404,7 +9438,7 @@ Oheo was confused. He did not know how to ﬁnd her wife in the very dark room. 
 
 With the help of ﬁreﬂy, the room was no longer dark. Therefore, he could ﬁnd her wife easily. After he found her, Oheo asked her to forgive him. He promised to be a better husband.
 Later, they went back to their home on earth.</tw-passagedata>
-<tw-passagedata pid="284" name="The Naughty Monkey" tags="" position="1936.667166666668,308.33333333333337">A hen and her children are eating. While they are enjoying the food, a monkey comes. The monkey is the hen&#39;s friend.
+<tw-passagedata pid="284" name="The Naughty Monkey" tags="" position="1936,308">A hen and her children are eating. While they are enjoying the food, a monkey comes. The monkey is the hen&#39;s friend.
 
 &quot;Hmm yummy. May I have some?&quot; asks the monkey. He is very hungry.
 
@@ -9439,7 +9473,7 @@ The hen shout, &quot;I will help you, but promise you will never do bad things a
 &quot;OK. I promise. I&#39;ll never do bad things again,&quot; says the monkey.
 
 After that the hen and the crab help the monkey. </tw-passagedata>
-<tw-passagedata pid="285" name="South Sulawesi" tags="" position="1091.6666666666667,1270">** [[The Stupid Crocodile|The Stupid Crocodile]]
+<tw-passagedata pid="285" name="South Sulawesi" tags="" position="1091,1270">** [[The Stupid Crocodile|The Stupid Crocodile]]
 ** [[La Onto-Ontolu|La Onto-Ontolu]]
 ** [[The Kids with Golden Chests|The Kids with Golden Chests]]
 ** [[Ambo Upe and a Parrot|Ambo Upe and a Parrot]]
@@ -9450,7 +9484,7 @@ After that the hen and the crab help the monkey. </tw-passagedata>
 ** [[La Tongko-Tongko|La Tongko-Tongko]]
 ** [[La Dana and His Buffalo|La Dana and His Buffalo]]
 ** [[Princess Tandampalik|Princess Tandampalik]]</tw-passagedata>
-<tw-passagedata pid="286" name="The Stupid Crocodile" tags="" position="1813.3344333333341,571.6666666666667">IT was very hot day. A crocodile was lying on the ground. He wanted to go to the river and enjoyed the water. However, he was too weak to go there. He was waiting for an animal to help him. His wish came true. A buffalo was passing by. He asked the buffalo to helped him.
+<tw-passagedata pid="286" name="The Stupid Crocodile" tags="" position="1813,571">IT was very hot day. A crocodile was lying on the ground. He wanted to go to the river and enjoyed the water. However, he was too weak to go there. He was waiting for an animal to help him. His wish came true. A buffalo was passing by. He asked the buffalo to helped him.
 
 &quot;I want to go to the river. But I am too weak. May I jump on your back and take me to the river?&quot; asked the crocodile.
 
@@ -9505,7 +9539,7 @@ The crocodile wanted to have great power. However, he did not know that the belt
 The crocodile asked the mouse deer to go away. And when the mouse deer left. The crocodile lifted the belt and put it around his body.
 
 The snake was angry! He squeezed the crocodile! The crocodile was in great pain. He asked for help but no one helped him. Slowly, the crocodile died.</tw-passagedata>
-<tw-passagedata pid="287" name="La Onto-Ontolu" tags="" position="1688.335133333334,571.6666666666667">THERE was a kingdom in the moon. The king had a son. His name was Sumantapura. He was a handsome, kind, diligent, and very powerful prince.
+<tw-passagedata pid="287" name="La Onto-Ontolu" tags="" position="1688,571">THERE was a kingdom in the moon. The king had a son. His name was Sumantapura. He was a handsome, kind, diligent, and very powerful prince.
 
 The prince enjoyed travelling from one planet to another planet. One day he visited planet earth. He was so amazed with its beauty. He wanted to stay on earth. So he went to an old woman&#39;s house. He carefully went inside the chicken cage.
 
@@ -9542,7 +9576,7 @@ When they arrived, the sisters dropped the youngest princess ring to the sea. Th
 The youngest sister was crying! She completely had no idea why her sisters were so mean to him. She talked to the king, however afher sisters said that La Onto-ontolu had an accident and it was not their mistake.
 
 On the following day, La O-nto-ontolu came back to the palace! Well, with his power, he could swim back to the land. He then told the king about the whole incident. The king was angry! He punished her daughters for being so cruel. Since then La Onto-ontolu and his wife lived happily.</tw-passagedata>
-<tw-passagedata pid="288" name="The Kids with Golden Chests" tags="" position="1563.3360333333337,571.6666666666667">THERE was a kingdom in South Sulawesi. The King and The Queen had been married for years but they did not have any children yet. The King was always restless. He was always thinking who would replace him as the king one day.
+<tw-passagedata pid="288" name="The Kids with Golden Chests" tags="" position="1563,571">THERE was a kingdom in South Sulawesi. The King and The Queen had been married for years but they did not have any children yet. The King was always restless. He was always thinking who would replace him as the king one day.
 
 The King wanted to marry again. He asked his soldiers to go the people&#39;s houses and tried to over hear people&#39;s conversation. If they heard that there was one girl who wanted to be the king&#39;s wife and also wanted to have some children, the soldiers had to report to the king.
 
@@ -9582,7 +9616,7 @@ king to free a woman in the jail.
 The king did not believe them. Suddenly the old woman and the soldier appeared. They told the king about the Queen&#39;s bad action.
 
 The King was terribly angry! He immediately freed the woman and he apologized to the kids and their mother. The king also punished the Queen. She was sent to the jail! </tw-passagedata>
-<tw-passagedata pid="289" name="Ambo Upe and a Parrot" tags="" position="1438.3370333333335,571.6666666666667">THERE was a boy, his name was Ambo Upe. He was diligent and obedient to his parents. Everyday Ambo Upe herded the cows in the field. He did it happily.
+<tw-passagedata pid="289" name="Ambo Upe and a Parrot" tags="" position="1438,571">THERE was a boy, his name was Ambo Upe. He was diligent and obedient to his parents. Everyday Ambo Upe herded the cows in the field. He did it happily.
 
 It was a hot day, Ambo Upe was herding the cows. He was resting under a big tree while still watching his cows. Suddenly, he saw something moving among the grass. He walked carefully. He found a small bird! The bird was dying, there was lots of blood. Ambo Upe carefully lifted the bird and took care of it. He covered tIe wound and stopped the bleeding.
 
@@ -9641,7 +9675,7 @@ The thieves were completely shocked! They did not,know that there were lots of v
 The villagers brought the thieves to the head of the villagers, He punished the thieves. They had to herd all the villagers&#39; cows for a month.
 
 Meanwhile, Ambo Upe thanked the Parrot for helping him. Since then, they became closer. The parrot always accompanied Ambo Upe wherever he went. </tw-passagedata>
-<tw-passagedata pid="290" name="Nini and the Fish Princess" tags="" position="1313.3381333333332,571.6666666666667">THERE was a small village under the sea. The fish lived there happily and peacefully. One of the fish was Nini. She lived with her parents. Nini&#39;s mother did not let Nini to leave the village.
+<tw-passagedata pid="290" name="Nini and the Fish Princess" tags="" position="1313,571">THERE was a small village under the sea. The fish lived there happily and peacefully. One of the fish was Nini. She lived with her parents. Nini&#39;s mother did not let Nini to leave the village.
 
 Nini was so curious. Her friends had told her the view outside the village was amazing, So one day, she Ieft the village.
 
@@ -9694,7 +9728,7 @@ Amazing! The fish princess slowly changed into a beautiful girl. Yes! Princess K
 Then they got married. Princess Kanaya did not forget Nini. She then helped Nini found her way back home.
 
 Nini finally found her house. she apologized to her mother and promised that she would always obey her. </tw-passagedata>
-<tw-passagedata pid="291" name="Commander To Dilaling" tags="" position="1188.339333333333,571.6666666666667">THERE was a mean king in Polewali Mandar, South Sulawesi. His name was King Balanipa. He led his kingdom cruelly. The king also wanted to be a king forever. fie did not want anyone, including his own sons to replace him as a king. Therefore every time he had a baby boy, the king always asked the baby to be killed!
+<tw-passagedata pid="291" name="Commander To Dilaling" tags="" position="1188,571">THERE was a mean king in Polewali Mandar, South Sulawesi. His name was King Balanipa. He led his kingdom cruelly. The king also wanted to be a king forever. fie did not want anyone, including his own sons to replace him as a king. Therefore every time he had a baby boy, the king always asked the baby to be killed!
 
 The queen was pregnant. She hoped the baby would be a girl. She don&#39;t want to lose her baby boy.
 
@@ -9731,7 +9765,7 @@ People were happy when I Manyambungi finally killed King Lego. When they were ce
 Puang Mosso still recognized I Manyambungi as the son of king Balanipa. However he was not sure. He asked I Manyambungi politely to stick his tongue. When he saw I Manyambungi&#39;s tongue was black, Puang Mosso then was sure that I Manyambungi was the king&#39;s son!
 
 I Manyambungi became the&#39;new king. His name was also changed into To Dilaling. It means a person who moves from one place to another place. Until now, the grave of To Dilaling still exists in Polewali Mandar, South Sulawesi. </tw-passagedata>
-<tw-passagedata pid="292" name="La Upe" tags="" position="1063.3406333333326,571.6666666666667">LA Upe was a good son. He lived with his father and his stepmother. His mother had died. After he had a stepmother, La Upe&#39;s a life had completely changed. His stepmother got angry easily. When La Upe failed to do something, the stepmother would hit him terribly.
+<tw-passagedata pid="292" name="La Upe" tags="" position="1063,571">LA Upe was a good son. He lived with his father and his stepmother. His mother had died. After he had a stepmother, La Upe&#39;s a life had completely changed. His stepmother got angry easily. When La Upe failed to do something, the stepmother would hit him terribly.
 
 One day, his stepmother asked La Upe to go fishing. She said that she wanted to cook fish for dinner.
 
@@ -9782,7 +9816,7 @@ La Upe told the king about his family and about the king of the fish. The king w
 He said, &quot;l think you will be a good husband for my daughter.&quot;
 
 The king held a great wedding party and years later, when the king died, La Upe became the new king. He led the kingdom wisely. The people lived happily and peacefully.</tw-passagedata>
-<tw-passagedata pid="293" name="A Princess and the Eagle" tags="" position="2181.666666666667,315">THERE was a kingdom in South Sulawesi. The king and the queen had six daughters. They all were beautiful. The king and the queen were happy with their family.
+<tw-passagedata pid="293" name="A Princess and the Eagle" tags="" position="2181,315">THERE was a kingdom in South Sulawesi. The king and the queen had six daughters. They all were beautiful. The king and the queen were happy with their family.
 
 The queen was pregnant. The king was restless when he knew that he would have the seventh child. Why? Well, the tradition said that if the king had seven daughters, then the seventh one had to be sacrificed to the giant eagle when she was 17 years old!
 
@@ -9823,7 +9857,7 @@ After a while, the man came. He brought the princess&#39;scarf!
 &quot;Yes, he is,&quot; said the princess, She was so happy that she could meet him again. She was also happy that the man was very handsome. She fell in love with him.
 
 The king kept his promise. He once again held a party and this one was a party of her daughters wedding with the man who killed the eagle.</tw-passagedata>
-<tw-passagedata pid="294" name="La Tongko-Tongko" tags="" position="938.3420333333322,571.6666666666667">THERE was a very stupid man. His name was La Tongko-Tongko. He lived with his nlother. One day, La Tongko-Tongko told his mother that he wanted to get married.
+<tw-passagedata pid="294" name="La Tongko-Tongko" tags="" position="938,571">THERE was a very stupid man. His name was La Tongko-Tongko. He lived with his nlother. One day, La Tongko-Tongko told his mother that he wanted to get married.
 
 &quot;If you want to get married, you have to find a girl first. Then ask her to marry you.&quot;
 
@@ -9877,7 +9911,7 @@ Before he went to bed, he broke wind. It smelled so bad. La Tongko-Tongko though
 
 The mother could not do and say anything. He just left La Tongko-Tongko alone. And after several hours, La Tongko-Tongko could not hold it anymore. He freed himself and went back to
 his home.</tw-passagedata>
-<tw-passagedata pid="295" name="La Dana and His Buffalo" tags="" position="813.3435333333318,571.6666666666667">IN Toraja, South Sulawesi, lived a young man. His name was La Dana. Everybody knew him. He was known for his clever ideas. He always tricked bad people. That’s why the villagers loved him.
+<tw-passagedata pid="295" name="La Dana and His Buffalo" tags="" position="813,571">IN Toraja, South Sulawesi, lived a young man. His name was La Dana. Everybody knew him. He was known for his clever ideas. He always tricked bad people. That’s why the villagers loved him.
 
 In Toraja, there was always a ceremony when someone passed away. In the ceremony, the guests could get buffalo meat from the host of the ceremony. La Dana went to the ceremony. Before he went home, the host gave him buffalo legs.
 
@@ -9918,7 +9952,7 @@ Finally, Pak Kikir could not hold it anymore.
 “It’s enough La Dana! If you cut the legs, the buffalo would die. The buffalo is still young. We will not get a lot of meat. If you want to get the legs, here take this buffalo with you!” said Pak Kikir.
 
 He gave the buffalo to La Dana. La Dana was happy. His plan worked! He got a living buffalo and brought it home. </tw-passagedata>
-<tw-passagedata pid="296" name="Princess Tandampalik" tags="" position="688.3449333333315,571.6666666666667">KING of Luwu had a very beautiful daughter. Her name was Princess Tandampalik. She was very beautiful. Any man who saw her would fall in love with her. Everybody knew about her beauty, including King of Bone. Bone was a kingdom that was far away from Luwu Kingdom.
+<tw-passagedata pid="296" name="Princess Tandampalik" tags="" position="688,571">KING of Luwu had a very beautiful daughter. Her name was Princess Tandampalik. She was very beautiful. Any man who saw her would fall in love with her. Everybody knew about her beauty, including King of Bone. Bone was a kingdom that was far away from Luwu Kingdom.
 
 Then, King of Bone paid a visit to Luwu in order to propose Princess Tandampalik to be her daughter in-law. His son, Prince of Bone, was still single. King of Luwu actually did not want to accept the proposal. According to the culture, he could not have a son-in-law who lived very far from him. Otherwise, he would suffer from terrible diseases. But, he knew if he refused it, kingdom of Bone would attack Luwu.
 
@@ -9937,9 +9971,9 @@ In the meantime, Prince of Bone was sailing in the sea. He landed on Wajo Island
 &quot;Who are you, beautiful girl? Do you live here?&quot; asked Prince of Bone.
 
 Princess Tandampalik then explained everything. Prince of Bone had heard about her before. He was so happy that he finally met her. He immediately brought Princess Tandampalik and the soldiers back to Luwu Kingdom. The King of Luwu was so happy that her daughter was cured. Not long after that, the King held a wedding party for her daughter and Prince of Bone. </tw-passagedata>
-<tw-passagedata pid="297" name="Gorontalo" tags="" position="961.6666666666667,1266.6666666666667">** [[Limboto Lake|Limboto Lake]]
+<tw-passagedata pid="297" name="Gorontalo" tags="" position="961,1266">** [[Limboto Lake|Limboto Lake]]
 ** [[Lahilote|Lahilote]]</tw-passagedata>
-<tw-passagedata pid="298" name="Limboto Lake" tags="" position="1198.0020999999995,61.66666666666667">JILUMOTO was a god. He lived on earth. One day, when he was travelling he saw some goddesses taking a bath in a lake. He stopped and peeped them.
+<tw-passagedata pid="298" name="Limboto Lake" tags="" position="1198,61">JILUMOTO was a god. He lived on earth. One day, when he was travelling he saw some goddesses taking a bath in a lake. He stopped and peeped them.
 
 Jilumoto was amazed by their beauty. He stole one of the goddesses&#39; wing. When they finished taking a bath, they prepared to go back to heaven. However, one goddess could not fly, she lost her wing.
 
@@ -9988,7 +10022,7 @@ When Mbu&#39;i Bungale received the egg, surprisingly the egg hatched. Inside, t
 When the family were about to go home, they saw some oranges floating in the lake. Jilumoto took the oranges.
 
 Mbu&#39;i Bungale and jilumoto recognized the oranges. It was the oranges from the heaven. When they looked around, they saw some orange trees in the sides of the lake. Then Mbu&#39;i Bungale and Jilumoto named the lake as Bulalo lo limu o tutu which means the lake that was made from oranges in heaven. Stowly the name of lake then changed into Limboto Lake.</tw-passagedata>
-<tw-passagedata pid="299" name="Lahilote" tags="" position="948.0020999999995,0">ONCE upon a time there was a man named Lahilote. He was well respected. People said he had a supernatural power. He could change himself into anything. He was also able to talk to animals and trees.
+<tw-passagedata pid="299" name="Lahilote" tags="" position="948,0">ONCE upon a time there was a man named Lahilote. He was well respected. People said he had a supernatural power. He could change himself into anything. He was also able to talk to animals and trees.
 
 Lahilote loved hunting in the jungle. One day while he was looking for some animals, he heard some noise in a lake. He carefully went to the lake. He hoped he could flnd some animals. Well, he was wrong! He did not see any animals in the lake. Instead, there were some beautiful girls having fun in the water.
 
@@ -10023,7 +10057,7 @@ She agreed to live with him on earth. Then she wore her wings to fly to the eart
 Unfortunately the rattan tree was old. The branches were decayed and they could not hold his body. Sadly, he fell down terribly. He landed on the big stone and it had his footprints.
 
 The stone still exists in Gorontalo and it has an image of footprints. Local people believe that the footprints belong to Lahilote!</tw-passagedata>
-<tw-passagedata pid="300" name="Maluku" tags="" position="836.6666666666667,1266.6666666666667">** [[The Deer and the Sea Snail|The Deer and the Sea Snail]]
+<tw-passagedata pid="300" name="Maluku" tags="" position="836,1266">** [[The Deer and the Sea Snail|The Deer and the Sea Snail]]
 ** [[Tonamalangi|Tonamalangi]]
 ** [[Kuna the Liar|Kuna the Liar]]
 ** [[Bulu Pamali|Bulu Pamali]]
@@ -10033,7 +10067,7 @@ The stone still exists in Gorontalo and it has an image of footprints. Local peo
 ** [[The Legend of Blue Pond|The Legend of Blue Pond]]
 ** [[The King of the River|The King of the River]]
 ** [[Mother|Mother]]</tw-passagedata>
-<tw-passagedata pid="301" name="The Deer and the Sea Snail" tags="" position="1676.6666666666667,808.3333333333334">A long time ago in a jungle in Aru Islands, Maluku, lived a group of deer. They were very proud of their ability in running very fast. They always stayed in different places. They challenged other animals in a running match. If the deer won the match, they took over the place and stayed there.
+<tw-passagedata pid="301" name="The Deer and the Sea Snail" tags="" position="1676,808">A long time ago in a jungle in Aru Islands, Maluku, lived a group of deer. They were very proud of their ability in running very fast. They always stayed in different places. They challenged other animals in a running match. If the deer won the match, they took over the place and stayed there.
 
 Not far from the jungle, there was a beautiful beach. A group of sea snail lived there. The deer heard about the beautiful beach and planned to live there. They had a plan to challenge snails in a running match.
 
@@ -10068,7 +10102,7 @@ Finally, the deer almost reached the twelfth cape but he was exhausted. He was r
 “Hooray!” said all the sea snails.
 
 The deer were so embarrassed. They were just tricked by the clever sea snails. So the deer came back to the jungle and never returned to the beach.</tw-passagedata>
-<tw-passagedata pid="302" name="Tonamalangi" tags="" position="1801.6667666666667,828.3333333333334">TARAKANI and Wayamoto were the names of villages in Maluku. Those two villages were side by side. There was no clear border but a jungle separated Tarakani and Wayamoto.
+<tw-passagedata pid="302" name="Tonamalangi" tags="" position="1801,828">TARAKANI and Wayamoto were the names of villages in Maluku. Those two villages were side by side. There was no clear border but a jungle separated Tarakani and Wayamoto.
 
 The people in Tarakani and Wayamoto never crossed the jungle. They also never visited their neighboring village. Why? Well, because the people in the Tarakani and Wayamoto did not get along very well. They were always fighting. They hated each other!
 
@@ -10106,7 +10140,7 @@ The kids said, &quot;Why the two of you are quiet, Sirs? Please talk.&quot;
 The leaders smiled. They shook hand and began to talk about how to make peace between the two villages.
 
 Peace finally happened! The people in those two villages were very happy. To commemorate their historical moment, they put a big stone in the border of the villages. That big stone was named Tonamalangi which means &#39;the Border&#39;.</tw-passagedata>
-<tw-passagedata pid="303" name="Kuna the Liar" tags="" position="1926.6670666666666,828.3333333333334">THERE was a young man named Kuna. He was handsome and very clever. Sadly, he often lied and tricked people. His parents had often advised him to be a good man. Unfortunately, he never listened to them.
+<tw-passagedata pid="303" name="Kuna the Liar" tags="" position="1926,828">THERE was a young man named Kuna. He was handsome and very clever. Sadly, he often lied and tricked people. His parents had often advised him to be a good man. Unfortunately, he never listened to them.
 
 It was a hot day. Kuna was hungry. He saw an old woman selling bananas. He wanted to eat the bananas but he did not want to pay for them. So, what did he do? He tricked the old woman.
 
@@ -10159,7 +10193,7 @@ The king asked his daughter to marry Kuna. The princess refused her father&#39;s
 The princess asked the soldier to bring Kuna&#39;s friends to the King. The friends then told the King about Kuna and how they hit Kuna.
 
 The king was angry! He would punish Kuna by hanging to death! Kuna was crying, he said that he regretted his bad behavior and asked the king to give him a second chance. Kuna promised to behave well. The king was wise. He forgave Kuna but he would hang Kuna if he ever lied again. Since then, Kuna never lied and became a good man.</tw-passagedata>
-<tw-passagedata pid="304" name="Bulu Pamali" tags="" position="2053.333533333334,821.6666666666667">ONCE upon a time, there was a poor man named Yongker. He was helpful and kind. People liked him because anytime people needed help, Yongker was always
+<tw-passagedata pid="304" name="Bulu Pamali" tags="" position="2053,821">ONCE upon a time, there was a poor man named Yongker. He was helpful and kind. People liked him because anytime people needed help, Yongker was always
 ready.
 
 To earn his life, Yongker sold firewood. To get the woods, he went to the jungle. After that, he sold to people who needed them.
@@ -10214,7 +10248,7 @@ All villagers were happy when they knew that Yongker had become a very strong ma
 had already promised them that he would use his power only for good things.
 
 People then named the place where Yongker met the old man as Bulu Pamali. Bulu means &#39;bamboo&#39;and Pamali means &#39;gone mysteriously&#39;.</tw-passagedata>
-<tw-passagedata pid="305" name="The Mysterious Old Woman Named Luhu" tags="" position="1688.335133333334,446.66666666666674">ONCE upon a time there was a kingdom in Maluku. The kilg had a beautifuI daughter. Her name was Ta Ina Luhu. The king and the queen loved her very much. The people lived happily. Their land was fertile. They lived propperously. There were no poor people.,
+<tw-passagedata pid="305" name="The Mysterious Old Woman Named Luhu" tags="" position="1688,446">ONCE upon a time there was a kingdom in Maluku. The kilg had a beautifuI daughter. Her name was Ta Ina Luhu. The king and the queen loved her very much. The people lived happily. Their land was fertile. They lived propperously. There were no poor people.,
 
 Sadly after the arrival ofthe Dutch, the people could no longer live peacefully. The Dutch came and occupied their land. The king was angry when he saw the Dutch stole their land. He sent his soldiers to attack the Dutch. Unfortunately, the Dutch had better weapons. Soon, the soldiers and the king died.
 
@@ -10238,7 +10272,7 @@ In the meantiine after searching for months, the soldiers flnally found her! The
 Suddenly, the princess disappeared! The soldiers were very confused! They looked for her everywhere, but they could not flnd her! They then went back to the palace. Thg news about the missing princess was spread. People said that she had changed as a ghost!~ She sometimes showed herself as an old woman! Therefore she was then named the mysterious old woman Luhu. The old wonian often kidnapped people, especially children! When it happened, people would pray. After that, they would find the missing person in a critical condition.
 
 People also said that the old woman hated the Dutch very much. She often kidnapped them one by one. Until now, local people believe that the old woman still exists. Sometimes, she shows herself in the drizzling while the sun is hot. People usually avoid walking on the streets and they stay at home when rain falls down and the sun is hot because it is time for the old woman to appear! </tw-passagedata>
-<tw-passagedata pid="306" name="The Bronze Crocodile" tags="" position="563.346633333331,571.6666666666667">A long time ago, in Gulf Baguala, Maluku, there lived a giant crocodile. The crocodile was very big. Its tail was long and its teeth were sharp.
+<tw-passagedata pid="306" name="The Bronze Crocodile" tags="" position="563,571">A long time ago, in Gulf Baguala, Maluku, there lived a giant crocodile. The crocodile was very big. Its tail was long and its teeth were sharp.
 
 The crocodile looked so scary. The skin color was bronze and it made anyone and any animals that just saw the crocodile would be scared to death. The.crocodile was named bronze crocodile.
 
@@ -10297,7 +10331,7 @@ The fight between the bronze crocodile and the snake was unstoppable. The fight 
 Luckily the bronze crocodile was much stronger than the snake. Soon, the snake died. AII the animals were extremely happy. They did not have to worry anymore.
 
 Until now, the people of Maluku believe that the bronze crocodile still lives in the Gulf Baguala. The crocodile often shows himself and after that, lots.of fish will follow him. That&#39;s why people are happy when they can see the bronze crocodile because later they can catch&#39;lots of fish.</tw-passagedata>
-<tw-passagedata pid="307" name="Tanjung Menangis" tags="" position="438.3484333333306,578.3333333333334">THERE was a great kingdom in Halmahera. The people were sad. The king just died. He was a great king. He was kind and very wise. The people loved him very much.
+<tw-passagedata pid="307" name="Tanjung Menangis" tags="" position="438,578">THERE was a great kingdom in Halmahera. The people were sad. The king just died. He was a great king. He was kind and very wise. The people loved him very much.
 
 The king had three children, two sons and one daughter. The son were Baginda Arif and Baginda Binaut, while the daughter was Putri baginda Nuri.
 
@@ -10330,7 +10364,7 @@ Baginda Binaut was really scared. While he was running, he was thinking of his m
 Finally, Baginda Binaut could not run anymore. He was exhausted and he arrived at the sea. He could not go back to the land because it was full of lava. Then he swam to the sea.
 
 Because he was very tired, he could not swim. He was drowned. Slowly, his body turned into a cave. The people often heard someone crying from the cave, therefore they named it the crying cave or Tanjung Menangis.</tw-passagedata>
-<tw-passagedata pid="308" name="The Legend of Blue Pond" tags="" position="1680.0020000000015,318.33333333333337">“Hey look over there! Water is flowing!”
+<tw-passagedata pid="308" name="The Legend of Blue Pond" tags="" position="1680,318">“Hey look over there! Water is flowing!”
 
 A man pointed out to a direction. He saw something strange. Water was fl owing out of the big stones. The water was flowing into a lower ground. Slowly, the ground was full of water.
 
@@ -10361,7 +10395,7 @@ She told them that Magohiduruu and Majojaru were lovers. They planned to get mar
 A year passed by but Magohiduruu did not come back yet. She finally heard that Magohiduruu was dead. Majojaru was very sad. Everyday she was always sat down under a big tree. She spent her time crying. Majojaru was very sad. She did not believe that Magohiduruu had already died. She always cried. Her parents tried to comfort Majojaru, but she never listened to them. And one day Majojaru disappeared. She never returned to her home.
 
 After they heard the story, all the villagers agreed to take care of the pond. And since the water was bluish, they named the pond as the Blue Pond.</tw-passagedata>
-<tw-passagedata pid="309" name="The King of the River" tags="" position="1555.0028000000013,318.33333333333337">“The snake is coming!” screams a fish to his friends.
+<tw-passagedata pid="309" name="The King of the River" tags="" position="1555,318">“The snake is coming!” screams a fish to his friends.
 
 A frog, a turtle, a snail, and all other animals are surprised. They are immediately hiding. They are afraid of the snake. They are worried the snake will harm them.
 
@@ -10398,7 +10432,7 @@ The alligator uses his tail to hit the snake. He does that several times.
 “Are you still the king in this river? Are you going to harm the animals again?”
 
 “No. I’m not the king and I promise I will be good to them,” says the snake.</tw-passagedata>
-<tw-passagedata pid="310" name="Mother" tags="" position="2181.666666666667,821.6666666666667">Maluku, a fisherman and his wife lived with their two children, a daughter and a son. The children are naughty. They never listen to their parent&#39;s advice. But the parents still love their children very much.
+<tw-passagedata pid="310" name="Mother" tags="" position="2181,821">Maluku, a fisherman and his wife lived with their two children, a daughter and a son. The children are naughty. They never listen to their parent&#39;s advice. But the parents still love their children very much.
 
 One day, the father goes fishing as usual. Before he goes, he tells his children not to eat the fish-egg.
 
@@ -10426,14 +10460,14 @@ The mother then stops in front of the big stone. She says, &quot;Open up!&quot;
 
 The big stone opens up. The mother then goes into the big stone. After that the big stone closes.
 The children shout, &quot;Mother please forgive us!&quot; But their mother never returns home. </tw-passagedata>
-<tw-passagedata pid="311" name="Papua" tags="" position="711.6666666666667,1266.6666666666667">** [[Biwar|Biwar]]
+<tw-passagedata pid="311" name="Papua" tags="" position="711,1266">** [[Biwar|Biwar]]
 ** [[The Legend of Coconut Tree|The Legend of Coconut Tree]]
 ** [[Yomngga and the Dragon|Yomngga and the Dragon]]
 ** [[Irimiami and Isoray|Irimiami and Isoray]]
 ** [[Breaking the Sun|Breaking the Sun]]
 ** [[The Unhappy Cendrawasih|The Unhappy Cendrawasih]]
 ** [[Towjatuwa and the Sacred Crocodile|Towjatuwa and the Sacred Crocodile]]</tw-passagedata>
-<tw-passagedata pid="312" name="Biwar" tags="" position="1073.0024999999994,0">PEOPLE in a village in Mimika are busy. They want to find sago. They prepare 12 boats to sail on the river. After three days, their boats are full with sago and now they want to go back to their hometown.
+<tw-passagedata pid="312" name="Biwar" tags="" position="1073,0">PEOPLE in a village in Mimika are busy. They want to find sago. They prepare 12 boats to sail on the river. After three days, their boats are full with sago and now they want to go back to their hometown.
 
 While they are sailing, suddenly a dragon comes! The dragon uses his tail to attack people. The tail makes a very big wave in the river. Most of them are drowned. Only one person survives. The person is a woman. She is hanging to her boat and finally arrives in a land.
 
@@ -10454,7 +10488,7 @@ Biwar makes a big boat. He also makes a lot of weapons. He wants to protect his 
 From his boat, Biwar uses his arrow to attack the dragon. After several times, he finally kills the dragon.
 
 When they arrive in the village, people are happy to welcome Biwar. Thanks to him, they are not afraid of sailing in the river anymore.</tw-passagedata>
-<tw-passagedata pid="313" name="The Legend of Coconut Tree" tags="" position="1054,328.33333333333337">ONCE upon a time in the Moor Island in Papua lived a husband and a wife. The husband&#39;s name was Mora, and the wife&#39;s name was Taribuy. They lived alone. There were no any other people lived on the island.
+<tw-passagedata pid="313" name="The Legend of Coconut Tree" tags="" position="1054,328">ONCE upon a time in the Moor Island in Papua lived a husband and a wife. The husband&#39;s name was Mora, and the wife&#39;s name was Taribuy. They lived alone. There were no any other people lived on the island.
 
 The land in Moor Island was fertile. Every plant grew well. The couple did not have any problems with food. They could eat every fruits and vegetables on the island. The couple lived happily.
 
@@ -10489,7 +10523,7 @@ Not long after that, Mora died. Reio and his mother were very sad. And they did 
 What Mora said was true. A tree grew in Mora’s graveyard. Reio and his mother did not know anything about the tree. It was strange. They had never seen the tree before. The fruit was hard. And when they peeled the skin, they found harder fruit inside. They broke it and found sweet water. And they also found the meat of the fruit was delicious. They loved the tree.
 
 They named the tree as Nera. It means the head of Mora. The tree grew well and now the tree is known as coconut tree.</tw-passagedata>
-<tw-passagedata pid="314" name="Yomngga and the Dragon" tags="" position="679.0002,325">YOMNGGA was a beautiful girl. She lived with her grandmother. Actually Yomngga had two sisters. But they lived in another village.
+<tw-passagedata pid="314" name="Yomngga and the Dragon" tags="" position="679,325">YOMNGGA was a beautiful girl. She lived with her grandmother. Actually Yomngga had two sisters. But they lived in another village.
 
 Yomngga was a kind girl. She always helped her grandmother in the field. Every morning they went to the field and they always went back home in the afternoon. Every day they took the same route.
 
@@ -10551,7 +10585,7 @@ The villagers were curious. They wanted to eat the delicious meat. They put a de
 The ceremony lasted for many days. They worshiped the stone. They were thankful to gods. And they were also thankful to Irimiami and Isoray. Thanks to them, the people knew. about fire.
 
 The people in Papua believe that Irimiami and Isoray were the first persons that found fire. And until now they still hold the ceremony.</tw-passagedata>
-<tw-passagedata pid="316" name="Breaking the Sun" tags="" position="929.0002999999999,320">A long time ago, the sun did not shine too long. It was only shine for a while then it set to the west. Earth was in the dark most of the time. People did not like it. There were not many things they could do during the day. They wished to see the sun shine longer.
+<tw-passagedata pid="316" name="Breaking the Sun" tags="" position="929,320">A long time ago, the sun did not shine too long. It was only shine for a while then it set to the west. Earth was in the dark most of the time. People did not like it. There were not many things they could do during the day. They wished to see the sun shine longer.
 
 There was one man who really hated to be in the dark. His name was Rangga. Everyday he was thinking how he could make the sun shine long enough. One day he had an idea.
 
@@ -10583,7 +10617,7 @@ Finally Rangga held the magic spear. He held it firmly. he did not want to waste
 Rangga concentrated and threw the spear with great power towards the sun. and it worked! The sun was breaking into some pieces. The biggest piece became a moon and the small pieces became the stars.
 
 Since then, the sun shines long enough. and when it set to the west, the earth was not completely in the dark. The moon and the stars gave people enough light.</tw-passagedata>
-<tw-passagedata pid="317" name="The Unhappy Cendrawasih" tags="" position="804.0006999999998,325">Mr and Mrs Brown Bird lived in a jungle in Papua. Mr Brown always complains about his feathers. He thought they were ugly. He was jealous with his friend, Mr Green Bird.
+<tw-passagedata pid="317" name="The Unhappy Cendrawasih" tags="" position="804,325">Mr and Mrs Brown Bird lived in a jungle in Papua. Mr Brown always complains about his feathers. He thought they were ugly. He was jealous with his friend, Mr Green Bird.
 
 &quot;I want to have beautiful feathers like Mr Green Bird. His feathers are not brown like mine. They are very beautiful,&quot; said Mr Brown Bird to his wife.
 
@@ -10614,7 +10648,7 @@ Mr Brown Bird tried very hard to convince his wife realized that he was really h
 &quot;You are very stupid, my husband. With color like these, humans will hunt you. What if they also take our children? Now, please go away! Our lives are in danger if you are still here,&quot; said Mrs Brown Bird. She was crying.
 
 Mr Brown Bird was very sad. He knew he just made a very big mistake. He then left his house. His name then changed into Cendrawasih. It means a bird of paradise.</tw-passagedata>
-<tw-passagedata pid="318" name="Towjatuwa and the Sacred Crocodile" tags="" position="1276.6666666666667,351.6666666666667">ONCE upon a time in Papua, Towjatuwa and his wife lived by the Tami River. They were very happy. They had been waiting to have a baby and after some time, his wife got pregnant. The pregnancy was in the ninth month.
+<tw-passagedata pid="318" name="Towjatuwa and the Sacred Crocodile" tags="" position="1276,351">ONCE upon a time in Papua, Towjatuwa and his wife lived by the Tami River. They were very happy. They had been waiting to have a baby and after some time, his wife got pregnant. The pregnancy was in the ninth month.
 
 Soon, his wife would give a birth. The days passed by, but his wife was still unable to give birth. She had a problem that made her in greater pain. To help her give the birth, Towjatuma needed a sharp stone. He wanted to have an operation to help his wife.
 
